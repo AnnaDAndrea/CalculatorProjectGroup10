@@ -38,7 +38,7 @@ public class FXMLDocumentController implements Initializable {
         
         num = new Complex(1.0, 3.0);
         cf = new ComplexFormat();
-        
+       
         
     }    
     

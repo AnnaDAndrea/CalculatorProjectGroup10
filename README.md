@@ -6,10 +6,10 @@ Group:
 * De Pisapia Claudio          c.depisapia1@studenti.unisa.it
 * Coppola Carmine             c.coppola79@studenti.unisa.it
 
-##Project Description
+## Project Description
 Develop an application implementing a scientific programmable calculator supporting complex numbers.
 
-##Tools Used
+## Tools Used
 - IDE: Netbeans 8.2
 - Programming Language: Java 8 with JavaFx
 

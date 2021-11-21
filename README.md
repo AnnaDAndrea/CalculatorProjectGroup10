@@ -14,7 +14,8 @@ Develop an application implementing a scientific programmable calculator support
 - Programming Language: Java 8 with JavaFx
 
 ## Project Documents
-- link documents: https://drive.google.com/drive/folders/1_HlmY1GuVqAFJDJqG38aNLi3EShv7ySs?usp=sharing
+Link documents: https://drive.google.com/drive/folders/1_HlmY1GuVqAFJDJqG38aNLi3EShv7ySs?usp=sharing
+
 In the "General Report & Product Backlog" folder there are:
 - Design of Software Architecture
 - Product Backlog (weekly updated)

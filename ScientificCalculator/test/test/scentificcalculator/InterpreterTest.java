@@ -83,5 +83,16 @@ public class InterpreterTest {
         assertEquals(stack.getFirst(),new Complex(-1,-1));
     }
     
+    @Test
+    public void testParseSquareRoot() throws InterpreterException{
+        interpreter.parse("-4 sqrt");
+        assertEquals(stack.getFirst(),new Complex(0,2));
+    }
+    
+    @Test
+    public void testParseInvertSign() throws InterpreterException{
+        interpreter.parse("1+1j +-");
+        assertEquals(stack.getFirst(),new Complex(-1,-1));
+    }
     
 }

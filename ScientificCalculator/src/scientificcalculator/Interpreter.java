@@ -38,10 +38,20 @@ public class Interpreter {
                 ComplexFormat cf = new ComplexFormat("j", NumberFormat.getInstance(Locale.US));
                 Complex c = cf.parse(op);
                 
-                baseOp.insert(c);
+                baseOp.insertion(c);
             }
             else if(op.equals("+"))
                 baseOp.sum();
+            else if(op.equals("-"))
+                baseOp.subtraction();
+            else if(op.equals("/"))
+                baseOp.division();
+            else if(op.equals("*"))
+                baseOp.product();
+            else if(op.equals("+-"))
+                baseOp.invertedSign();
+            else if(op.equals("sqrt"))
+                baseOp.squareRoot();
             else
                 System.out.println("Errore " + op);
         }

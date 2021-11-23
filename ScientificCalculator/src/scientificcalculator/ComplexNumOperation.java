@@ -14,14 +14,14 @@ import org.apache.commons.math3.complex.Complex;
  * @author duino
  */
 public class ComplexNumOperation {
-    
+
     private Deque<Complex> stack;
 
     public ComplexNumOperation(Deque<Complex> stack) {
         this.stack = stack;
     }
-    
-    public void insert(Complex z){
+
+    public void insert(Complex z) {
         stack.addFirst(z);
     }
     
@@ -34,6 +34,14 @@ public class ComplexNumOperation {
 
     }
     
-    
-    
+
+    public void divide() throws NoSuchElementException {
+
+        Complex op1 = stack.removeFirst();
+        Complex op2 = stack.removeFirst();
+
+        stack.addFirst(op1.divide(op2));
+
+    }
+
 }

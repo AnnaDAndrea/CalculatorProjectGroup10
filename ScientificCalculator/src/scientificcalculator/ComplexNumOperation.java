@@ -21,7 +21,7 @@ public class ComplexNumOperation {
         this.stack = stack;
     }
 
-    public void insert(Complex z) {
+    public void insertion(Complex z) {
         stack.addFirst(z);
     }
     
@@ -34,15 +34,23 @@ public class ComplexNumOperation {
 
     }
     
-    public void subtract() throws NoSuchElementException {
+    public void subtraction() throws NoSuchElementException {
+        
         Complex op1 = stack.removeFirst();
         Complex op2 = stack.removeFirst();
 
         stack.addFirst(op1.subtract(op2));
     }
     
+    public void product() throws NoSuchElementException {
+        
+        Complex op1 = stack.removeFirst();
+        Complex op2 = stack.removeFirst();
 
-    public void divide() throws NoSuchElementException {
+        stack.addFirst(op1.multiply(op2));
+    }
+
+    public void division() throws NoSuchElementException {
 
         Complex op1 = stack.removeFirst();
         Complex op2 = stack.removeFirst();
@@ -50,7 +58,22 @@ public class ComplexNumOperation {
         stack.addFirst(op1.divide(op2));
 
     }
+    
+    public void squareRoot() throws NoSuchElementException {
 
+        Complex op1 = stack.removeFirst();
+
+        stack.addFirst(op1.sqrt());
+
+    }
+
+    public void invertedSign() throws NoSuchElementException {
+
+        Complex op1 = stack.removeFirst();
+
+        stack.addFirst(op1.negate());
+
+    }
 
     
     

@@ -27,7 +27,7 @@ public class FXMLDocumentController implements Initializable {
 
     private Deque<Complex> stack;
     private ObservableList<Complex> stackObs;
-    
+    private Interpreter parser;
 
     @FXML
     private ListView<Complex> stackView;
@@ -42,6 +42,8 @@ public class FXMLDocumentController implements Initializable {
         stack = new LinkedList<>();
 
         stackObs = FXCollections.observableList((List) stack);
+        
+        parser = new Interpreter(stack);
 
         stackView.setItems(stackObs);
         stackView.setCellFactory(lv -> new ListCell<Complex>() {
@@ -53,15 +55,16 @@ public class FXMLDocumentController implements Initializable {
                     setStyle("");
                 } else {
                     if(c.getImaginary()>=0)
-                        setText(c.getReal() + "+" + c.getImaginary()+"i");
+                        setText(c.getReal() + "+" + c.getImaginary()+"j");
                     else
-                        setText(c.getReal() + "-" + c.getImaginary()+"i");
+                        setText(c.getReal() + "-" + c.getImaginary()+"j");
                 }
             }
         });
         
-        stack.addFirst(num);
-        stack.addFirst(new Complex(1));
+
+        
+        parser.parse("1.11+1.22j 1.10 +");
 
         
 

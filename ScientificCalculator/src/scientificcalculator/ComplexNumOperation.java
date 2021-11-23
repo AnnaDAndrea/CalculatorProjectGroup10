@@ -34,6 +34,13 @@ public class ComplexNumOperation {
 
     }
     
+    public void subtract() throws NoSuchElementException {
+        Complex op1 = stack.removeFirst();
+        Complex op2 = stack.removeFirst();
+
+        stack.addFirst(op1.subtract(op2));
+    }
+    
 
     public void divide() throws NoSuchElementException {
 

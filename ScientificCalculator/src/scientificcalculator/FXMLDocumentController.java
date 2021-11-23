@@ -5,7 +5,6 @@
  */
 package scientificcalculator;
 
-import java.net.BindException;
 import java.net.URL;
 import java.util.Deque;
 import java.util.LinkedList;
@@ -13,6 +12,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -78,6 +78,7 @@ public class FXMLDocumentController implements Initializable {
         sendButton.setGraphic(sendIco);
         sendIco.setFitHeight(35);
         sendIco.setFitWidth(35);
+        sendButton.styleProperty().bind(Bindings.when(sendButton.armedProperty()).then("-fx-background-color: green;").otherwise("-fx-background-color: red;"));
         for(int i = 0; i<100;i++){
             try {
                 parser.parse("1.11-1.22j");
@@ -86,7 +87,6 @@ public class FXMLDocumentController implements Initializable {
             }
         }
         
-
     }
 
 }

@@ -8,6 +8,7 @@ package scientificcalculator;
 import java.text.NumberFormat;
 import java.util.Deque;
 import java.util.Locale;
+import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 import org.apache.commons.math3.complex.Complex;
 import org.apache.commons.math3.complex.ComplexFormat;
@@ -28,7 +29,7 @@ public class Interpreter {
         return s.matches("^(?=[jJ.\\d+-])([+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?(?![jJ.\\d]))([+-]?(?:(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?)?[jJ])?$");
     }
     
-    public void parse(String s){
+    public void parse(String s) throws InterpreterException{
         StringTokenizer ops = new StringTokenizer(s, " ");
         
         while(ops.hasMoreTokens()){
@@ -42,6 +43,7 @@ public class Interpreter {
             }
             else if(op.equals("+"))
                 baseOp.sum();
+            
             else if(op.equals("-"))
                 baseOp.subtraction();
             else if(op.equals("/"))
@@ -53,7 +55,8 @@ public class Interpreter {
             else if(op.equals("sqrt"))
                 baseOp.squareRoot();
             else
-                System.out.println("Errore " + op);
+                throw new InterpreterException();
+        
         }
     
     }

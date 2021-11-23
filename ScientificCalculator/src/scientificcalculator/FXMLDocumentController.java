@@ -11,6 +11,8 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -77,7 +79,11 @@ public class FXMLDocumentController implements Initializable {
         sendIco.setFitHeight(35);
         sendIco.setFitWidth(35);
         for(int i = 0; i<100;i++){
-            parser.parse("1.11-1.22j");
+            try {
+                parser.parse("1.11-1.22j");
+            } catch (InterpreterException ex) {
+                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
 

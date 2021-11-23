@@ -44,4 +44,16 @@ public class ComplexNumOperation {
 
     }
 
+    
+    public void sum() throws NoSuchElementException{
+
+        Complex op1 = stack.removeFirst();
+        Complex op2 = stack.removeFirst();
+
+        stack.addFirst(op1.add(op2));
+
+    }
+    
+    
+    
 }

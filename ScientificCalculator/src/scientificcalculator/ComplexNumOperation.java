@@ -11,7 +11,7 @@ import org.apache.commons.math3.complex.Complex;
 
 /**
  *
- * @author duino
+ * @author Group 10
  */
 public class ComplexNumOperation {
 
@@ -74,7 +74,7 @@ public class ComplexNumOperation {
         stack.addFirst(op1.negate());
 
     }
-
+    
     
     
     

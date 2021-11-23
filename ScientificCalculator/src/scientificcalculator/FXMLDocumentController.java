@@ -5,6 +5,7 @@
  */
 package scientificcalculator;
 
+import java.net.BindException;
 import java.net.URL;
 import java.util.Deque;
 import java.util.LinkedList;
@@ -14,8 +15,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.image.ImageView;
 import org.apache.commons.math3.complex.*;
 
 /**
@@ -24,48 +28,57 @@ import org.apache.commons.math3.complex.*;
  */
 public class FXMLDocumentController implements Initializable {
 
-
     private Deque<Complex> stack;
     private ObservableList<Complex> stackObs;
     private Interpreter parser;
 
     @FXML
     private ListView<Complex> stackView;
-
-
+    @FXML
+    private Button pointButton;
+    @FXML
+    private Button sendButton;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-
+        
         Complex num = new Complex(1.0, 3.0);
         stack = new LinkedList<>();
 
         stackObs = FXCollections.observableList((List) stack);
-        
+
         parser = new Interpreter(stack);
 
         stackView.setItems(stackObs);
-        stackView.setCellFactory(lv -> new ListCell<Complex>() {
-            @Override
-            protected void updateItem(Complex c, boolean empty) {
-                super.updateItem(c, empty);
-                if (empty) {
-                    setText(null);
-                    setStyle("");
-                } else {
-                    if(c.getImaginary()>=0)
-                        setText(c.getReal() + "+" + c.getImaginary()+"j");
-                    else
-                        setText(c.getReal() + "-" + c.getImaginary()+"j");
+        stackView.setCellFactory(lv -> {
+            ListCell<Complex> cell = new ListCell<Complex>() {
+                @Override
+                protected void updateItem(Complex c, boolean empty) {
+                    super.updateItem(c, empty);
+                    if (empty) {
+                        setText(null);
+                        setStyle("");
+                    } else {
+                        if (c.getImaginary() >= 0) {
+                            setText(c.getReal() + "+" + c.getImaginary() + "j");
+                        } else {
+                            setText(c.getReal() + "" + c.getImaginary() + "j");
+                        }
+                    }
                 }
-            }
+            };
+            cell.setAlignment(Pos.CENTER);
+            return cell;
         });
+        ImageView sendIco = new ImageView("img/sendIco.png");
         
-
-        
-        parser.parse("1.11+1.22j 1.10 +");
-
+        sendButton.setGraphic(sendIco);
+        sendIco.setFitHeight(35);
+        sendIco.setFitWidth(35);
+        for(int i = 0; i<100;i++){
+            parser.parse("1.11-1.22j");
+        }
         
 
     }

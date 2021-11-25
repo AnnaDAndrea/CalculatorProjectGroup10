@@ -23,7 +23,7 @@ public class ScientificCalculator extends Application {
         
         Scene scene = new Scene(root);
         stage.setResizable(false);
-        stage.setTitle("Scentific Calculator");
+        stage.setTitle("Scientific Calculator");
         
         stage.setScene(scene);
         stage.show();

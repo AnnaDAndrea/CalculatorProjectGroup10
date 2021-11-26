@@ -21,19 +21,19 @@ public class StackManipulation {
         this.stack = stack;
     }
     
-    public void clear() throws NoSuchElementException{
+    public void clear(){
         
         stack.clear();
 
     }
     
-    public void drop() throws NoSuchElementException{
+    public void drop() throws NoSuchElementException {
         
         stack.removeFirst();
 
     }
 
-    public void dup() throws NoSuchElementException{
+    public void dup() throws NoSuchElementException {
         
         Complex op1 = stack.removeFirst();
         
@@ -42,7 +42,7 @@ public class StackManipulation {
         
     }
     
-    public void swap() throws NoSuchElementException{
+    public void swap() throws NoSuchElementException {
         
         Complex op1 = stack.removeFirst();
         Complex op2 = stack.removeFirst();
@@ -52,7 +52,7 @@ public class StackManipulation {
         
     }
     
-    public void over() throws NoSuchElementException{
+    public void over() throws NoSuchElementException {
         
         Complex op1 = stack.removeFirst();
         Complex op2 = stack.removeFirst();

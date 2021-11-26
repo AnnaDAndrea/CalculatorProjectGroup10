@@ -78,7 +78,8 @@ public class FXMLDocumentController implements Initializable {
         sendButton.setGraphic(sendIco);
         sendIco.setFitHeight(35);
         sendIco.setFitWidth(35);
-        sendButton.styleProperty().bind(Bindings.when(sendButton.armedProperty()).then("-fx-background-color: green;").otherwise("-fx-background-color: red;"));
+        sendButton.styleProperty().bind(Bindings.when(sendButton.armedProperty()).then("-fx-background-color: #ef5350;").otherwise("-fx-background-color: #ff867c;"));
+        
         for(int i = 0; i<100;i++){
             try {
                 parser.parse("1.11-1.22j");

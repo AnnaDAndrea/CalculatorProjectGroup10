@@ -79,7 +79,7 @@ public class FXMLDocumentController implements Initializable {
         stack = new LinkedList<>();
 
         stackObs = FXCollections.observableList((List) stack);
-
+      
         parser = new Interpreter(stack);
 
         stackView.setItems(stackObs);
@@ -180,14 +180,17 @@ public class FXMLDocumentController implements Initializable {
         String text=displayField.getText();
         String newText=text.substring(0,text.length()-1);
         displayField.setText(newText);
-        
-        
+
     }
 
     @FXML
     private void sendAction(ActionEvent event) throws InterpreterException {
-        parser.parse(displayField.getText());
+        String input=displayField.getText();
+        if(input.length()!=0){
+        parser.parse(input);
         System.out.println(stack.getFirst());
+    
+        }
     }
 
     @FXML

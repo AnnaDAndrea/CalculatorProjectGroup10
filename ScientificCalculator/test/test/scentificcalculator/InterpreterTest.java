@@ -92,4 +92,36 @@ public class InterpreterTest {
         assertEquals(stack.getFirst(),new Complex(-1,-1));
     }
     
+    @Test
+    public void testParseClear() throws InterpreterException{
+        interpreter.parse("1+1j clear");
+        assertEquals(stack.size(),0);
+    }
+    
+    @Test
+    public void testParseDup() throws InterpreterException{
+        interpreter.parse("1+1j 2+2j dup");
+        assertEquals(stack.getFirst(),new Complex(2,2));
+    }
+    
+    @Test
+    public void testParseDrop() throws InterpreterException{
+        interpreter.parse("1+1j 2+2j drop");
+        assertEquals(stack.getFirst(),new Complex(1,1));
+    }
+    
+    @Test
+    public void testParseOver() throws InterpreterException{
+        interpreter.parse("1+1j 2+2j over");
+        assertEquals(stack.getFirst(),new Complex(1,1));
+    }
+       
+    @Test
+    public void testParseSwap() throws InterpreterException{
+        interpreter.parse("1+1j 2+2j swap");
+        assertEquals(stack.getFirst(),new Complex(1,1));
+    }
+    
+    
+    
 }

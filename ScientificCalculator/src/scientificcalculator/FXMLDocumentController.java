@@ -78,7 +78,7 @@ public class FXMLDocumentController implements Initializable {
         Complex num = new Complex(1.0, 3.0);
         stack = new LinkedList<>();
 
-        stackObs = FXCollections.observableList((List) stack);
+        stackObs = FXCollections.observableArrayList();
       
         parser = new Interpreter(stack);
 
@@ -188,14 +188,38 @@ public class FXMLDocumentController implements Initializable {
         String input=displayField.getText();
         if(input.length()!=0){
         parser.parse(input);
-        System.out.println(stack.getFirst());
-    
+        displayField.setText("");
+        stackObs.setAll(stack);
         }
     }
 
     @FXML
     private void spaceAction(ActionEvent event) {
         displayField.setText(displayField.getText()+" ");
+    }
+
+    @FXML
+    private void sumAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void subAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void mulAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void divAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void sqrtAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void invAction(ActionEvent event) {
     }
 
 }

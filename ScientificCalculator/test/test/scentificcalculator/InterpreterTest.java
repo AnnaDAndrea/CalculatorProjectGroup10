@@ -22,7 +22,7 @@ import scientificcalculator.InterpreterException;
 public class InterpreterTest {
     
     private Interpreter interpreter;
-    Deque<Complex> stack=new LinkedList<>();
+    Deque<Complex> stack;
     
     public InterpreterTest() {
     }
@@ -30,7 +30,10 @@ public class InterpreterTest {
 
     @Before
     public void setUp() {
+        stack=new LinkedList<>();
         interpreter=new Interpreter(stack);
+     
+       
     }
    
     

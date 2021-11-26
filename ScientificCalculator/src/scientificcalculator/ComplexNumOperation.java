@@ -21,6 +21,10 @@ public class ComplexNumOperation {
         this.stack = stack;
     }
 
+    public ComplexNumOperation() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public void insertion(Complex z) {
         stack.addFirst(z);
     }

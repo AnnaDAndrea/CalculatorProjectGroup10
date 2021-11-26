@@ -22,7 +22,7 @@ import scientificcalculator.InterpreterException;
 public class InterpreterTest {
     
     private Interpreter interpreter;
-    Deque<Complex> stack;
+    private Deque<Complex> stack;
     
     public InterpreterTest() {
     }

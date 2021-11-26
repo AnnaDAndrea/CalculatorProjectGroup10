@@ -17,7 +17,7 @@
                <children>
                   <VBox prefHeight="602.0" prefWidth="450.0" spacing="16.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <TextField alignment="BOTTOM_RIGHT" editable="false" prefHeight="83.0" prefWidth="450.0" text="1+10j +" />
+                        <TextField fx:id="displayField" alignment="BOTTOM_RIGHT" editable="false" prefHeight="83.0" prefWidth="450.0" text="1+10j +" />
                         <HBox prefHeight="222.0" prefWidth="450.0">
                            <children>
                               <TitledPane animated="false" collapsible="false" prefHeight="222.0" prefWidth="125.0" text="Basic Operation">
@@ -38,18 +38,18 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" text="7" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                                    <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" text="8" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                                    <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" text="9" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                                    <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" text="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                                    <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" text="5" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                                    <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" text="6" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                                    <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" text="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                                    <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" text="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                                    <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" text="3" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                                    <Button fx:id="pointButton" mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" text="." GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-                                    <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-                                    <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" text="j" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                                    <Button fx:id="sevenButton" mnemonicParsing="false" onAction="#sevenAction" prefHeight="45.0" prefWidth="45.0" text="7" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                    <Button fx:id="eightButton" mnemonicParsing="false" onAction="#eightAction" prefHeight="45.0" prefWidth="45.0" text="8" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                    <Button fx:id="nineButton" mnemonicParsing="false" onAction="#nineAction" prefHeight="45.0" prefWidth="45.0" text="9" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                    <Button fx:id="fourButton" mnemonicParsing="false" onAction="#fourAction" prefHeight="45.0" prefWidth="45.0" text="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                    <Button fx:id="fiveButton" mnemonicParsing="false" onAction="#fiveAction" prefHeight="45.0" prefWidth="45.0" text="5" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                    <Button fx:id="sixButton" mnemonicParsing="false" onAction="#sixAction" prefHeight="45.0" prefWidth="45.0" text="6" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                    <Button fx:id="oneButton" mnemonicParsing="false" onAction="#oneAction" prefHeight="45.0" prefWidth="45.0" text="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                                    <Button fx:id="twoButton" mnemonicParsing="false" onAction="#twoAction" prefHeight="45.0" prefWidth="45.0" text="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                                    <Button fx:id="threeButton" mnemonicParsing="false" onAction="#threeAction" prefHeight="45.0" prefWidth="45.0" text="3" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                                    <Button fx:id="pointButton" mnemonicParsing="false" onAction="#pointAction" prefHeight="45.0" prefWidth="45.0" text="." GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                                    <Button fx:id="zeroButton" mnemonicParsing="false" onAction="#zeroAction" prefHeight="45.0" prefWidth="45.0" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                                    <Button fx:id="jButton" mnemonicParsing="false" onAction="#jAction" prefHeight="45.0" prefWidth="45.0" text="j" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
                                  </children>
                               </GridPane>
                               <TitledPane animated="false" collapsible="false" prefHeight="222.0" prefWidth="125.0" text="Variables">
@@ -63,17 +63,17 @@
                            <children>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="54.0" text="Canc" />
+                                    <Button fx:id="cancButton" mnemonicParsing="false" onAction="#cancAction" prefHeight="36.0" prefWidth="54.0" text="Canc" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="50.0" prefWidth="214.0">
                                  <children>
-                                    <Button fx:id="sendButton" mnemonicParsing="false" prefHeight="36.0" prefWidth="125.0" text="Send" />
+                                    <Button fx:id="sendButton" mnemonicParsing="false" onAction="#sendAction" prefHeight="36.0" prefWidth="125.0" text="Send" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="54.0" text="Space" />
+                                    <Button fx:id="spaceButton" mnemonicParsing="false" onAction="#spaceAction" prefHeight="36.0" prefWidth="54.0" text="Space" />
                                  </children>
                               </VBox>
                            </children>

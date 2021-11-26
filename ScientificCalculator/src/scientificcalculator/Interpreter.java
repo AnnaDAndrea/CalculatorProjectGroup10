@@ -20,9 +20,11 @@ import org.apache.commons.math3.complex.ComplexFormat;
 public class Interpreter {
     
     private ComplexNumOperation baseOp;
+    private StackManipulation stackManip;
 
     public Interpreter(Deque<Complex> stack) {
         baseOp = new ComplexNumOperation(stack);
+        stackManip= new StackManipulation(stack);
     }
        
     private boolean isComplex(String s){
@@ -54,6 +56,16 @@ public class Interpreter {
                 baseOp.invertedSign();
             else if(op.equals("sqrt"))
                 baseOp.squareRoot();
+            else if(op.equals("clear"))
+                stackManip.clear();
+            else if(op.equals("dup"))
+                stackManip.dup();
+            else if(op.equals("drop"))
+                stackManip.drop();
+            else if(op.equals("over"))
+                stackManip.over();
+            else if(op.equals("swap"))
+                stackManip.swap();
             else
                 throw new InterpreterException();
         

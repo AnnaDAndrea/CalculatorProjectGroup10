@@ -1,17 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package scientificcalculator;
 
 import java.net.URL;
 import java.util.Deque;
 import java.util.LinkedList;
-import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,6 +12,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -78,8 +73,8 @@ public class FXMLDocumentController implements Initializable {
         ImageView sendIco = new ImageView("img/sendIco.png");
         
         sendButton.setGraphic(sendIco);
-        sendIco.setFitHeight(35);
-        sendIco.setFitWidth(35);
+        sendIco.setFitHeight(25);
+        sendIco.setFitWidth(25);
         sendButton.styleProperty().bind(Bindings.when(sendButton.armedProperty())
                                                 .then("-fx-background-color: #ef5350; -fx-background-radius: 20px;")
                                                 .otherwise("-fx-background-color: #ff867c; -fx-background-radius: 20px;"));
@@ -177,16 +172,35 @@ public class FXMLDocumentController implements Initializable {
     private void sendAction(ActionEvent event) throws InterpreterException {
         String input=displayField.getText();
         if(input.length()!=0){
-            
-        try{    
-            parser.parse(input);
+
+            try{    
+                parser.parse(input);
+                displayField.setText("");
+            }
+            catch(InterpreterException ex){
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Wrong command/s");
+                alert.setContentText("You inserted wrong command/s.\nEnter the operations to be performed again.");
+                alert.showAndWait();
+                displayField.setText("");
+            }catch(NoSuchElementException ex){
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Not enough operands");
+                alert.setContentText("There are not enough operands.\nEnter the operations to be performed again");
+                alert.showAndWait();
+                displayField.setText("");
+            }finally{
+                stackObs.setAll(stack);
+            }
+        }else{
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Warning");
+            alert.setHeaderText("Insert one or more operations");
+            alert.setContentText("You must insert one or more operations.");
+            alert.showAndWait();
             displayField.setText("");
-        }
-        catch(Exception ex){
-            //manage exception
-        }finally{
-            stackObs.setAll(stack);
-        }
         }
     }
 }

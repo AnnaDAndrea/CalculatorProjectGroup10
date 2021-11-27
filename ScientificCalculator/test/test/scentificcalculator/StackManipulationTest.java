@@ -44,10 +44,15 @@ public class StackManipulationTest {
     /* Test of the drop method */
     @Test 
     public void testDrop() {
-        stack.addFirst(new Complex(3,3));
+        Complex c1 = new Complex(3,3);
+        Complex c2 = new Complex(3,5);
+        stack.addFirst(c1);
+        stack.addFirst(c2);
         int s1 = stack.size();
         s.drop();
         assertEquals(s1 - 1, stack.size());
+        assertEquals(stack.peekFirst(), c1);
+
     }
     
     /* Test of the drop method fail calling the Exception */

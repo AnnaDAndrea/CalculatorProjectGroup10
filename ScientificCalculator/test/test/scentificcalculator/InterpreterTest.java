@@ -14,6 +14,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import scientificcalculator.Interpreter;
 import scientificcalculator.InterpreterException;
+import scientificcalculator.ZeroDivisionException;
 
 /**
  *
@@ -38,7 +39,7 @@ public class InterpreterTest {
    
     
     @Test
-    public void testParseInsertion() throws InterpreterException
+    public void testParseInsertion() throws InterpreterException, ZeroDivisionException
     {
         
         interpreter.parse("1+5j");
@@ -50,13 +51,13 @@ public class InterpreterTest {
     }
     
     @Test(expected = InterpreterException.class)
-    public void testParseInsertion1() throws InterpreterException
+    public void testParseInsertion1() throws InterpreterException, ZeroDivisionException
     {
         interpreter.parse("42j");
     }
     
     @Test
-    public void testParseSum() throws InterpreterException
+    public void testParseSum() throws InterpreterException, ZeroDivisionException
     {
         interpreter.parse("1+1j 2+2j +");
         assertEquals(stack.getFirst(),new Complex(3,3));
@@ -64,7 +65,7 @@ public class InterpreterTest {
     }
     
     @Test
-    public void testParseProduct() throws InterpreterException
+    public void testParseProduct() throws InterpreterException, ZeroDivisionException
     {
         interpreter.parse("1+1j 2+2j *");
         assertEquals(stack.getFirst(),new Complex(0,4));
@@ -72,61 +73,61 @@ public class InterpreterTest {
     }
     
     @Test
-    public void testParseDivision() throws InterpreterException{
+    public void testParseDivision() throws InterpreterException, ZeroDivisionException{
         interpreter.parse("1+1j 2+2j /");
         assertEquals(stack.getFirst(),new Complex(0.5,0));
     }
     
     @Test
-    public void testParseSubctration() throws InterpreterException{
+    public void testParseSubctration() throws InterpreterException, ZeroDivisionException{
         interpreter.parse("1+1j 2+2j -");
         assertEquals(stack.getFirst(),new Complex(-1,-1));
     }
     
     @Test
-    public void testParseSquareRoot() throws InterpreterException{
+    public void testParseSquareRoot() throws InterpreterException, ZeroDivisionException{
         interpreter.parse("-4 sqrt");
         assertEquals(stack.getFirst(),new Complex(0,2));
     }
     
     @Test
-    public void testParseInvertSign() throws InterpreterException{
+    public void testParseInvertSign() throws InterpreterException, ZeroDivisionException{
         interpreter.parse("1+1j +-");
         assertEquals(stack.getFirst(),new Complex(-1,-1));
     }
     
     @Test
-    public void testParseClear() throws InterpreterException{
+    public void testParseClear() throws InterpreterException, ZeroDivisionException{
         interpreter.parse("1+1j clear");
         assertEquals(stack.size(),0);
     }
     
     @Test
-    public void testParseDup() throws InterpreterException{
+    public void testParseDup() throws InterpreterException, ZeroDivisionException{
         interpreter.parse("1+1j 2+2j dup");
         assertEquals(stack.getFirst(),new Complex(2,2));
     }
     
     @Test
-    public void testParseDrop() throws InterpreterException{
+    public void testParseDrop() throws InterpreterException, ZeroDivisionException{
         interpreter.parse("1+1j 2+2j drop");
         assertEquals(stack.getFirst(),new Complex(1,1));
     }
     
     @Test
-    public void testParseOver() throws InterpreterException{
+    public void testParseOver() throws InterpreterException, ZeroDivisionException{
         interpreter.parse("1+1j 2+2j over");
         assertEquals(stack.getFirst(),new Complex(1,1));
     }
        
     @Test
-    public void testParseSwap() throws InterpreterException{
+    public void testParseSwap() throws InterpreterException, ZeroDivisionException{
         interpreter.parse("1+1j 2+2j swap");
         assertEquals(stack.getFirst(),new Complex(1,1));
     }
     
     @Test
-    public void testParseSequentiallyOperations() throws InterpreterException{
+    public void testParseSequentiallyOperations() throws InterpreterException, ZeroDivisionException{
         interpreter.parse("5 9 - sqrt");
         assertEquals(stack.getFirst(),new Complex(0,2));
     }

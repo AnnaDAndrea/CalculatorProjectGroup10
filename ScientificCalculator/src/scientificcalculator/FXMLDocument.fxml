@@ -76,7 +76,7 @@
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="50.0" prefWidth="214.0">
                                  <children>
-                                    <Button fx:id="sendButton" mnemonicParsing="false" onAction="#sendAction" prefHeight="36.0" prefWidth="125.0" text="Send" />
+                                    <Button fx:id="sendButton" mnemonicParsing="false" onAction="#sendAction" prefHeight="36.0" prefWidth="125.0" style="-fx-background-radius: 20px; -fx-border-radius: 20px;" text="Send" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
@@ -86,23 +86,21 @@
                               </VBox>
                            </children>
                         </HBox>
-                        <TabPane prefHeight="137.0" prefWidth="450.0" tabClosingPolicy="UNAVAILABLE" visible="false" VBox.vgrow="ALWAYS">
+                        <TabPane prefHeight="137.0" prefWidth="450.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
                           <tabs>
                               <Tab text="Stack Op">
                                  <content>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                       <children>
+                                          <Button minWidth="50.0" mnemonicParsing="false" onAction="#clearAction" text="Clear" />
+                                          <Button minWidth="50.0" mnemonicParsing="false" onAction="#dropAction" text="Drop" />
+                                          <Button minWidth="50.0" mnemonicParsing="false" onAction="#dupAction" text="Dup" />
+                                          <Button minWidth="50.0" mnemonicParsing="false" onAction="#swapAction" text="Swap" />
+                                          <Button minWidth="50.0" mnemonicParsing="false" onAction="#overAction" text="Over" />
+                                       </children>
+                                    </HBox>
                                  </content>
                               </Tab>
-                            <Tab text="Transcendental Op">
-                              <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                              </content>
-                            </Tab>
-                            <Tab text="User Defined Op">
-                              <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                              </content>
-                            </Tab>
                           </tabs>
                         </TabPane>
                      </children>

@@ -7,7 +7,7 @@ package scientificcalculator;
 
 /**
  *
- * @author pasqu
+ * @author Group 10
  */
 public class InterpreterException extends Exception {
 

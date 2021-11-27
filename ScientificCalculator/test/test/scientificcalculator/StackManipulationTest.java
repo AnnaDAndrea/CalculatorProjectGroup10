@@ -18,7 +18,7 @@ import scientificcalculator.StackManipulation;
 public class StackManipulationTest {
     
     /**
-     * @brief Definition of the stack and of an instance of StackManipulation
+     * @brief Definition of a fixture composed of the stack and of an instance of StackManipulation
      */
     private Deque<Complex> stack;
     private StackManipulation s;
@@ -27,7 +27,7 @@ public class StackManipulationTest {
     }
     
     /**
-     * @brief Initialization of the stack and of the instance of StackManipulation
+     * @brief Method to initialize the fixture 
      */
     @Before 
     public void setUp() {

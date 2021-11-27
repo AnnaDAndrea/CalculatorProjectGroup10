@@ -30,7 +30,7 @@ public class Interpreter {
         return s.matches("^(?=[jJ.\\d+-])([+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?(?![jJ.\\d]))([+-]?(?:(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?)?[jJ])?$");
     }
     
-    public void parse(String s) throws InterpreterException{
+    public void parse(String s) throws InterpreterException, ZeroDivisionException{
         StringTokenizer ops = new StringTokenizer(s, " ");
         
         while(ops.hasMoreTokens()){

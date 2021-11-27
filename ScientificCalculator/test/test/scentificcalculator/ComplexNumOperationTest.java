@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package test.scentificcalculator;
 
 import java.util.Deque;
@@ -19,28 +14,28 @@ import scientificcalculator.ZeroDivisionException;
 /**
  *
  * @author Group 10
+ * @brief This is the Class used to test ComplexNumOperations methods
  */
 public class ComplexNumOperationTest {
     
+    /**
+     * @brief Definition of the stack and of an instance of complexNumOperation
+     */
     private ComplexNumOperation complexNumOperation;
     private Deque<Complex> stack;
-            
+    
+    /**
+     * @brief Initialization of the stack and of the instance of complexNumOperation
+     */
     @Before
     public void setUp() {
         stack = new LinkedList<>();
         complexNumOperation = new ComplexNumOperation(stack);
     }
     
-    @After
-    public void tearDown() {
-    }
-
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
-    
+    /**
+     * @brief Method to test the insertion method
+     */
     @Test
     public void testInsertion(){
         complexNumOperation.insertion(new Complex(2, 5));
@@ -51,8 +46,11 @@ public class ComplexNumOperationTest {
         assertEquals(stack.removeFirst(), new Complex(2,5));
     }
     
+    /**
+     * @brief Method to test the sum method
+     */
     @Test
-    public void testAdd(){
+    public void testSum(){
         Complex op1 = new Complex(6, 7);
         complexNumOperation.insertion(op1);
         Complex op2 = new Complex(5, 3);
@@ -76,7 +74,7 @@ public class ComplexNumOperationTest {
     }
     
     @Test(expected = NoSuchElementException.class)
-    public void testAddExc(){
+    public void testSumExc(){
         Complex op1 = new Complex(2, 4);
         complexNumOperation.insertion(op1);
         complexNumOperation.sum();

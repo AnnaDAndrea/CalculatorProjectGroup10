@@ -109,70 +109,46 @@ public class FXMLDocumentController implements Initializable {
         sendIco.setFitHeight(35);
         sendIco.setFitWidth(35);
         sendButton.styleProperty().bind(Bindings.when(sendButton.armedProperty()).then("-fx-background-color: #ef5350;").otherwise("-fx-background-color: #ff867c;"));
-        
+       
        
         
     }
 
     @FXML
-    private void sevenAction(ActionEvent event) {
-        displayField.setText(displayField.getText()+"7");
-    }
+    private void sevenAction(ActionEvent event) { displayField.setText(displayField.getText()+"7"); }
 
     @FXML
-    private void eightAction(ActionEvent event) {
-        displayField.setText(displayField.getText()+"8");
-    }
+    private void eightAction(ActionEvent event) { displayField.setText(displayField.getText()+"8"); }
 
     @FXML
-    private void nineAction(ActionEvent event) {
-        displayField.setText(displayField.getText()+"9");
-    }
+    private void nineAction(ActionEvent event) { displayField.setText(displayField.getText()+"9");  }
 
     @FXML
-    private void fourAction(ActionEvent event) {
-        displayField.setText(displayField.getText()+"4");
-    }
+    private void fourAction(ActionEvent event) { displayField.setText(displayField.getText()+"4"); }
 
     @FXML
-    private void fiveAction(ActionEvent event) {
-        displayField.setText(displayField.getText()+"5");
-    }
+    private void fiveAction(ActionEvent event) {  displayField.setText(displayField.getText()+"5"); }
 
     @FXML
-    private void sixAction(ActionEvent event) {
-        displayField.setText(displayField.getText()+"6");
-    }
+    private void sixAction(ActionEvent event) {   displayField.setText(displayField.getText()+"6"); }
 
     @FXML
-    private void oneAction(ActionEvent event) {
-        displayField.setText(displayField.getText()+"1");
-    }
+    private void oneAction(ActionEvent event) { displayField.setText(displayField.getText()+"1"); }
 
     @FXML
-    private void twoAction(ActionEvent event) {
-        displayField.setText(displayField.getText()+"2");
-    }
+    private void twoAction(ActionEvent event) {   displayField.setText(displayField.getText()+"2"); }
 
     @FXML
-    private void threeAction(ActionEvent event) {
-        displayField.setText(displayField.getText()+"3");
-    }
+    private void threeAction(ActionEvent event) {  displayField.setText(displayField.getText()+"3"); }
 
     @FXML
-    private void pointAction(ActionEvent event) {
-        displayField.setText(displayField.getText()+".");
-    }
+    private void pointAction(ActionEvent event) {  displayField.setText(displayField.getText()+"."); }
 
     @FXML
-    private void zeroAction(ActionEvent event) {
-        displayField.setText(displayField.getText()+"0");
-    }
+    private void zeroAction(ActionEvent event) { displayField.setText(displayField.getText()+"0"); }
 
     @FXML
-    private void jAction(ActionEvent event) {
-        displayField.setText(displayField.getText()+"j");
-    }
+    private void jAction(ActionEvent event) { displayField.setText(displayField.getText()+"j"); }
 
     @FXML
     private void cancAction(ActionEvent event) {
@@ -194,32 +170,25 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void spaceAction(ActionEvent event) {
-        displayField.setText(displayField.getText()+" ");
-    }
+    private void spaceAction(ActionEvent event) { displayField.setText(displayField.getText()+" ");   }
 
     @FXML
-    private void sumAction(ActionEvent event) {
-    }
+    private void sumAction(ActionEvent event) {   displayField.setText(displayField.getText()+"+"); }
 
     @FXML
-    private void subAction(ActionEvent event) {
-    }
+    private void subAction(ActionEvent event) { displayField.setText(displayField.getText()+"-");}
 
     @FXML
-    private void mulAction(ActionEvent event) {
-    }
+    private void mulAction(ActionEvent event) { displayField.setText(displayField.getText()+"*");   } //cambiare il nome in prodAction
 
     @FXML
-    private void divAction(ActionEvent event) {
-    }
+    private void divAction(ActionEvent event) { displayField.setText(displayField.getText() +"\\"); }
 
     @FXML
-    private void sqrtAction(ActionEvent event) {
-    }
+    private void sqrtAction(ActionEvent event) { displayField.setText(displayField.getText() +"sqrt");    }
 
     @FXML
-    private void invAction(ActionEvent event) {
+    private void invAction(ActionEvent event) { displayField.setText(displayField.getText() +"+-");
     }
 
 }

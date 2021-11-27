@@ -21,15 +21,11 @@ public class ComplexNumOperation {
         this.stack = stack;
     }
 
-    public ComplexNumOperation() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public void insertion(Complex z) {
         stack.addFirst(z);
     }
     
-    public void sum() throws NoSuchElementException{
+    public void sum() {
 
         Complex op1 = stack.removeFirst();
         Complex op2 = stack.removeFirst();
@@ -38,7 +34,7 @@ public class ComplexNumOperation {
 
     }
     
-    public void subtraction() throws NoSuchElementException {
+    public void subtraction() {
         
         Complex op1 = stack.removeFirst();
         Complex op2 = stack.removeFirst();
@@ -47,7 +43,7 @@ public class ComplexNumOperation {
         
     }
     
-    public void product() throws NoSuchElementException {
+    public void product(){
         
         Complex op1 = stack.removeFirst();
         Complex op2 = stack.removeFirst();
@@ -55,17 +51,19 @@ public class ComplexNumOperation {
         stack.addFirst(op1.multiply(op2));
     }
 
-    public void division() throws NoSuchElementException {
+    public void division() throws ZeroDivisionException {
 
         Complex op1 = stack.removeFirst();
         Complex op2 = stack.removeFirst();
-
-        stack.addFirst(op2.divide(op1));
-   
+        Complex res = op2.divide(op1);
+        if(!res.isNaN() && !res.isInfinite())
+            stack.addFirst(res);
+        else
+            throw new ZeroDivisionException();
 
     }
     
-    public void squareRoot() throws NoSuchElementException {
+    public void squareRoot() {
 
         Complex op1 = stack.removeFirst();
 
@@ -73,7 +71,7 @@ public class ComplexNumOperation {
 
     }
 
-    public void invertedSign() throws NoSuchElementException {
+    public void invertedSign() {
 
         Complex op1 = stack.removeFirst();
 

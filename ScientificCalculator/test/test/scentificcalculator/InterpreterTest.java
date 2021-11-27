@@ -17,7 +17,7 @@ import scientificcalculator.InterpreterException;
 
 /**
  *
- * @author Anna
+ * @author Group 10
  */
 public class InterpreterTest {
     

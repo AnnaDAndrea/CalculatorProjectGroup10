@@ -7,7 +7,6 @@ package scientificcalculator;
 
 import java.util.Deque;
 import org.apache.commons.math3.complex.Complex;
-import java.util.NoSuchElementException;
 
 /**
  *

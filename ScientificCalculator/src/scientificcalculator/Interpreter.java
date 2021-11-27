@@ -8,14 +8,13 @@ package scientificcalculator;
 import java.text.NumberFormat;
 import java.util.Deque;
 import java.util.Locale;
-import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 import org.apache.commons.math3.complex.Complex;
 import org.apache.commons.math3.complex.ComplexFormat;
 
 /**
  *
- * @author duino
+ * @author Group 10
  */
 public class Interpreter {
     

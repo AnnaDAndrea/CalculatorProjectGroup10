@@ -5,6 +5,8 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -127,7 +129,7 @@ public class FXMLDocumentController implements Initializable {
     private void subAction(ActionEvent event) { displayField.setText(displayField.getText()+"-"); }
 
     @FXML
-    private void divAction(ActionEvent event) { displayField.setText(displayField.getText() +"\\"); }
+    private void divAction(ActionEvent event) { displayField.setText(displayField.getText() +"/"); }
 
     @FXML
     private void sqrtAction(ActionEvent event) { displayField.setText(displayField.getText() +"sqrt"); }
@@ -189,6 +191,13 @@ public class FXMLDocumentController implements Initializable {
                 alert.setTitle("Error");
                 alert.setHeaderText("Not enough operands");
                 alert.setContentText("There are not enough operands.\nEnter the operations to be performed again");
+                alert.showAndWait();
+                displayField.setText("");
+            } catch (ZeroDivisionException ex) {
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Divison with 0");
+                alert.setContentText("Division Error");
                 alert.showAndWait();
                 displayField.setText("");
             }finally{

@@ -71,7 +71,7 @@
                            <children>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Button minHeight="36.0" minWidth="54.0" mnemonicParsing="false" onAction="#cancAction" prefHeight="36.0" prefWidth="54.0" text="Canc" />
+                                    <Button minHeight="36.0" minWidth="60.0" mnemonicParsing="false" onAction="#cancAction" prefHeight="36.0" prefWidth="60.0" text="Canc" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="50.0" prefWidth="214.0">
@@ -81,7 +81,7 @@
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Button minHeight="36.0" minWidth="54.0" mnemonicParsing="false" onAction="#spaceAction" prefHeight="36.0" prefWidth="54.0" text="Space" />
+                                    <Button minHeight="36.0" minWidth="60.0" mnemonicParsing="false" onAction="#spaceAction" prefHeight="36.0" prefWidth="60.0" text="Space" />
                                  </children>
                               </VBox>
                            </children>
@@ -92,11 +92,11 @@
                                  <content>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                        <children>
-                                          <Button minWidth="50.0" mnemonicParsing="false" onAction="#clearAction" prefWidth="50.0" text="Clear" />
-                                          <Button minWidth="50.0" mnemonicParsing="false" onAction="#dropAction" prefWidth="50.0" text="Drop" />
-                                          <Button minWidth="50.0" mnemonicParsing="false" onAction="#dupAction" prefWidth="50.0" text="Dup" />
-                                          <Button minWidth="50.0" mnemonicParsing="false" onAction="#swapAction" prefWidth="50.0" text="Swap" />
-                                          <Button minWidth="50.0" mnemonicParsing="false" onAction="#overAction" prefWidth="50.0" text="Over" />
+                                          <Button minWidth="60.0" mnemonicParsing="false" onAction="#clearAction" prefWidth="60.0" text="Clear" />
+                                          <Button minWidth="60.0" mnemonicParsing="false" onAction="#dropAction" prefWidth="60.0" text="Drop" />
+                                          <Button minWidth="60.0" mnemonicParsing="false" onAction="#dupAction" prefWidth="60.0" text="Dup" />
+                                          <Button minWidth="60.0" mnemonicParsing="false" onAction="#swapAction" prefWidth="60.0" text="Swap" />
+                                          <Button minWidth="60.0" mnemonicParsing="false" onAction="#overAction" prefWidth="60.0" text="Over" />
                                        </children>
                                     </HBox>
                                  </content>

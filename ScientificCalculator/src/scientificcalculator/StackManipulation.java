@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package scientificcalculator;
 
 import java.util.Deque;
@@ -11,6 +6,7 @@ import org.apache.commons.math3.complex.Complex;
 /**
  *
  * @author Group 10
+ * @brief This is the Class used to manipulate the Stack
  */
 public class StackManipulation {
     
@@ -20,18 +16,27 @@ public class StackManipulation {
         this.stack = stack;
     }
     
+    /**
+     * @brief This method removes all the elements from the stack
+     */
     public void clear(){
         
         stack.clear();
 
     }
     
+    /**
+     * @brief This method removes the last element (i.e. the top) from the stack
+     */
     public void drop() {
         
         stack.removeFirst();
 
     }
 
+    /**
+     * @brief This method pushes a copy of the last element onto the stack
+     */
     public void dup() {
         
         Complex op1 = stack.removeFirst();
@@ -41,6 +46,9 @@ public class StackManipulation {
         
     }
     
+    /**
+     * @brief This method exchanges the last two elements of the stack
+     */
     public void swap() {
         
         Complex op1 = stack.removeFirst();
@@ -51,6 +59,9 @@ public class StackManipulation {
         
     }
     
+    /**
+     * @brief This method pushes a copy of the second last element onto the stack
+     */
     public void over() {
         
         Complex op1 = stack.removeFirst();

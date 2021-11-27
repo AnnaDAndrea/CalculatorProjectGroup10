@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package test.scentificcalculator;
 
 import java.util.Deque;
@@ -17,31 +12,41 @@ import scientificcalculator.StackManipulation;
 /**
  *
  * @author Group 10
+ * @brief This is the Class used to test StackManipulation methods
  */
+
 public class StackManipulationTest {
     
-    /* Definition of the stacks */
+    /**
+     * @brief Definition of the stack and of an instance of StackManipulation
+     */
     private Deque<Complex> stack;
     private StackManipulation s;
     
     public StackManipulationTest() {
     }
     
-    /* Initialization of the stacks */
+    /**
+     * @brief Initialization of the stack and of the instance of StackManipulation
+     */
     @Before 
     public void setUp() {
         stack = new LinkedList<>();
         s = new StackManipulation(stack);
     }
     
-    /* Test of the clear method */
-    @Test // 
+    /**
+     * @brief Method to test the clear method
+     */
+    @Test 
     public void testClear() {
         s.clear();
         assertEquals(true, stack.isEmpty());
     }
     
-    /* Test of the drop method */
+    /**
+     * @brief Method to test the drop method
+     */
     @Test 
     public void testDrop() {
         Complex c1 = new Complex(3,3);
@@ -55,7 +60,9 @@ public class StackManipulationTest {
 
     }
     
-    /* Test of the drop method fail calling the Exception */
+    /**
+     * @brief Method to test the drop method fail calling the NoSuchElementException
+     */
     @Test(expected = NoSuchElementException.class) 
     public void testDropFail() {
         int s1 = stack.size();
@@ -63,7 +70,9 @@ public class StackManipulationTest {
         assertEquals(s1, stack.size());      
     }
     
-    /* Test of the dup method */
+    /**
+     * @brief Method to test the dup method
+     */
     @Test
     public void testDup() {
         Complex c = new Complex(3,3);
@@ -79,7 +88,9 @@ public class StackManipulationTest {
         assertEquals(out1, out2);
     }
     
-    /* Test of the dup method with more Complex numbers */
+    /**
+     * @brief Method to test the dup method with more Complex numbers
+     */
     @Test
     public void testDup2() {
         Complex c = new Complex(3,3);
@@ -97,7 +108,9 @@ public class StackManipulationTest {
         assertEquals(out1, out2);
     }
     
-    /* Test of the dup method fail calling the Exception */
+    /**
+     * @brief Method to test the dup method fail calling the NoSuchElementException
+     */
     @Test(expected = NoSuchElementException.class)
     public void testDupFail() {
         int s1 = stack.size();
@@ -105,7 +118,9 @@ public class StackManipulationTest {
         assertEquals(s1, stack.size());     
     }
     
-    /* Test of the swap method */
+    /**
+     * @brief Method to test the swap method
+     */
     @Test
     public void testSwap() {
         Complex c1 = new Complex(3,3);
@@ -122,7 +137,9 @@ public class StackManipulationTest {
         assertEquals(c2, stack.removeFirst());
     } 
     
-    /* Test of the swap method with more Complex numbers */
+    /**
+     * @brief Method to test the swap method with more Complex numbers
+     */
     @Test
     public void testSwap2() {
         Complex c1 = new Complex(3,3);
@@ -145,14 +162,18 @@ public class StackManipulationTest {
         assertEquals(c1, stack.removeFirst());
     } 
         
-    /* Test of the swap method fail calling the Exception */
+    /**
+     * @brief Method to test the swap method fail calling the NoSuchElementException
+     */
     @Test(expected = NoSuchElementException.class)
     public void testSwapFail() {
         s.swap();
         assertEquals(0, stack.size());     
     }
     
-    /* Test of the over method */
+    /**
+     * @brief Method to test the over method
+     */
     @Test
     public void testOver() {
         Complex c1 = new Complex(3,3);
@@ -176,7 +197,9 @@ public class StackManipulationTest {
         assertEquals(out3, c1);
     } 
     
-    /* Test of the over method with more Complex numbers*/
+    /**
+     * @brief Method to test the over method with more Complex numbers
+     */
     @Test
     public void testOver2() {
         Complex c1 = new Complex(3,3);
@@ -208,7 +231,9 @@ public class StackManipulationTest {
         assertEquals(out5, c1);
     }
     
-    /* Test of the over method fail calling the Exception */
+    /**
+     * @brief Method to test the over method fail calling the NoSuchElementException
+     */
     @Test(expected = NoSuchElementException.class)
     public void testOverFail() {
         int s1 = stack.size();

@@ -19,7 +19,7 @@ import scientificcalculator.ComplexNumOperation;
 
 /**
  *
- * @author claud
+ * @author Group 10
  */
 public class ComplexNumOperationTest {
     

@@ -16,7 +16,7 @@ import scientificcalculator.StackManipulation;
 
 /**
  *
- * @author Carmine Coppola
+ * @author Group 10
  */
 public class StackManipulationTest {
     

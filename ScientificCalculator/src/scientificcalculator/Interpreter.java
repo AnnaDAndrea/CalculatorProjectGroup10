@@ -15,7 +15,7 @@ import org.apache.commons.math3.complex.ComplexFormat;
 
 /**
  *
- * @author duino
+ * @author Group 10
  */
 public class Interpreter {
     

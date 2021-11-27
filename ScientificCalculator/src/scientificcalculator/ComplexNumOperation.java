@@ -44,6 +44,7 @@ public class ComplexNumOperation {
         Complex op2 = stack.removeFirst();
 
         stack.addFirst(op2.subtract(op1));
+        
     }
     
     public void product() throws NoSuchElementException {

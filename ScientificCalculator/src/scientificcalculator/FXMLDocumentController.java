@@ -154,18 +154,56 @@ public class FXMLDocumentController implements Initializable {
     private void cancAction(ActionEvent event) {
         
         String text=displayField.getText();
-        String newText=text.substring(0,text.length()-1);
-        displayField.setText(newText);
-
+        String newText;
+      //  String newText=text.substring(0,text.length()-1);
+        //displayField.setText(newText);
+     /*   int len=text.length();
+        int index=-1;
+                
+        if(len!=0 && text.contains(" "))
+            for (int i = len - 1; i >= 0; i--) {
+                if (text.charAt(i) == ' ') {
+                    index = i;
+                }
+                break;
+            }
+        if(index!=-1){
+            newText=text.substring(0, index);
+            displayField.setText(newText);
+        }
+        else{
+            newText=text.substring(0,text.length()-1);
+            displayField.setText(newText);
+       }
+      */
+     int index=text.lastIndexOf(" ");
+     if(index!=-1){
+        String result = text.substring(0,index);
+        displayField.setText(result);
+     }
+     else {
+        String result = text.substring(0,text.length()-1);
+        displayField.setText(result);
+     }
+     
+     
     }
 
     @FXML
     private void sendAction(ActionEvent event) throws InterpreterException {
         String input=displayField.getText();
         if(input.length()!=0){
+            
+        try{    
         parser.parse(input);
         displayField.setText("");
         stackObs.setAll(stack);
+        }
+        catch(Exception ex){
+            
+        }finally{
+            stackObs.setAll(stack);
+        }
         }
     }
 
@@ -190,5 +228,20 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void invAction(ActionEvent event) { displayField.setText(displayField.getText() +"+-");
     }
+
+    @FXML
+    private void clearAction(ActionEvent event) { displayField.setText(displayField.getText() +"clear"); }
+
+    @FXML
+    private void dropAction(ActionEvent event) { displayField.setText(displayField.getText() +"drop"); }
+
+    @FXML
+    private void dupAction(ActionEvent event) { displayField.setText(displayField.getText() +"dup"); }
+
+    @FXML
+    private void swapAction(ActionEvent event) { displayField.setText(displayField.getText() +"swap");  }
+
+    @FXML
+    private void overAction(ActionEvent event) { displayField.setText(displayField.getText() +"over");  }
 
 }

@@ -39,37 +39,9 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private ListView<Complex> stackView;
     @FXML
-    private Button pointButton;
-    @FXML
     private Button sendButton;
     @FXML
     private TextField displayField;
-    @FXML
-    private Button sevenButton;
-    @FXML
-    private Button eightButton;
-    @FXML
-    private Button nineButton;
-    @FXML
-    private Button fourButton;
-    @FXML
-    private Button fiveButton;
-    @FXML
-    private Button sixButton;
-    @FXML
-    private Button oneButton;
-    @FXML
-    private Button twoButton;
-    @FXML
-    private Button threeButton;
-    @FXML
-    private Button zeroButton;
-    @FXML
-    private Button jButton;
-    @FXML
-    private Button cancButton;
-    @FXML
-    private Button spaceButton;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -108,10 +80,10 @@ public class FXMLDocumentController implements Initializable {
         sendButton.setGraphic(sendIco);
         sendIco.setFitHeight(35);
         sendIco.setFitWidth(35);
-        sendButton.styleProperty().bind(Bindings.when(sendButton.armedProperty()).then("-fx-background-color: #ef5350;").otherwise("-fx-background-color: #ff867c;"));
-       
-       
-        
+        sendButton.styleProperty().bind(Bindings.when(sendButton.armedProperty())
+                                                .then("-fx-background-color: #ef5350; -fx-background-radius: 20px;")
+                                                .otherwise("-fx-background-color: #ff867c; -fx-background-radius: 20px;"));
+   
     }
 
     @FXML
@@ -127,22 +99,22 @@ public class FXMLDocumentController implements Initializable {
     private void fourAction(ActionEvent event) { displayField.setText(displayField.getText()+"4"); }
 
     @FXML
-    private void fiveAction(ActionEvent event) {  displayField.setText(displayField.getText()+"5"); }
+    private void fiveAction(ActionEvent event) { displayField.setText(displayField.getText()+"5"); }
 
     @FXML
-    private void sixAction(ActionEvent event) {   displayField.setText(displayField.getText()+"6"); }
+    private void sixAction(ActionEvent event) { displayField.setText(displayField.getText()+"6"); }
 
     @FXML
     private void oneAction(ActionEvent event) { displayField.setText(displayField.getText()+"1"); }
 
     @FXML
-    private void twoAction(ActionEvent event) {   displayField.setText(displayField.getText()+"2"); }
+    private void twoAction(ActionEvent event) { displayField.setText(displayField.getText()+"2"); }
 
     @FXML
-    private void threeAction(ActionEvent event) {  displayField.setText(displayField.getText()+"3"); }
+    private void threeAction(ActionEvent event) { displayField.setText(displayField.getText()+"3"); }
 
     @FXML
-    private void pointAction(ActionEvent event) {  displayField.setText(displayField.getText()+"."); }
+    private void pointAction(ActionEvent event) { displayField.setText(displayField.getText()+"."); }
 
     @FXML
     private void zeroAction(ActionEvent event) { displayField.setText(displayField.getText()+"0"); }
@@ -151,83 +123,22 @@ public class FXMLDocumentController implements Initializable {
     private void jAction(ActionEvent event) { displayField.setText(displayField.getText()+"j"); }
 
     @FXML
-    private void cancAction(ActionEvent event) {
-        
-        String text=displayField.getText();
-        String newText;
-      //  String newText=text.substring(0,text.length()-1);
-        //displayField.setText(newText);
-     /*   int len=text.length();
-        int index=-1;
-                
-        if(len!=0 && text.contains(" "))
-            for (int i = len - 1; i >= 0; i--) {
-                if (text.charAt(i) == ' ') {
-                    index = i;
-                }
-                break;
-            }
-        if(index!=-1){
-            newText=text.substring(0, index);
-            displayField.setText(newText);
-        }
-        else{
-            newText=text.substring(0,text.length()-1);
-            displayField.setText(newText);
-       }
-      */
-     int index=text.lastIndexOf(" ");
-     if(index!=-1){
-        String result = text.substring(0,index);
-        displayField.setText(result);
-     }
-     else {
-        String result = text.substring(0,text.length()-1);
-        displayField.setText(result);
-     }
-     
-     
-    }
+    private void spaceAction(ActionEvent event) { displayField.setText(displayField.getText()+" "); }
 
     @FXML
-    private void sendAction(ActionEvent event) throws InterpreterException {
-        String input=displayField.getText();
-        if(input.length()!=0){
-            
-        try{    
-        parser.parse(input);
-        displayField.setText("");
-        stackObs.setAll(stack);
-        }
-        catch(Exception ex){
-            
-        }finally{
-            stackObs.setAll(stack);
-        }
-        }
-    }
+    private void sumAction(ActionEvent event) { displayField.setText(displayField.getText()+"+"); }
 
     @FXML
-    private void spaceAction(ActionEvent event) { displayField.setText(displayField.getText()+" ");   }
-
-    @FXML
-    private void sumAction(ActionEvent event) {   displayField.setText(displayField.getText()+"+"); }
-
-    @FXML
-    private void subAction(ActionEvent event) { displayField.setText(displayField.getText()+"-");}
-
-    @FXML
-    private void mulAction(ActionEvent event) { displayField.setText(displayField.getText()+"*");   } //cambiare il nome in prodAction
+    private void subAction(ActionEvent event) { displayField.setText(displayField.getText()+"-"); }
 
     @FXML
     private void divAction(ActionEvent event) { displayField.setText(displayField.getText() +"\\"); }
 
     @FXML
-    private void sqrtAction(ActionEvent event) { displayField.setText(displayField.getText() +"sqrt");    }
+    private void sqrtAction(ActionEvent event) { displayField.setText(displayField.getText() +"sqrt"); }
 
     @FXML
-    private void invAction(ActionEvent event) { displayField.setText(displayField.getText() +"+-");
-    }
+    private void invAction(ActionEvent event) { displayField.setText(displayField.getText() +"+-"); }
 
     @FXML
     private void clearAction(ActionEvent event) { displayField.setText(displayField.getText() +"clear"); }
@@ -239,9 +150,43 @@ public class FXMLDocumentController implements Initializable {
     private void dupAction(ActionEvent event) { displayField.setText(displayField.getText() +"dup"); }
 
     @FXML
-    private void swapAction(ActionEvent event) { displayField.setText(displayField.getText() +"swap");  }
+    private void swapAction(ActionEvent event) { displayField.setText(displayField.getText() +"swap"); }
 
     @FXML
-    private void overAction(ActionEvent event) { displayField.setText(displayField.getText() +"over");  }
+    private void overAction(ActionEvent event) { displayField.setText(displayField.getText() +"over"); }
 
+    @FXML
+    private void prodAction(ActionEvent event) { displayField.setText(displayField.getText()+"*"); }
+
+    @FXML
+    private void cancAction(ActionEvent event) {
+        
+        String text=displayField.getText();
+        int index=text.lastIndexOf(" ");
+        
+        if(index!=-1){
+           displayField.setText(text.substring(0,index));
+        }
+        else {
+           displayField.setText("");
+        }
+
+    }
+
+    @FXML
+    private void sendAction(ActionEvent event) throws InterpreterException {
+        String input=displayField.getText();
+        if(input.length()!=0){
+            
+        try{    
+            parser.parse(input);
+            displayField.setText("");
+        }
+        catch(Exception ex){
+            //manage exception
+        }finally{
+            stackObs.setAll(stack);
+        }
+        }
+    }
 }

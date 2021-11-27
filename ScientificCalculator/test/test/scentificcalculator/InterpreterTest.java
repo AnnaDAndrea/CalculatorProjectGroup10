@@ -125,6 +125,10 @@ public class InterpreterTest {
         assertEquals(stack.getFirst(),new Complex(1,1));
     }
     
-    
+    @Test
+    public void testParseSequentiallyOperations() throws InterpreterException{
+        interpreter.parse("5 9 - sqrt");
+        assertEquals(stack.getFirst(),new Complex(0,2));
+    }
     
 }

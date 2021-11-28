@@ -11,7 +11,7 @@ Develop an application implementing a scientific programmable calculator support
 
 ## Tools Used
 - IDE: Netbeans 8.2
-- Programming Language: Java 8 with JavaFx
+- Programming Language: Java 8 with JavaFX
 
 ## Project Documents
 Link documents: https://drive.google.com/drive/folders/1_HlmY1GuVqAFJDJqG38aNLi3EShv7ySs?usp=sharing

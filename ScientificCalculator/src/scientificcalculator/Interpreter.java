@@ -13,23 +13,33 @@ import org.apache.commons.math3.complex.Complex;
 import org.apache.commons.math3.complex.ComplexFormat;
 
 /**
- *
+ * @brief Interpreter class implements a translation mechanism
  * @author Group 10
  */
 public class Interpreter {
     
-    private ComplexNumOperation baseOp;
-    private StackManipulation stackManip;
+    private  ComplexNumOperation baseOp;
+    private  StackManipulation stackManip;
 
     public Interpreter(Deque<Complex> stack) {
         baseOp = new ComplexNumOperation(stack);
         stackManip= new StackManipulation(stack);
     }
-       
+    /**
+     * @brief isComplex returns true if the string is an operand
+     * @param s is the input text
+     * @return boolean
+     */   
     private boolean isComplex(String s){
         return s.matches("^(?=[jJ.\\d+-])([+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?(?![jJ.\\d]))([+-]?(?:(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?)?[jJ])?$");
     }
-    
+    /**
+     * @brief parse method is used to separate the string input in tokens that are complex numbers(operators) or operators
+     * This method calls each method of the class ComplexNumOperation to calculate basic operations and each method of the class StackManipulation
+     * @param s is the content of the text field(display)
+     * @throws InterpreterException if there are either wrong operators or wrong operands
+     * @throws ZeroDivisionException 
+     */
     public void parse(String s) throws InterpreterException, ZeroDivisionException{
         StringTokenizer ops = new StringTokenizer(s, " ");
         

@@ -40,11 +40,14 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TextField displayField;
 
+    /**
+     * @brief initialize method is used to associate an observable list to a list view that contains complex numbers with the format a+bj
+     * @param url
+     * @param rb 
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        
-        Complex num = new Complex(1.0, 3.0);
+       
         stack = new LinkedList<>();
 
         stackObs = FXCollections.observableArrayList();
@@ -82,7 +85,10 @@ public class FXMLDocumentController implements Initializable {
                                                 .otherwise("-fx-background-color: #ff867c; -fx-background-radius: 20px;"));
    
     }
-
+/**
+ * @brief the following methods are used to write in the text field a complex number or an operator or the space character
+ * @param event 
+ */
     @FXML
     private void sevenAction(ActionEvent event) { displayField.setText(displayField.getText()+"7"); }
 
@@ -155,6 +161,10 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void prodAction(ActionEvent event) { displayField.setText(displayField.getText()+"*"); }
 
+    /**
+     * @brief  cancAction method is used to delete from text field a character is there aren't space characters or a sequence until the previous space character
+     * @param event is the event when the canc button is clicked
+     */
     @FXML
     private void cancAction(ActionEvent event) {
         
@@ -169,7 +179,12 @@ public class FXMLDocumentController implements Initializable {
         }
 
     }
-
+    /**
+     * @brief sendAction method uses the interpreter to translate input in complex numbers and operators and to do any operations
+     * This methos also handles exceptions by showing an alert
+     * @param event is the event when the send button is clicked
+     * @throws InterpreterException 
+     */
     @FXML
     private void sendAction(ActionEvent event) throws InterpreterException {
         String input=displayField.getText();

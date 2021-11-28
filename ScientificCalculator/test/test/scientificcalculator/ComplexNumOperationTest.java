@@ -4,7 +4,6 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
 import org.apache.commons.math3.complex.Complex;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -19,13 +18,13 @@ import scientificcalculator.ZeroDivisionException;
 public class ComplexNumOperationTest {
     
     /**
-     * @brief Definition of the stack and of an instance of complexNumOperation
+     * @brief Definition of a fixture composed of the stack and of an instance of ComplexNumOperation
      */
     private ComplexNumOperation complexNumOperation;
     private Deque<Complex> stack;
     
     /**
-     * @brief Initialization of the stack and of the instance of complexNumOperation
+     * @brief Method to initialize the fixture 
      */
     @Before
     public void setUp() {
@@ -73,6 +72,9 @@ public class ComplexNumOperationTest {
         
     }
     
+    /**
+     * @brief Method to test the sum method fail calling the NoSuchElementException
+     */
     @Test(expected = NoSuchElementException.class)
     public void testSumExc(){
         Complex op1 = new Complex(2, 4);
@@ -81,6 +83,9 @@ public class ComplexNumOperationTest {
     
     }
     
+    /**
+     * @brief Method to test the subtraction method
+     */
     @Test
     public void testSubtraction(){
         Complex op1 = new Complex(7, 8);
@@ -105,6 +110,9 @@ public class ComplexNumOperationTest {
         
     }
     
+    /**
+     * @brief Method to test the subtraction method fail calling the NoSuchElementException
+     */
     @Test(expected = NoSuchElementException.class)
     public void testSubtractionExc(){
         Complex op1 = new Complex(2, 3);
@@ -113,6 +121,9 @@ public class ComplexNumOperationTest {
     
     }
     
+    /**
+     * @brief Method to test the product method
+     */
     @Test
     public void testProduct(){
         Complex op1 = new Complex(2, 5);
@@ -136,6 +147,9 @@ public class ComplexNumOperationTest {
         assertEquals(stack.removeFirst(), new Complex(-14, 23));
     }
     
+    /**
+     * @brief Method to test the product method fail calling the NoSuchElementException
+     */
     @Test(expected = NoSuchElementException.class)
     public void testProductExc(){
         Complex op1 = new Complex(2, 3);
@@ -144,6 +158,9 @@ public class ComplexNumOperationTest {
     
     }
     
+    /**
+     * @brief Method to test the division method
+     */
     @Test
     public void testDivision() throws ZeroDivisionException{
         Complex op1 = new Complex(6, 9);
@@ -167,6 +184,9 @@ public class ComplexNumOperationTest {
         assertEquals(stack.removeFirst(), new Complex(3.75, 0.75));
     }
     
+    /**
+     * @brief Method to test the division method fail calling the NoSuchElementException
+     */
     @Test(expected = NoSuchElementException.class)
     public void testDivisionExc() throws ZeroDivisionException{
         Complex op1 = new Complex(2, 3);
@@ -175,6 +195,9 @@ public class ComplexNumOperationTest {
     
     }
     
+    /**
+     * @brief Method to test the division method fail calling the ZeroDivisionException
+     */
     @Test(expected = ZeroDivisionException.class)
     public void testDivisionZeroExc() throws ZeroDivisionException{
         Complex op1 = new Complex(2, 3);
@@ -185,6 +208,9 @@ public class ComplexNumOperationTest {
     
     }
     
+    /**
+     * @brief Method to test the square root method
+     */
     @Test
     public void testSquareRoot(){
         Complex op1 = new Complex(3, 4);
@@ -195,12 +221,18 @@ public class ComplexNumOperationTest {
 
     }
     
+    /**
+     * @brief Method to test the square root method fail calling the NoSuchElementException
+     */
     @Test(expected = NoSuchElementException.class)
     public void testSquareRootExc(){
         complexNumOperation.squareRoot();
     
     }
     
+    /**
+     * @brief Method to test the inverted sign method
+     */
     @Test
     public void testInvertedSign(){
         Complex op1 = new Complex(3,2);
@@ -211,6 +243,9 @@ public class ComplexNumOperationTest {
 
     }
     
+    /**
+     * @brief Method to test the inverted sign method fail calling the NoSuchElementException
+     */
     @Test(expected = NoSuchElementException.class)
     public void testInvertedSignExc(){
         complexNumOperation.invertedSign();

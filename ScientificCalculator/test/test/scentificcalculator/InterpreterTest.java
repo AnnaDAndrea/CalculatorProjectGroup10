@@ -20,6 +20,10 @@ import scientificcalculator.ZeroDivisionException;
  *
  * @author Group 10
  */
+/**
+ * @brief This is a tester class to test the behavior of the class Interpreter. It tests if the interpreter works correctly
+ * @author pasqu
+ */
 public class InterpreterTest {
     
     private Interpreter interpreter;
@@ -28,7 +32,9 @@ public class InterpreterTest {
     public InterpreterTest() {
     }
     
-
+/**
+ * @biref setUp method is used to create a fixture
+ */
     @Before
     public void setUp() {
         stack=new LinkedList<>();
@@ -36,7 +42,11 @@ public class InterpreterTest {
      
        
     }
-   
+   /**
+    * @brief testParseInsertion method verifies that a number inserted in the text field this must be inserted onto stack
+    * @throws InterpreterException
+    * @throws ZeroDivisionException 
+    */
     
     @Test
     public void testParseInsertion() throws InterpreterException, ZeroDivisionException
@@ -49,13 +59,21 @@ public class InterpreterTest {
         assertEquals(stack.getFirst(), new Complex(42,0));
          
     }
-    
+    /**
+     * @brief testParseInsertion1 method verifies that a number without real part can't be inserted onto stack
+     * @throws InterpreterException
+     * @throws ZeroDivisionException 
+     */
     @Test(expected = InterpreterException.class)
     public void testParseInsertion1() throws InterpreterException, ZeroDivisionException
     {
         interpreter.parse("42j");
     }
-    
+    /**
+     * brief the following methods verify that the interpreter recognizes and separates the input to calculate the specified operation 
+     * @throws InterpreterException
+     * @throws ZeroDivisionException 
+     */
     @Test
     public void testParseSum() throws InterpreterException, ZeroDivisionException
     {
@@ -63,7 +81,7 @@ public class InterpreterTest {
         assertEquals(stack.getFirst(),new Complex(3,3));
         
     }
-    
+
     @Test
     public void testParseProduct() throws InterpreterException, ZeroDivisionException
     {
@@ -71,13 +89,13 @@ public class InterpreterTest {
         assertEquals(stack.getFirst(),new Complex(0,4));
         
     }
-    
+ 
     @Test
     public void testParseDivision() throws InterpreterException, ZeroDivisionException{
         interpreter.parse("1+1j 2+2j /");
         assertEquals(stack.getFirst(),new Complex(0.5,0));
     }
-    
+ 
     @Test
     public void testParseSubctration() throws InterpreterException, ZeroDivisionException{
         interpreter.parse("1+1j 2+2j -");
@@ -125,7 +143,11 @@ public class InterpreterTest {
         interpreter.parse("1+1j 2+2j swap");
         assertEquals(stack.getFirst(),new Complex(1,1));
     }
-    
+    /**
+     * @brief testParseSequentiallyOperations method verifies that the interpreter recognizes and separates the input to calculate the operations sequentially 
+     * @throws InterpreterException
+     * @throws ZeroDivisionException 
+     */
     @Test
     public void testParseSequentiallyOperations() throws InterpreterException, ZeroDivisionException{
         interpreter.parse("5 9 - sqrt");

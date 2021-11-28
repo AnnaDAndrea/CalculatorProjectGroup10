@@ -1,10 +1,5 @@
 package test.scientificcalculator;
 
-/*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
- */
 import java.util.Deque;
 import java.util.LinkedList;
 import org.apache.commons.math3.complex.Complex;
@@ -16,13 +11,9 @@ import scientificcalculator.InterpreterException;
 import scientificcalculator.ZeroDivisionException;
 
 /**
- *
  * @author Group 10
- */
-/**
  * @brief This is a tester class to test the behavior of the class Interpreter.
  * It tests if the interpreter works correctly
- * @author pasqu
  */
 public class InterpreterTest {
 

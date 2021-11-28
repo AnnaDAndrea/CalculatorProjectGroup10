@@ -19,6 +19,7 @@ Link documents: https://drive.google.com/drive/folders/1_HlmY1GuVqAFJDJqG38aNLi3
 In the "Product Backlog & Details" folder there are:
 - Design of Software Architecture [Weekly Updated]
 - Product Backlog [Weekly Updated]
+- BurnDown Chart [Weekly Updated]
 - Definition of Done & Details
 
 In the "First Sprint" folder there are:

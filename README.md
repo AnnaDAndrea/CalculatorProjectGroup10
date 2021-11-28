@@ -16,11 +16,12 @@ Develop an application implementing a scientific programmable calculator support
 ## Project Documents
 Link documents: https://drive.google.com/drive/folders/1_HlmY1GuVqAFJDJqG38aNLi3EShv7ySs?usp=sharing
 
-In the "General Report & Product Backlog" folder there are:
-- Design of Software Architecture
-- Product Backlog (weekly updated)
-- Weekly Report (weekly updated)
+In the "Product Backlog & Details" folder there are:
+- Design of Software Architecture [Weekly Updated]
+- Product Backlog [Weekly Updated]
+- Definition of Done & Details
 
 In the "First Sprint" folder there are:
-- Presentation of weekly work
 - Sprint Backlog 1
+- Review Report 1
+- Retrospective Report 1

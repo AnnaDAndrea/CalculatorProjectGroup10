@@ -49,13 +49,18 @@ public class Interpreter {
             Complex c;
             
             if(isComplex(op)){
-                c = cf.parse(op);
+                if(op.charAt(0)=='+')
+                    c = cf.parse(op.substring(1));
+                else
+                    c = cf.parse(op);
                 
                 baseOp.insertion(c);
             }
             else if(isImaginary(op)){
                 
                 if(op.charAt(0)=='-')
+                    c = cf.parse("0"+op);
+                else if(op.charAt(0)=='+')
                     c = cf.parse("0"+op);
                 else
                     c = cf.parse("0+"+op);

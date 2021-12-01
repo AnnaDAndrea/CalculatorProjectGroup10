@@ -19,6 +19,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import org.apache.commons.math3.complex.*;
 
 /**
@@ -62,9 +63,15 @@ public class FXMLDocumentController implements Initializable {
                         setText(null);
                         setStyle("");
                     } else {
-                        if (c.getImaginary() >= 0) {
+                        if (c.getImaginary() > 0) {
                             setText(c.getReal() + "+" + c.getImaginary() + "j");
-                        } else {
+                        } else if(c.getImaginary() == 0 && c.getReal() == 0){
+                            setText("0+0.0j");
+                        }  else if(c.getImaginary() == 0){
+                            setText(c.getReal() + "+0.0j");
+                        }else if(c.getReal()== 0){
+                            setText("0+"+ c.getImaginary() +"j");
+                        }else{
                             setText(c.getReal() + "" + c.getImaginary() + "j");
                         }
                     }
@@ -224,5 +231,9 @@ public class FXMLDocumentController implements Initializable {
             alert.showAndWait();
             displayField.setText("");
         }
+    }
+
+    @FXML
+    private void keyPresseedTextField(KeyEvent event) {
     }
 }

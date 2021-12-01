@@ -9,6 +9,9 @@ import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -19,6 +22,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -93,6 +97,14 @@ public class FXMLDocumentController implements Initializable {
                                                 .then("-fx-background-color: #ef5350; -fx-background-radius: 20px;")
                                                 .otherwise("-fx-background-color: #ff867c; -fx-background-radius: 20px;"));
    
+        
+        
+    
+  
+        
+        
+        
+        
     }
 /**
  * @brief the following methods are used to write in the text field a complex number or an operator or the space character
@@ -196,6 +208,18 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void sendAction(ActionEvent event) throws InterpreterException {
+      showDialogAndCallParse();
+    }
+
+    @FXML
+    private void keyPresseedTextField(KeyEvent event) {
+        if(event.getCode().equals(KeyCode.ENTER)){
+           showDialogAndCallParse();
+        }
+        
+    }
+
+   private void showDialogAndCallParse(){
         String input=displayField.getText();
         if(input.length()!=0){
 
@@ -235,9 +259,7 @@ public class FXMLDocumentController implements Initializable {
             alert.showAndWait();
             displayField.setText("");
         }
-    }
-
-    @FXML
-    private void keyPresseedTextField(KeyEvent event) {
-    }
+   }
+    
+ 
 }

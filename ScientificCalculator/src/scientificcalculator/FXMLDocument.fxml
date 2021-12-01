@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="576.0" prefWidth="610.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scientificcalculator.FXMLDocumentController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="576.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scientificcalculator.FXMLDocumentController">
     <children>
       <HBox prefHeight="100.0" prefWidth="200.0" spacing="16.0" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0">
          <children>
@@ -17,21 +17,45 @@
                <children>
                   <VBox prefHeight="602.0" prefWidth="450.0" spacing="16.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <TextField fx:id="displayField" alignment="BOTTOM_RIGHT" editable="false" focusTraversable="false" prefHeight="83.0" prefWidth="450.0" promptText="Insert the operations using the following buttons" />
+                        <TextField fx:id="displayField" alignment="BOTTOM_RIGHT" focusTraversable="false" onKeyPressed="#keyPresseedTextField" prefHeight="83.0" prefWidth="450.0" promptText="Insert the operations using the following buttons">
+                           <font>
+                              <Font name="Arial Bold" size="15.0" />
+                           </font></TextField>
                         <HBox prefHeight="222.0" prefWidth="450.0">
                            <children>
                               <TitledPane animated="false" collapsible="false" prefHeight="222.0" prefWidth="125.0" text="Basic Operation">
                                  <content>
                                     <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="125.0" spacing="5.0">
                                        <children>
-                                          <Button mnemonicParsing="false" onAction="#sumAction" prefHeight="25.0" prefWidth="88.0" text="+" />
-                                          <Button mnemonicParsing="false" onAction="#subAction" prefHeight="25.0" prefWidth="88.0" text="-" />
-                                          <Button mnemonicParsing="false" onAction="#prodAction" prefHeight="25.0" prefWidth="88.0" text="*" />
-                                          <Button mnemonicParsing="false" onAction="#divAction" prefHeight="25.0" prefWidth="88.0" text="/" />
-                                          <Button mnemonicParsing="false" onAction="#sqrtAction" prefHeight="25.0" prefWidth="88.0" text="sqrt" />
-                                          <Button mnemonicParsing="false" onAction="#invAction" prefHeight="25.0" prefWidth="88.0" text="+/-" />
+                                          <Button mnemonicParsing="false" onAction="#sumAction" prefHeight="25.0" prefWidth="88.0" text="+">
+                                             <font>
+                                                <Font name="Arial Bold" size="15.0" />
+                                             </font></Button>
+                                          <Button mnemonicParsing="false" onAction="#subAction" prefHeight="25.0" prefWidth="88.0" text="-">
+                                             <font>
+                                                <Font name="Arial Bold" size="15.0" />
+                                             </font></Button>
+                                          <Button mnemonicParsing="false" onAction="#prodAction" prefHeight="25.0" prefWidth="88.0" text="*">
+                                             <font>
+                                                <Font name="Arial Bold" size="15.0" />
+                                             </font></Button>
+                                          <Button mnemonicParsing="false" onAction="#divAction" prefHeight="25.0" prefWidth="88.0" text="/">
+                                             <font>
+                                                <Font name="Arial Bold" size="15.0" />
+                                             </font></Button>
+                                          <Button mnemonicParsing="false" onAction="#sqrtAction" prefHeight="25.0" prefWidth="88.0" text="sqrt">
+                                             <font>
+                                                <Font name="Arial Bold" size="15.0" />
+                                             </font></Button>
+                                          <Button mnemonicParsing="false" onAction="#invAction" prefHeight="25.0" prefWidth="88.0" text="+/-">
+                                             <font>
+                                                <Font name="Arial Bold" size="15.0" />
+                                             </font></Button>
                                        </children></VBox>
                                  </content>
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
                               </TitledPane>
                               <GridPane alignment="CENTER" prefHeight="222.0" prefWidth="200.0">
                                 <columnConstraints>
@@ -46,18 +70,54 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Button mnemonicParsing="false" onAction="#sevenAction" prefHeight="45.0" prefWidth="45.0" text="7" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                                    <Button mnemonicParsing="false" onAction="#eightAction" prefHeight="45.0" prefWidth="45.0" text="8" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                                    <Button mnemonicParsing="false" onAction="#nineAction" prefHeight="45.0" prefWidth="45.0" text="9" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                                    <Button mnemonicParsing="false" onAction="#fourAction" prefHeight="45.0" prefWidth="45.0" text="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                                    <Button mnemonicParsing="false" onAction="#fiveAction" prefHeight="45.0" prefWidth="45.0" text="5" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                                    <Button mnemonicParsing="false" onAction="#sixAction" prefHeight="45.0" prefWidth="45.0" text="6" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                                    <Button mnemonicParsing="false" onAction="#oneAction" prefHeight="45.0" prefWidth="45.0" text="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                                    <Button mnemonicParsing="false" onAction="#twoAction" prefHeight="45.0" prefWidth="45.0" text="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                                    <Button mnemonicParsing="false" onAction="#threeAction" prefHeight="45.0" prefWidth="45.0" text="3" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                                    <Button mnemonicParsing="false" onAction="#pointAction" prefHeight="45.0" prefWidth="45.0" text="." GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-                                    <Button mnemonicParsing="false" onAction="#zeroAction" prefHeight="45.0" prefWidth="45.0" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-                                    <Button mnemonicParsing="false" onAction="#jAction" prefHeight="45.0" prefWidth="45.0" text="j" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                                    <Button mnemonicParsing="false" onAction="#sevenAction" prefHeight="45.0" prefWidth="45.0" text="7" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Arial Bold" size="15.0" />
+                                       </font></Button>
+                                    <Button mnemonicParsing="false" onAction="#eightAction" prefHeight="45.0" prefWidth="45.0" text="8" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Arial Bold" size="15.0" />
+                                       </font></Button>
+                                    <Button mnemonicParsing="false" onAction="#nineAction" prefHeight="45.0" prefWidth="45.0" text="9" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Arial Bold" size="15.0" />
+                                       </font></Button>
+                                    <Button mnemonicParsing="false" onAction="#fourAction" prefHeight="45.0" prefWidth="45.0" text="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Arial Bold" size="15.0" />
+                                       </font></Button>
+                                    <Button mnemonicParsing="false" onAction="#fiveAction" prefHeight="45.0" prefWidth="45.0" text="5" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Arial Bold" size="15.0" />
+                                       </font></Button>
+                                    <Button mnemonicParsing="false" onAction="#sixAction" prefHeight="45.0" prefWidth="45.0" text="6" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Arial Bold" size="15.0" />
+                                       </font></Button>
+                                    <Button mnemonicParsing="false" onAction="#oneAction" prefHeight="45.0" prefWidth="45.0" text="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Arial Bold" size="15.0" />
+                                       </font></Button>
+                                    <Button mnemonicParsing="false" onAction="#twoAction" prefHeight="45.0" prefWidth="45.0" text="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Arial Bold" size="15.0" />
+                                       </font></Button>
+                                    <Button mnemonicParsing="false" onAction="#threeAction" prefHeight="45.0" prefWidth="45.0" text="3" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Arial Bold" size="15.0" />
+                                       </font></Button>
+                                    <Button mnemonicParsing="false" onAction="#pointAction" prefHeight="45.0" prefWidth="45.0" text="." GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Arial Bold" size="15.0" />
+                                       </font></Button>
+                                    <Button mnemonicParsing="false" onAction="#zeroAction" prefHeight="45.0" prefWidth="45.0" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Arial Bold" size="15.0" />
+                                       </font></Button>
+                                    <Button mnemonicParsing="false" onAction="#jAction" prefHeight="45.0" prefWidth="45.0" text="j" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="Arial Bold" size="15.0" />
+                                       </font></Button>
                                  </children>
                               </GridPane>
                               <TitledPane animated="false" collapsible="false" prefHeight="222.0" prefWidth="125.0" text="Variables" visible="false">
@@ -71,17 +131,26 @@
                            <children>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Button minHeight="36.0" minWidth="60.0" mnemonicParsing="false" onAction="#cancAction" prefHeight="36.0" prefWidth="60.0" text="Canc" />
+                                    <Button minHeight="36.0" minWidth="60.0" mnemonicParsing="false" onAction="#cancAction" prefHeight="36.0" prefWidth="60.0" text="Canc">
+                                       <font>
+                                          <Font name="Arial Bold" size="15.0" />
+                                       </font></Button>
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="50.0" prefWidth="214.0">
                                  <children>
-                                    <Button fx:id="sendButton" minHeight="36.0" minWidth="125.0" mnemonicParsing="false" onAction="#sendAction" prefHeight="36.0" prefWidth="125.0" style="-fx-background-radius: 20px; -fx-border-radius: 20px;" text="Send" />
+                                    <Button fx:id="sendButton" minHeight="36.0" minWidth="125.0" mnemonicParsing="false" onAction="#sendAction" prefHeight="36.0" prefWidth="125.0" style="-fx-background-radius: 20px; -fx-border-radius: 20px;" text="Send">
+                                       <font>
+                                          <Font name="Arial Bold" size="15.0" />
+                                       </font></Button>
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Button minHeight="36.0" minWidth="60.0" mnemonicParsing="false" onAction="#spaceAction" prefHeight="36.0" prefWidth="60.0" text="Space" />
+                                    <Button minHeight="36.0" minWidth="60.0" mnemonicParsing="false" onAction="#spaceAction" prefHeight="36.0" prefWidth="60.0" text="Space">
+                                       <font>
+                                          <Font name="Arial Bold" size="15.0" />
+                                       </font></Button>
                                  </children>
                               </VBox>
                            </children>
@@ -92,11 +161,26 @@
                                  <content>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                        <children>
-                                          <Button minWidth="60.0" mnemonicParsing="false" onAction="#clearAction" prefWidth="60.0" text="Clear" />
-                                          <Button minWidth="60.0" mnemonicParsing="false" onAction="#dropAction" prefWidth="60.0" text="Drop" />
-                                          <Button minWidth="60.0" mnemonicParsing="false" onAction="#dupAction" prefWidth="60.0" text="Dup" />
-                                          <Button minWidth="60.0" mnemonicParsing="false" onAction="#swapAction" prefWidth="60.0" text="Swap" />
-                                          <Button minWidth="60.0" mnemonicParsing="false" onAction="#overAction" prefWidth="60.0" text="Over" />
+                                          <Button minWidth="60.0" mnemonicParsing="false" onAction="#clearAction" prefWidth="60.0" text="Clear">
+                                             <font>
+                                                <Font name="Arial Bold" size="15.0" />
+                                             </font></Button>
+                                          <Button minWidth="60.0" mnemonicParsing="false" onAction="#dropAction" prefWidth="60.0" text="Drop">
+                                             <font>
+                                                <Font name="Arial Bold" size="15.0" />
+                                             </font></Button>
+                                          <Button minWidth="60.0" mnemonicParsing="false" onAction="#dupAction" prefWidth="60.0" text="Dup">
+                                             <font>
+                                                <Font name="Arial Bold" size="15.0" />
+                                             </font></Button>
+                                          <Button minWidth="60.0" mnemonicParsing="false" onAction="#swapAction" prefWidth="60.0" text="Swap">
+                                             <font>
+                                                <Font name="Arial Bold" size="15.0" />
+                                             </font></Button>
+                                          <Button minWidth="60.0" mnemonicParsing="false" onAction="#overAction" prefWidth="60.0" text="Over">
+                                             <font>
+                                                <Font name="Arial Bold" size="15.0" />
+                                             </font></Button>
                                        </children>
                                     </HBox>
                                  </content>
@@ -110,13 +194,13 @@
                   <Insets />
                </HBox.margin>
             </AnchorPane>
-            <AnchorPane prefHeight="602.0" prefWidth="120.0">
+            <AnchorPane prefHeight="602.0" prefWidth="270.0">
                <children>
                   <VBox prefHeight="602.0" prefWidth="119.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="130.0" text="Stack">
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="270.0" text="Stack">
                            <font>
-                              <Font name="System Bold" size="12.0" />
+                              <Font name="Arial Bold" size="15.0" />
                            </font>
                         </Label>
                         <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">

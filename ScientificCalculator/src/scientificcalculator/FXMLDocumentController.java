@@ -70,16 +70,19 @@ public class FXMLDocumentController implements Initializable {
                         setText(null);
                         setStyle("");
                     } else {
-                        if (c.getImaginary() > 0) {
-                            setText(Precision.round(c.getReal() , 8) + "+" + Precision.round(c.getImaginary(), 8) + "j");
-                        } else if(c.getImaginary() == 0 && c.getReal() == 0){
-                            setText("0+0.0j");
-                        }  else if(c.getImaginary() == 0){
+                        double img = Precision.round(c.getImaginary(), 8);
+                        double re = Precision.round(c.getReal(), 8);
+                        
+                        if (img > 0) {
+                            setText(re + "+" + img + "j");
+                        } else if(img == 0 && re == 0){
+                            setText("0.0+0.0j");
+                        }  else if(img == 0){
                             setText(Precision.round(c.getReal() , 8) + "+0.0j");
-                        }else if(c.getReal()== 0){
-                            setText("0+"+ Precision.round(c.getImaginary(), 8) +"j");
+                        }else if(re== 0){
+                            setText("0.0"+ img +"j");
                         }else{
-                            setText(Precision.round(c.getReal() , 8)+ "" + Precision.round(c.getImaginary(), 8) + "j");
+                            setText(re+ "" + img + "j");
                         }
                     }
                 }
@@ -96,15 +99,7 @@ public class FXMLDocumentController implements Initializable {
         sendButton.styleProperty().bind(Bindings.when(sendButton.armedProperty())
                                                 .then("-fx-background-color: #ef5350; -fx-background-radius: 20px;")
                                                 .otherwise("-fx-background-color: #ff867c; -fx-background-radius: 20px;"));
-   
-        
-        
     
-  
-        
-        
-        
-        
     }
 /**
  * @brief the following methods are used to write in the text field a complex number or an operator or the space character

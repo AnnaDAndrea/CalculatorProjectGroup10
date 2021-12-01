@@ -15,10 +15,12 @@ public class Interpreter {
     
     private  ComplexNumOperation baseOp;
     private  StackManipulation stackManip;
+    private ComplexFormat cf;
 
     public Interpreter(Deque<Complex> stack) {
         baseOp = new ComplexNumOperation(stack);
         stackManip= new StackManipulation(stack);
+        cf = new ComplexFormat("j", NumberFormat.getInstance(Locale.US));
     }
     /**
      * @brief isComplex returns true if the string is an operand
@@ -27,6 +29,10 @@ public class Interpreter {
      */   
     private boolean isComplex(String s){
         return s.matches("^(?=[jJ.\\d+-])([+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?(?![jJ.\\d]))([+-]?(?:(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?)?[jJ])?$");
+    }
+    
+    private boolean isImaginary(String s){
+        return s.matches("^(?=[jJ.\\d+-])([+-]?(?:(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?)?[jJ])?$");
     }
     /**
      * @brief parse method is used to separate the string input in tokens that are complex numbers(operators) or operators
@@ -40,10 +46,19 @@ public class Interpreter {
         
         while(ops.hasMoreTokens()){
             String op = ops.nextToken();
-
+            Complex c;
+            
             if(isComplex(op)){
-                ComplexFormat cf = new ComplexFormat("j", NumberFormat.getInstance(Locale.US));
-                Complex c = cf.parse(op);
+                c = cf.parse(op);
+                
+                baseOp.insertion(c);
+            }
+            else if(isImaginary(op)){
+                
+                if(op.charAt(0)=='-')
+                    c = cf.parse("0"+op);
+                else
+                    c = cf.parse("0+"+op);
                 
                 baseOp.insertion(c);
             }

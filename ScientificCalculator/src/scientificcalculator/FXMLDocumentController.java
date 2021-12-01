@@ -20,7 +20,10 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import org.apache.commons.math3.complex.*;
+import org.apache.commons.math3.util.Precision;
 
 /**
  *
@@ -64,20 +67,21 @@ public class FXMLDocumentController implements Initializable {
                         setStyle("");
                     } else {
                         if (c.getImaginary() > 0) {
-                            setText(c.getReal() + "+" + c.getImaginary() + "j");
+                            setText(Precision.round(c.getReal() , 8) + "+" + Precision.round(c.getImaginary(), 8) + "j");
                         } else if(c.getImaginary() == 0 && c.getReal() == 0){
                             setText("0+0.0j");
                         }  else if(c.getImaginary() == 0){
-                            setText(c.getReal() + "+0.0j");
+                            setText(Precision.round(c.getReal() , 8) + "+0.0j");
                         }else if(c.getReal()== 0){
-                            setText("0+"+ c.getImaginary() +"j");
+                            setText("0+"+ Precision.round(c.getImaginary(), 8) +"j");
                         }else{
-                            setText(c.getReal() + "" + c.getImaginary() + "j");
+                            setText(Precision.round(c.getReal() , 8)+ "" + Precision.round(c.getImaginary(), 8) + "j");
                         }
                     }
                 }
             };
             cell.setAlignment(Pos.CENTER);
+            cell.setFont(Font.font("Arial", FontWeight.NORMAL, 16));
             return cell;
         });
         ImageView sendIco = new ImageView("img/sendIco.png");

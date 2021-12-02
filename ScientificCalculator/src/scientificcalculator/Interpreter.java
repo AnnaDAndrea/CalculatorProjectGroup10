@@ -96,13 +96,13 @@ public class Interpreter {
                 stackManip.over();
             else if(op.equals("swap"))
                 stackManip.swap();
-            else if(op.contains(">") && op.length()==2)
+            else if(op.length()==2 && op.charAt(0)=='>')
                 variablesStack.assignToVar(op.charAt(1));
-            else if(op.contains("<") && op.length()==2)
+            else if(op.length()==2 && op.charAt(0)=='<')
                 variablesStack.copyFromVar(op.charAt(1));
-            else if(op.contains("+") && op.length()==2)
+            else if(op.length()==2 && op.charAt(0)=='+')
                 variablesStack.sumToVar(op.charAt(1));
-            else if(op.contains("-") && op.length()==2)
+            else if(op.length()==2 && op.charAt(0)=='-')
                 variablesStack.subtractToVar(op.charAt(1));
             else   
                  throw new InterpreterException();

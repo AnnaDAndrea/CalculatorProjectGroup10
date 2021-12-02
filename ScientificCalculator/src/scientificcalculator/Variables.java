@@ -4,6 +4,7 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 import org.apache.commons.math3.complex.Complex;
+import org.apache.commons.math3.exception.NullArgumentException;
 
 /**
  *
@@ -25,13 +26,14 @@ public class Variables {
     }
     
     private int charToCode(char var){
-        if(var < 'a' && var > 'z')
+        if(var < 'a' || var > 'z')
             throw new VarOutOfRangeException();
         return (int) var - 97;
     }
     
-    public List<Complex> getActualVariables(){
-        return stackVar.subList(sp, sp + 26);
+    public Complex getVarValue(char var){
+        int pos = charToCode(var);
+        return stackVar.get(sp + pos);
     }
         
     public void assignToVar(char var){
@@ -42,20 +44,28 @@ public class Variables {
     
     public void copyFromVar(char var){
         int pos = charToCode(var);
-        
-        stack.addFirst(stackVar.get(sp + pos));
+        Complex val = stackVar.get(sp + pos);
+        if (val == null)
+            throw new NullArgumentException();
+        stack.addFirst(new Complex(val.getReal(), val.getImaginary()));
     }
 
     public void sumToVar(char var){
         int pos = charToCode(var);
         Complex stackElem = stack.removeFirst();
-        stackVar.get(sp + pos).add(stackElem);
+        Complex val = stackVar.get(sp + pos);
+        if (val == null)
+            throw new NullArgumentException();
+        stackVar.set(sp + pos, val.add(stackElem));
     }
     
     public void subtractToVar(char var){
         int pos = charToCode(var);
         Complex stackElem = stack.removeFirst();
-        stackVar.get(sp + pos).subtract(stackElem);
+        Complex val = stackVar.get(sp + pos);
+        if (val == null)
+            throw new NullArgumentException();
+        stackVar.set(sp + pos, val.subtract(stackElem));
     }
     
        

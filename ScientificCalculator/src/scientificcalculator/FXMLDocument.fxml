@@ -24,7 +24,7 @@
                            </font></TextField>
                         <HBox prefHeight="255.0" prefWidth="450.0">
                            <children>
-                              <TitledPane alignment="CENTER" animated="false" collapsible="false" prefHeight="255.0" prefWidth="125.0" text="Basic Operation" textAlignment="CENTER">
+                              <TitledPane alignment="CENTER" animated="false" collapsible="false" prefHeight="248.0" prefWidth="142.0" text="Basic Operation" textAlignment="CENTER" HBox.hgrow="ALWAYS">
                                  <content>
                                     <VBox alignment="CENTER" prefHeight="218.0" prefWidth="125.0" spacing="5.0">
                                        <children>
@@ -55,10 +55,10 @@
                                        </children></VBox>
                                  </content>
                                  <font>
-                                    <Font name="System Bold" size="13.0" />
+                                    <Font name="Arial Bold" size="15.0" />
                                  </font>
                               </TitledPane>
-                              <GridPane alignment="CENTER" prefHeight="222.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                              <GridPane alignment="CENTER" prefHeight="222.0" prefWidth="200.0">
                                 <columnConstraints>
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -121,9 +121,36 @@
                                        </font></Button>
                                  </children>
                               </GridPane>
-                              <TitledPane alignment="CENTER" animated="false" collapsible="false" prefHeight="243.0" prefWidth="127.0" text="Variables">
+                              <TitledPane alignment="CENTER" animated="false" collapsible="false" prefHeight="243.0" prefWidth="142.0" text="Variables" HBox.hgrow="ALWAYS">
                                  <content>
-                                    <VBox alignment="CENTER" prefHeight="218.0" prefWidth="125.0" />
+                                    <VBox alignment="CENTER" prefHeight="218.0" prefWidth="125.0" spacing="5.0">
+                                       <children>
+                                          <HBox alignment="CENTER" prefHeight="54.0" prefWidth="116.0">
+                                             <children>
+                                                <ComboBox fx:id="variablesList" prefWidth="150.0" style="-fx-font: &quot;15px Arial Bold&quot;;" />
+                                             </children>
+                                          </HBox>
+                                          <Button mnemonicParsing="false" onAction="#sumToVarAction" prefWidth="88.0" text="+var">
+                                             <font>
+                                                <Font name="Arial Bold" size="15.0" />
+                                             </font>
+                                          </Button>
+                                          <Button mnemonicParsing="false" onAction="#subtractToVarAction" prefWidth="88.0" text="-var">
+                                             <font>
+                                                <Font name="Arial Bold" size="15.0" />
+                                             </font>
+                                          </Button>
+                                          <Button mnemonicParsing="false" onAction="#assignVarAction" prefWidth="88.0" text="&lt;var">
+                                             <font>
+                                                <Font name="Arial Bold" size="15.0" />
+                                             </font>
+                                          </Button>
+                                          <Button mnemonicParsing="false" onAction="#copyVarAction" prefWidth="88.0" text="&gt;var">
+                                             <font>
+                                                <Font name="Arial Bold" size="15.0" />
+                                             </font>
+                                          </Button>
+                                       </children></VBox>
                                  </content>
                                  <font>
                                     <Font name="Arial Bold" size="15.0" />

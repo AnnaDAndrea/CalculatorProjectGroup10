@@ -16,21 +16,27 @@ public class Interpreter {
     private  ComplexNumOperation baseOp;
     private  StackManipulation stackManip;
     private ComplexFormat cf;
+    private Variables variablesStack;
 
     public Interpreter(Deque<Complex> stack) {
         baseOp = new ComplexNumOperation(stack);
         stackManip= new StackManipulation(stack);
         cf = new ComplexFormat("j", NumberFormat.getInstance(Locale.US));
+        variablesStack=new Variables(stack);
     }
     /**
-     * @brief isComplex returns true if the string is an operand
+     * @brief isComplex method returns true if the string is an operand
      * @param s is the input text
      * @return boolean
      */   
     private boolean isComplex(String s){
         return s.matches("^(?=[jJ.\\d+-])([+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?(?![jJ.\\d]))([+-]?(?:(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?)?[jJ])?$");
     }
-    
+    /**
+     * @brief isImaginary method returns true if the string is a pure complex number
+     * @param s
+     * @return 
+     */
     private boolean isImaginary(String s){
         return s.matches("^(?=[jJ.\\d+-])([+-]?(?:(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?)?[jJ])?$");
     }
@@ -90,8 +96,16 @@ public class Interpreter {
                 stackManip.over();
             else if(op.equals("swap"))
                 stackManip.swap();
-            else
-                throw new InterpreterException();
+            else if(op.contains(">"))
+                variablesStack.assignToVar(op.charAt(1));
+            else if(op.contains("<"))
+                variablesStack.copyFromVar(op.charAt(1));
+            else if(op.contains("+"))
+                variablesStack.sumToVar(op.charAt(1));
+            else if(op.contains("-"))
+                variablesStack.subtractToVar(op.charAt(1));
+            else   
+                 throw new InterpreterException();
         
         }
     

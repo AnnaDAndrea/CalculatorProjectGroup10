@@ -35,7 +35,7 @@ public class InterpreterTest {
 
     /**
      * @brief testParseInsertion method verifies that a number inserted in the
-     * text field this must be inserted onto stack
+     * text field is inserted onto the stack
      * @throws InterpreterException
      * @throws ZeroDivisionException
      */
@@ -48,18 +48,22 @@ public class InterpreterTest {
 
         interpreter.parse("42");
         assertEquals(stack.getFirst(), new Complex(42, 0));
+        
+        interpreter.parse("42j");
+        assertEquals(stack.getFirst(),new Complex(0,42));
 
     }
-
-    /**
-     * @brief testParseInsertion1 method verifies that a number without real
-     * part can't be inserted onto stack
-     * @throws InterpreterException
-     * @throws ZeroDivisionException
-     */
+    
+    
+/**
+ * @brief testParseInsertion1 method checks that if there is a wrong operand or wrong operation then InterpterExcpetion is thrown
+ * @throws InterpreterException
+ * @throws ZeroDivisionException 
+ */
     @Test(expected = InterpreterException.class)
     public void testParseInsertion1() throws InterpreterException, ZeroDivisionException {
-        interpreter.parse("42j");
+
+       interpreter.parse("j2 +- j1");
     }
 
     /**
@@ -148,6 +152,45 @@ public class InterpreterTest {
     public void testParseSequentiallyOperations() throws InterpreterException, ZeroDivisionException {
         interpreter.parse("5 9 - sqrt");
         assertEquals(stack.getFirst(), new Complex(0, 2));
+    }
+    
+    @Test
+    public void testParseAssignToVar() throws InterpreterException, ZeroDivisionException{
+        interpreter.parse("10+5j");
+        interpreter.parse(">x");
+        
+        interpreter.parse("<x");
+        
+        assertEquals(stack.getFirst(),new Complex(10,5));
+        
+    }
+    
+    @Test
+    public void testParseSumToVar() throws InterpreterException, ZeroDivisionException{
+        interpreter.parse("1+1j 2+2j");
+        interpreter.parse(">x"); //x->2+2j
+        interpreter.parse("+x");
+        interpreter.parse("<x");
+        
+        assertEquals(stack.getFirst(),new Complex(3,3) );
+        
+    }
+    
+    @Test    
+    public void testParseSubctractionToVar() throws InterpreterException, ZeroDivisionException{
+        interpreter.parse("2+2j 1+1j");
+        interpreter.parse(">x"); //x->1+1j
+        interpreter.parse("-x");
+        interpreter.parse("<x");
+        
+        assertEquals(stack.getFirst(),new Complex(-1,-1) );
+        
+    }
+    
+    @Test(expected = InterpreterException.class)
+    public void parseAssignToVar() throws InterpreterException, ZeroDivisionException{
+        interpreter.parse("2+2j ");
+        interpreter.parse("70>x");
     }
 
 }

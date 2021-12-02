@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package scientificcalculator;
 
 import java.util.Deque;
@@ -45,7 +40,7 @@ public class Variables {
         stackVar.set(sp + pos, stack.removeFirst());
     }
     
-    public void pullFromVar(char var){
+    public void copyFromVar(char var){
         int pos = charToCode(var);
         
         stack.addFirst(stackVar.get(sp + pos));

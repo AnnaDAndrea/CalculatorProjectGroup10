@@ -31,7 +31,7 @@ public class Variables {
     
     private int charToCode(char var){
         if(var < 'a' && var > 'z')
-            throw new VarOutOfRange();
+            throw new VarOutOfRangeException();
         return (int) var - 97;
     }
     

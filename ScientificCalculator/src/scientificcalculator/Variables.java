@@ -35,7 +35,33 @@ public class Variables {
         return (int) var - 97;
     }
     
+    public List<Complex> getActualVariables(){
+        return stackVar.subList(sp, sp + 26);
+    }
+        
+    public void assignToVar(char var){
+        int pos = charToCode(var);
+        
+        stackVar.set(sp + pos, stack.removeFirst());
+    }
     
+    public void pullFromVar(char var){
+        int pos = charToCode(var);
+        
+        stack.addFirst(stackVar.get(sp + pos));
+    }
+
+    public void sumToVar(char var){
+        int pos = charToCode(var);
+        Complex stackElem = stack.removeFirst();
+        stackVar.get(sp + pos).add(stackElem);
+    }
+    
+    public void subtractToVar(char var){
+        int pos = charToCode(var);
+        Complex stackElem = stack.removeFirst();
+        stackVar.get(sp + pos).subtract(stackElem);
+    }
     
        
     

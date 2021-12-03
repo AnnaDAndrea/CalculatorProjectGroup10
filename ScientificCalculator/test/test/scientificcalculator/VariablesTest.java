@@ -257,10 +257,8 @@ public class VariablesTest {
                                                                            should correspond to the value added */
     }
     
-
-    
     /**
-     * @brief Method to test the sumToVarTest method fail calling the NoSuchElementException
+     * @brief Method to test the sumToVar method fail calling the NoSuchElementException
      */
     @Test(expected = NoSuchElementException.class)
     public void sumToVarTestFail(){  
@@ -268,7 +266,7 @@ public class VariablesTest {
     }
     
     /**
-     * @brief Method to test the sumToVarTest method fail calling the NullArgumentException
+     * @brief Method to test the sumToVar method fail calling the NullArgumentException
      */
     @Test(expected = NullArgumentException.class)
     public void sumToVarTestFail2(){  
@@ -279,55 +277,56 @@ public class VariablesTest {
     
     
     /**
-     * @brief Method to test the copyFromVar method fail trying to copy a value 
-     * from a non existent variable (', that is part of the special characters that are limit cases).
+     * @brief Method to test the sumToVar method fail trying to sum a value 
+     * in a non existent variable (', that is part of the special characters that are limit cases).
      * It calls the VarOutOfRangeException 
      */
     @Test(expected = VarOutOfRangeException.class)
     public void sumToVarTestFail3(){
-        varStack.copyFromVar('\'');
+        varStack.sumToVar('\'');
     }
     
+    
     /**
-     * @brief Method to test the copyFromVar method fail trying to copy a value 
-     * from a non existent variable ({, that is part of the special characters that are limit cases).
+     * @brief Method to test the copyFromVar method fail trying to trying to sum a value 
+     * in a non existent variable ({, that is part of the special characters that are limit cases).
      * It calls the VarOutOfRangeException 
      */
     @Test(expected = VarOutOfRangeException.class)
     public void sumToVarTestFail4(){    
-        varStack.copyFromVar('{');
+        varStack.sumToVar('{');
     }
     
     /**
-     * @brief Method to test the copyFromVar method fail trying to copy a value 
-     * from a non existent variable (A, that is part of the uppercase characters that are limit cases).
+     * @brief Method to test the copyFromVar method fail trying to sum a value 
+     * in a non existent variable (A, that is part of the uppercase characters that are limit cases).
      * It calls the VarOutOfRangeException 
      */
     @Test(expected = VarOutOfRangeException.class)
     public void sumToVarTestFail5(){    
-        varStack.copyFromVar('A');
+        varStack.sumToVar('A');
     }
     
     /**
-     * @brief Method to test the copyFromVar method fail trying to copy a value 
-     * from a non existent variable (à, that is part of the accented characters that are limit cases).
+     * @brief Method to test the copyFromVar method fail trying to sum a value 
+     * in a non existent variable (à, that is part of the accented characters that are limit cases).
      * It calls the VarOutOfRangeException 
      */
     @Test(expected = VarOutOfRangeException.class)
     public void sumToVarTestFail6(){    
-        varStack.copyFromVar('à');
+        varStack.sumToVar('à');
     }
     
     /**
-     * @brief Method to test the copyFromVar method fail trying to copy a value 
-     * from a non existent variable (1, that is part of the numbers that are limit cases).
+     * @brief Method to test the copyFromVar method fail trying to sum a value 
+     * in a non existent variable (1, that is part of the numbers that are limit cases).
      * It calls the VarOutOfRangeException 
      */
     @Test(expected = VarOutOfRangeException.class)
     public void sumToVarTestFail7(){    
-        varStack.copyFromVar('1');
+        varStack.sumToVar('1');
     }
-    
+
     /**
      * @brief Method to test the subtractToVar method
      */
@@ -345,13 +344,19 @@ public class VariablesTest {
         // Checking if an element has effectively been removed from the stack and if the subtraction has been done correctly
         varStack.subtractToVar('a');
         assertEquals(s1 - 1, stack.size());
-        assertEquals(c3.subtract(c3.subtract(c2)), c2);  /* the previous value of the variable - the subtraction result 
-                                                         should correspond to the value subtracted */
+        assertEquals(c2, c3.subtract(c3.subtract(c2)));  /* the previous value of the variable - the subtraction result 
+                                                            should correspond to the value subtracted */
+        
+         // Checking if an element has effectively been removed from the stack and if the subtraction has been done correctly
+        varStack.subtractToVar('a');
+        assertEquals(0, stack.size());
+        assertEquals(c1, (c3.subtract(c2)).subtract(c3.subtract(c2).subtract(c1)));  /* the previous value of the variable - the subtraction result 
+                                                                                        should correspond to the value subtracted */
     }
     
     
     /**
-     * @brief Method to test the sumToVarTest method fail calling the NoSuchElementException
+     * @brief Method to test the subtractToVar method fail calling the NoSuchElementException
      */
     @Test(expected = NoSuchElementException.class)
     public void subtractToVarTestFail(){  
@@ -360,17 +365,63 @@ public class VariablesTest {
     
     
     /**
-     * @brief Method to test the sumToVarTest method fail calling the NullArgumentException
+     * @brief Method to test the subtractToVar method fail calling the NullArgumentException
      */
     @Test(expected = NullArgumentException.class)
     public void subtractToVarTestFail2(){  
         Complex c1 = new Complex(3,3);
         stack.addFirst(c1);
         varStack.subtractToVar('a');
-        varStack.copyFromVar('a');
-        assertEquals(stack.peekFirst(), null);
     }
     
-
+    /**
+     * @brief Method to test the subtractToVar method fail trying to subtract a value 
+     * in a non existent variable (', that is part of the special characters that are limit cases).
+     * It calls the VarOutOfRangeException 
+     */
+    @Test(expected = VarOutOfRangeException.class)
+    public void subtractToVarTestFail3(){
+        varStack.subtractToVar('\'');
+    }
+    
+    /**
+     * @brief Method to test the subtractToVar method fail trying to trying to subtract a value 
+     * in a non existent variable ({, that is part of the special characters that are limit cases).
+     * It calls the VarOutOfRangeException 
+     */
+    @Test(expected = VarOutOfRangeException.class)
+    public void subtractToVarTestFail4(){    
+        varStack.subtractToVar('{');
+    }
+    
+    /**
+     * @brief Method to test the subtractToVar method fail trying to subtract a value 
+     * in a non existent variable (A, that is part of the uppercase characters that are limit cases).
+     * It calls the VarOutOfRangeException 
+     */
+    @Test(expected = VarOutOfRangeException.class)
+    public void subtractToVarTestFail5(){    
+        varStack.subtractToVar('A');
+    }
+    
+    /**
+     * @brief Method to test the subtractToVar method fail trying to subtract a value 
+     * in a non existent variable (à, that is part of the accented characters that are limit cases).
+     * It calls the VarOutOfRangeException 
+     */
+    @Test(expected = VarOutOfRangeException.class)
+    public void subtractToVarTestFail6(){    
+        varStack.subtractToVar('à');
+    }
+    
+    /**
+     * @brief Method to test the subtractToVar method fail trying to subtract a value 
+     * in a non existent variable (1, that is part of the numbers that are limit cases).
+     * It calls the VarOutOfRangeException 
+     */
+    @Test(expected = VarOutOfRangeException.class)
+    public void subtractToVarTestFail7(){    
+        varStack.subtractToVar('1');
+    }
     
 }

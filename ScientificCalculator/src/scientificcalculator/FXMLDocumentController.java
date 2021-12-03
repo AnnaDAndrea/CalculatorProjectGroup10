@@ -1,9 +1,13 @@
 package scientificcalculator;
 
+import exception.InterpreterException;
+import exception.ZeroDivisionException;
+import exception.VarOutOfRangeException;
 import java.net.URL;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
@@ -19,6 +23,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -37,7 +42,9 @@ public class FXMLDocumentController implements Initializable {
     private Deque<Complex> stack;
     private ObservableList<Complex> stackObs;
     private ObservableList<Character> variablesObs;
+    private ObservableList<String> userDefObs;
     private Interpreter parser;
+    private UserDefinedOperation userOperations;
     private Alert alert;
 
     @FXML
@@ -48,6 +55,8 @@ public class FXMLDocumentController implements Initializable {
     private TextField displayField;
     @FXML
     private ComboBox<Character> variablesList;
+    @FXML
+    private ComboBox<String> userDefList;
 
     /**
      * @brief initialize method is used to associate an observable list to a list view that contains complex numbers with the format a+bj
@@ -63,7 +72,9 @@ public class FXMLDocumentController implements Initializable {
 
         stackObs = FXCollections.observableArrayList();
       
-        parser = new Interpreter(stack);
+        userOperations = new UserDefinedOperation();
+        
+        parser = new Interpreter(stack, userOperations);
 
         stackView.setItems(stackObs);
         stackView.setCellFactory(lv -> {
@@ -116,7 +127,8 @@ public class FXMLDocumentController implements Initializable {
         variablesList.setValue('a');
         variablesList.setStyle("-fx-font: 15px \"Arial\";" + "-fx-font-weight: bold;");
         
-    
+        userDefObs = FXCollections.observableArrayList(userOperations.getNameOperations());
+        userDefList.setItems(userDefObs);
     }
 /**
  * @brief the following methods are used to write in the text field a complex number or an operator or the space character
@@ -205,6 +217,46 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void subtractToVarAction(ActionEvent event) { displayField.setText(displayField.getText() + "-" + variablesList.getValue()); }
+    
+    @FXML
+    private void newAction(ActionEvent event) {
+        String input=displayField.getText();
+        
+        if(input.length()!=0){
+            TextInputDialog dialog = new TextInputDialog("name of this sequence");
+            dialog.setHeaderText("Name User Operation");
+            dialog.setContentText("Set a name of this sequence:\n" + input);
+            Optional<String> ret=dialog.showAndWait();
+            if(ret.isPresent() && !ret.get().contains(" ") && !ret.get().isEmpty() && !parser.check(ret.get()) && parser.check(input)){
+                userOperations.newOperation(ret.get(), input);
+                
+                userDefObs.setAll(userOperations.getNameOperations());
+                userDefList.setItems(userDefObs);
+                
+                alert.setAlertType(AlertType.INFORMATION);
+                alert.setTitle("Information");
+                alert.setHeaderText("Created");
+                alert.setContentText("New operation created successfully");
+                alert.showAndWait(); 
+                
+                displayField.setText("");
+            }else{
+                alert.setAlertType(AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Operation not allowed");
+                alert.setContentText("The name of operation or the sequence contains error");
+                alert.showAndWait(); 
+            }
+                
+        }else{
+            alert.setAlertType(AlertType.WARNING);
+            alert.setTitle("Warning");
+            alert.setHeaderText("Insert one or more operations");
+            alert.setContentText("You must insert one or more operations.");
+            alert.showAndWait(); 
+        }
+        
+    }
 
     /**
      * @brief  cancAction method is used to delete from text field a character is there aren't space characters or a sequence until the previous space character
@@ -236,7 +288,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void keyPresseedTextField(KeyEvent event) {
+    private void keyPressedTextField(KeyEvent event) {
         if(event.getCode().equals(KeyCode.ENTER)){
            showDialogAndCallParse();
         }
@@ -291,6 +343,8 @@ public class FXMLDocumentController implements Initializable {
         }
         displayField.setText("");
    }
+
+    
 
     
     

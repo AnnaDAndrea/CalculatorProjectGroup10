@@ -1,5 +1,6 @@
 package scientificcalculator;
 
+import exception.ZeroDivisionException;
 import java.util.Deque;
 import org.apache.commons.math3.complex.Complex;
 

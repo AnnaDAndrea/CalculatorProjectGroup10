@@ -34,7 +34,7 @@ public class InterpreterTest {
     }
 
     /**
-     * @brief testParseInsertion method verifies that a number inserted in the
+     * @brief testParseInsertion method verifies that a complex number inserted in the
      * text field is inserted onto the stack
      * @throws InterpreterException
      * @throws ZeroDivisionException
@@ -63,11 +63,11 @@ public class InterpreterTest {
     @Test(expected = InterpreterException.class)
     public void testParseInsertion1() throws InterpreterException, ZeroDivisionException {
 
-       interpreter.parse("j2 +- j1");
+       interpreter.parse("j1");
     }
 
     /**
-     * brief the following methods verify that the interpreter recognizes and
+     * @brief the following methods verify that the interpreter recognizes and
      * separates the input to calculate the specified operation
      *
      * @throws InterpreterException
@@ -153,7 +153,13 @@ public class InterpreterTest {
         interpreter.parse("5 9 - sqrt");
         assertEquals(stack.getFirst(), new Complex(0, 2));
     }
-    
+   
+    /**
+     * @brief testParseAssignToVar method verifies that the interptreter recognizes that it has to call assignToVar method of the class Variables
+     * To test this operation the content of the variable is pushed onto the stack
+     * @throws InterpreterException
+     * @throws ZeroDivisionException 
+     */
     @Test
     public void testParseAssignToVar() throws InterpreterException, ZeroDivisionException{
         interpreter.parse("10+5j");
@@ -164,7 +170,23 @@ public class InterpreterTest {
         assertEquals(stack.getFirst(),new Complex(10,5));
         
     }
+    /**
+     * @brief testParseAssignToVar1 method verifies that an InterpreterException is thrown if there is a wrong insertion of the operation by keyboard
+     * @throws InterpreterException
+     * @throws ZeroDivisionException 
+     */
+    @Test(expected = InterpreterException.class)
+    public void testParseAssignToVar1() throws InterpreterException, ZeroDivisionException{
+      interpreter.parse(">xSE");  
+      
+      interpreter.parse("SE>x");
+    }
     
+    /**
+     * @brief testParseSumToVar method verifies that if there is  "+var" operation in the text field, then the interpter calls sumToVar method of the class Variable
+     * @throws InterpreterException
+     * @throws ZeroDivisionException 
+     */
     @Test
     public void testParseSumToVar() throws InterpreterException, ZeroDivisionException{
         interpreter.parse("1+1j 2+2j");
@@ -175,6 +197,12 @@ public class InterpreterTest {
         assertEquals(stack.getFirst(),new Complex(3,3) );
         
     }
+
+/**
+ * @brief testParseSubctractionToVar method verifies that if there is  "-var" operation in the text field, then the interpter calls subctractionToVar method of the class Variable
+ * @throws InterpreterException
+ * @throws ZeroDivisionException 
+ */
     
     @Test    
     public void testParseSubctractionToVar() throws InterpreterException, ZeroDivisionException{
@@ -186,11 +214,6 @@ public class InterpreterTest {
         assertEquals(stack.getFirst(),new Complex(-1,-1) );
         
     }
-    
-    @Test(expected = InterpreterException.class)
-    public void parseAssignToVar() throws InterpreterException, ZeroDivisionException{
-        interpreter.parse("2+2j ");
-        interpreter.parse("70>x");
-    }
+
 
 }

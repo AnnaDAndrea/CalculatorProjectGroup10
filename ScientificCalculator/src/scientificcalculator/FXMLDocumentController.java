@@ -9,15 +9,13 @@ import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -27,6 +25,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import org.apache.commons.math3.complex.*;
+import org.apache.commons.math3.exception.NullArgumentException;
 import org.apache.commons.math3.util.Precision;
 
 /**
@@ -37,6 +36,7 @@ public class FXMLDocumentController implements Initializable {
 
     private Deque<Complex> stack;
     private ObservableList<Complex> stackObs;
+    private ObservableList<Character> variablesObs;
     private Interpreter parser;
 
     @FXML
@@ -45,6 +45,8 @@ public class FXMLDocumentController implements Initializable {
     private Button sendButton;
     @FXML
     private TextField displayField;
+    @FXML
+    private ComboBox<Character> variablesList;
 
     /**
      * @brief initialize method is used to associate an observable list to a list view that contains complex numbers with the format a+bj
@@ -99,6 +101,18 @@ public class FXMLDocumentController implements Initializable {
         sendButton.styleProperty().bind(Bindings.when(sendButton.armedProperty())
                                                 .then("-fx-background-color: #ef5350; -fx-background-radius: 20px;")
                                                 .otherwise("-fx-background-color: #ff867c; -fx-background-radius: 20px;"));
+        
+        
+        variablesObs = FXCollections.observableArrayList();
+        
+        for(int i=0;i<26;i++){
+            variablesObs.add((char) (i+97));
+        } 
+
+        variablesList.setItems(variablesObs);
+        variablesList.setValue('a');
+        variablesList.setStyle("-fx-font: 15px \"Arial\";" + "-fx-font-weight: bold;");
+        
     
     }
 /**
@@ -176,7 +190,8 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void prodAction(ActionEvent event) { displayField.setText(displayField.getText()+"*"); }
-
+    
+    
     /**
      * @brief  cancAction method is used to delete from text field a character is there aren't space characters or a sequence until the previous space character
      * @param event is the event when the canc button is clicked
@@ -221,15 +236,14 @@ public class FXMLDocumentController implements Initializable {
             try{    
                 parser.parse(input);
                 displayField.setText("");
-            }
-            catch(InterpreterException ex){
+            } catch(InterpreterException ex){
                 Alert alert = new Alert(AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setHeaderText("Wrong command/s");
                 alert.setContentText("You inserted wrong command/s.\nEnter the operations to be performed again.");
                 alert.showAndWait();
                 displayField.setText("");
-            }catch(NoSuchElementException ex){
+            } catch(NoSuchElementException ex){
                 Alert alert = new Alert(AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setHeaderText("Not enough operands");
@@ -243,7 +257,21 @@ public class FXMLDocumentController implements Initializable {
                 alert.setContentText("Division Error");
                 alert.showAndWait();
                 displayField.setText("");
-            }finally{
+            } catch (VarOutOfRangeException ex) {
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Variable Error");
+                alert.setContentText("Variable inserted not exist");
+                alert.showAndWait();
+                displayField.setText("");
+            } catch (NullArgumentException ex) {
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Variable Error");
+                alert.setContentText("Variable inserted hasn't a value");
+                alert.showAndWait();
+                displayField.setText("");
+            } finally{
                 stackObs.setAll(stack);
             }
         }else{
@@ -255,6 +283,8 @@ public class FXMLDocumentController implements Initializable {
             displayField.setText("");
         }
    }
+
+    
     
  
 }

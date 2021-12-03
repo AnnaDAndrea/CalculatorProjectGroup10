@@ -18,7 +18,7 @@
                <children>
                   <VBox prefHeight="544.0" prefWidth="482.0" spacing="16.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <TextField fx:id="displayField" alignment="BOTTOM_RIGHT" focusTraversable="false" onKeyPressed="#keyPresseedTextField" prefHeight="83.0" prefWidth="450.0" promptText="Insert using the following buttons or the keyboard">
+                        <TextField fx:id="displayField" alignment="BOTTOM_RIGHT" focusTraversable="false" onKeyPressed="#keyPressedTextField" prefHeight="83.0" prefWidth="450.0" promptText="Insert using the following buttons or the keyboard">
                            <font>
                               <Font name="Arial" size="20.0" />
                            </font></TextField>
@@ -212,6 +212,20 @@
                                              <font>
                                                 <Font name="Arial Bold" size="15.0" />
                                              </font></Button>
+                                       </children>
+                                    </HBox>
+                                 </content>
+                              </Tab>
+                              <Tab text="User Op">
+                                 <content>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                       <children>
+                                          <ComboBox fx:id="userDefList" prefHeight="25.0" prefWidth="116.0" />
+                                          <Button minWidth="65.0" mnemonicParsing="false" onAction="#newAction" prefWidth="65.0" text="New">
+                                             <font>
+                                                <Font name="Arial Bold" size="15.0" />
+                                             </font>
+                                          </Button>
                                        </children>
                                     </HBox>
                                  </content>

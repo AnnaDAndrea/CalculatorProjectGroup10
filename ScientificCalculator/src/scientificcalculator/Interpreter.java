@@ -1,5 +1,7 @@
 package scientificcalculator;
 
+import exception.InterpreterException;
+import exception.ZeroDivisionException;
 import java.text.NumberFormat;
 import java.util.Deque;
 import java.util.Locale;
@@ -17,12 +19,15 @@ public class Interpreter {
     private  StackManipulation stackManip;
     private ComplexFormat cf;
     private Variables variablesStack;
+    private UserDefinedOperation userOperations; 
 
-    public Interpreter(Deque<Complex> stack) {
+    public Interpreter(Deque<Complex> stack, UserDefinedOperation userOperations) {
         baseOp = new ComplexNumOperation(stack);
         stackManip= new StackManipulation(stack);
         cf = new ComplexFormat("j", NumberFormat.getInstance(Locale.US));
         variablesStack=new Variables(stack);
+        this.userOperations = userOperations;
+        
     }
     /**
      * @brief isComplex method returns true if the string is an operand
@@ -30,7 +35,8 @@ public class Interpreter {
      * @return boolean
      */   
     private boolean isComplex(String s){
-        return s.matches("^(?=[jJ.\\d+-])([+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?(?![jJ.\\d]))([+-]?(?:(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?)?[jJ])?$");
+        //return s.matches("^(?=[j.\\d+-])([+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?(?![j.\\d]))([+-]?(?:(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[e][+-]?\\d+)?)?[j])?$");
+        return s.matches("^(?=[j.\\d+-])([+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?![j.\\d]))([+-]?(?:(?:\\d+(?:\\.\\d*)?|\\.\\d+))?[j])?$");
     }
     /**
      * @brief isImaginary method returns true if the string is a pure complex number
@@ -38,7 +44,8 @@ public class Interpreter {
      * @return 
      */
     private boolean isImaginary(String s){
-        return s.matches("^(?=[jJ.\\d+-])([+-]?(?:(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?)?[jJ])?$");
+        //return s.matches("^(?=[j.\\d+-])([+-]?(?:(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[e][+-]?\\d+)?)?[j])?$");
+        return s.matches("^(?=[j.\\d+-])([+-]?(?:(?:\\d+(?:\\.\\d*)?|\\.\\d+))?[j])?$");
     }
     /**
      * @brief parse method is used to separate the string input in tokens that are complex numbers(operators) or operators
@@ -109,6 +116,54 @@ public class Interpreter {
         
         }
     
+    }
+    
+    public boolean check(String s){
+        StringTokenizer ops = new StringTokenizer(s, " ");
+        boolean flag = true;
+        
+        while(ops.hasMoreTokens() && flag==true){
+            String op = ops.nextToken();
+            
+            if(isComplex(op))
+            {}
+            else if(isImaginary(op))
+            {}
+            else if(op.equals("+"))
+            {}
+            else if(op.equals("-"))
+            {}
+            else if(op.equals("/"))
+            {}
+            else if(op.equals("*"))
+            {}
+            else if(op.equals("+-"))
+            {}
+            else if(op.equals("sqrt"))
+            {}
+            else if(op.equals("clear"))
+            {}
+            else if(op.equals("dup"))
+            {}
+            else if(op.equals("drop"))
+            {}
+            else if(op.equals("over"))
+            {}
+            else if(op.equals("swap"))
+            {}
+            else if(op.length()==2 && op.charAt(0)=='>')
+            {}
+            else if(op.length()==2 && op.charAt(0)=='<')
+            {}
+            else if(op.length()==2 && op.charAt(0)=='+')
+            {}
+            else if(op.length()==2 && op.charAt(0)=='-')
+            {}
+            else if(userOperations.getNameOperations().contains(op)) 
+            {}
+            else flag = false;
+        }
+        return flag;
     }
     
 }

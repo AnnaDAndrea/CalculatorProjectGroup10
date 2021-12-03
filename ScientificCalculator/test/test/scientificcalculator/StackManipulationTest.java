@@ -1,5 +1,6 @@
 package test.scientificcalculator;
 
+import com.sun.org.apache.bcel.internal.generic.StackConsumer;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
@@ -56,8 +57,12 @@ public class StackManipulationTest {
         int s1 = stack.size();
         s.drop();
         assertEquals(s1 - 1, stack.size());
-        assertEquals(stack.peekFirst(), c1);
-
+        assertEquals(c1, stack.peekFirst());
+        
+        // Checking the drop removing also the last element into the stack
+        s.drop();
+        assertEquals(0, stack.size());
+        assertEquals(null, stack.peekFirst());
     }
     
     /**
@@ -65,9 +70,7 @@ public class StackManipulationTest {
      */
     @Test(expected = NoSuchElementException.class) 
     public void testDropFail() {
-        int s1 = stack.size();
-        s.drop();
-        assertEquals(s1, stack.size());      
+        s.drop();   
     }
     
     /**
@@ -80,7 +83,7 @@ public class StackManipulationTest {
         int s1 = stack.size();
         s.dup();
         assertEquals(s1 + 1, stack.size());
-        assertEquals(stack.peekFirst(), c);
+        assertEquals(c, stack.peekFirst());
         
         // Additional check: verify if the last element is actually the copy of the second-last one
         Complex out1 = stack.removeFirst();
@@ -100,12 +103,15 @@ public class StackManipulationTest {
         int s1 = stack.size();
         s.dup();
         assertEquals(s1 + 1, stack.size());
-        assertEquals(stack.peekFirst(), c1);
+        assertEquals(c1, stack.peekFirst());
         
         // Additional check: verify if the last element is actually the copy of the second-last one
         Complex out1 = stack.removeFirst();
         Complex out2 = stack.removeFirst();
         assertEquals(out1, out2);
+        
+        // Additional check: verify that the last element into the stack corresponds to c
+        assertEquals(c, stack.removeFirst());
     }
     
     /**
@@ -113,9 +119,7 @@ public class StackManipulationTest {
      */
     @Test(expected = NoSuchElementException.class)
     public void testDupFail() {
-        int s1 = stack.size();
-        s.dup();
-        assertEquals(s1, stack.size());     
+        s.dup();  
     }
     
     /**
@@ -130,7 +134,7 @@ public class StackManipulationTest {
         int s1 = stack.size();
         s.swap();
         assertEquals(s1, stack.size());
-        assertEquals(stack.peekFirst(), c1);
+        assertEquals(c1, stack.peekFirst());
         
         // Additional check: verify the order of the swapped elements
         assertEquals(c1, stack.removeFirst()); 
@@ -153,7 +157,7 @@ public class StackManipulationTest {
         int s1 = stack.size();
         s.swap();
         assertEquals(s1, stack.size());
-        assertEquals(stack.peekFirst(), c3);
+        assertEquals(c3, stack.peekFirst());
         
         // Additional check: verify the order of the swapped elements and of the remaining ones
         assertEquals(c3, stack.removeFirst()); 
@@ -167,8 +171,7 @@ public class StackManipulationTest {
      */
     @Test(expected = NoSuchElementException.class)
     public void testSwapFail() {
-        s.swap();
-        assertEquals(0, stack.size());     
+        s.swap();    
     }
     
     /**
@@ -183,7 +186,7 @@ public class StackManipulationTest {
         int s1 = stack.size();
         s.over();
         assertEquals(s1 + 1, stack.size());
-        assertEquals(stack.peekFirst(), c1);
+        assertEquals(c1, stack.peekFirst());
         
         // Additional check: verify if the last element is actually the copy of the third-last one
         Complex out1 = stack.removeFirst();
@@ -192,9 +195,9 @@ public class StackManipulationTest {
         assertEquals(out1, out3);
         
         // Additional check: verify the general order of the elements
-        assertEquals(out1, c1);
-        assertEquals(out2, c2);
-        assertEquals(out3, c1);
+        assertEquals(c1, out1);
+        assertEquals(c2, out2);
+        assertEquals(c1, out3);
     } 
     
     /**
@@ -224,11 +227,11 @@ public class StackManipulationTest {
         assertEquals(out1, out3);
         
         // Additional check: verify the general order of the elements
-        assertEquals(out1, c3);
-        assertEquals(out2, c4);
-        assertEquals(out3, c3);
-        assertEquals(out4, c2);
-        assertEquals(out5, c1);
+        assertEquals(c3, out1);
+        assertEquals(c4, out2);
+        assertEquals(c3, out3);
+        assertEquals(c2, out4);
+        assertEquals(c1, out5);
     }
     
     /**
@@ -236,9 +239,7 @@ public class StackManipulationTest {
      */
     @Test(expected = NoSuchElementException.class)
     public void testOverFail() {
-        int s1 = stack.size();
         s.over();
-        assertEquals(s1, stack.size());  
     } 
 }
     

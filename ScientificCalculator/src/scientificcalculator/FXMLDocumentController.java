@@ -191,7 +191,18 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void prodAction(ActionEvent event) { displayField.setText(displayField.getText()+"*"); }
     
-    
+    @FXML
+    private void copyVarAction(ActionEvent event) { displayField.setText(displayField.getText() + ">" + variablesList.getValue()); }
+
+    @FXML
+    private void assignVarAction(ActionEvent event) { displayField.setText(displayField.getText() + "<" + variablesList.getValue()); }
+
+    @FXML
+    private void sumToVarAction(ActionEvent event) { displayField.setText(displayField.getText() + "+" + variablesList.getValue()); }
+
+    @FXML
+    private void subtractToVarAction(ActionEvent event) { displayField.setText(displayField.getText() + "-" + variablesList.getValue()); }
+
     /**
      * @brief  cancAction method is used to delete from text field a character is there aren't space characters or a sequence until the previous space character
      * @param event is the event when the canc button is clicked

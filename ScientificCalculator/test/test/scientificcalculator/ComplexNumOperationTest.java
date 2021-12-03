@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import scientificcalculator.ComplexNumOperation;
-import scientificcalculator.ZeroDivisionException;
+import exception.ZeroDivisionException;
 
 /**
  *

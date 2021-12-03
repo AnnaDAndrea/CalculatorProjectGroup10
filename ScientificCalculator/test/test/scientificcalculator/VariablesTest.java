@@ -8,7 +8,7 @@ import org.apache.commons.math3.exception.NullArgumentException;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import scientificcalculator.VarOutOfRangeException;
+import exception.VarOutOfRangeException;
 import scientificcalculator.Variables;
 
 /**

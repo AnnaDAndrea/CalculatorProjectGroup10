@@ -38,6 +38,7 @@ public class FXMLDocumentController implements Initializable {
     private ObservableList<Complex> stackObs;
     private ObservableList<Character> variablesObs;
     private Interpreter parser;
+    private Alert alert;
 
     @FXML
     private ListView<Complex> stackView;
@@ -55,6 +56,8 @@ public class FXMLDocumentController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        alert = new Alert(AlertType.ERROR);
        
         stack = new LinkedList<>();
 
@@ -246,53 +249,47 @@ public class FXMLDocumentController implements Initializable {
 
             try{    
                 parser.parse(input);
-                displayField.setText("");
             } catch(InterpreterException ex){
-                Alert alert = new Alert(AlertType.ERROR);
+                alert.setAlertType(AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setHeaderText("Wrong command/s");
                 alert.setContentText("You inserted wrong command/s.\nEnter the operations to be performed again.");
                 alert.showAndWait();
-                displayField.setText("");
             } catch(NoSuchElementException ex){
-                Alert alert = new Alert(AlertType.ERROR);
+                alert.setAlertType(AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setHeaderText("Not enough operands");
                 alert.setContentText("There are not enough operands.\nEnter the operations to be performed again");
                 alert.showAndWait();
-                displayField.setText("");
             } catch (ZeroDivisionException ex) {
-                Alert alert = new Alert(AlertType.ERROR);
+                alert.setAlertType(AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setHeaderText("Divison with 0");
                 alert.setContentText("Division Error");
                 alert.showAndWait();
-                displayField.setText("");
             } catch (VarOutOfRangeException ex) {
-                Alert alert = new Alert(AlertType.ERROR);
+                alert.setAlertType(AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setHeaderText("Variable Error");
                 alert.setContentText("Variable inserted not exist");
                 alert.showAndWait();
-                displayField.setText("");
             } catch (NullArgumentException ex) {
-                Alert alert = new Alert(AlertType.ERROR);
+                alert.setAlertType(AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setHeaderText("Variable Error");
                 alert.setContentText("Variable inserted hasn't a value");
                 alert.showAndWait();
-                displayField.setText("");
             } finally{
                 stackObs.setAll(stack);
             }
         }else{
-            Alert alert = new Alert(AlertType.WARNING);
+            alert.setAlertType(AlertType.WARNING);
             alert.setTitle("Warning");
             alert.setHeaderText("Insert one or more operations");
             alert.setContentText("You must insert one or more operations.");
-            alert.showAndWait();
-            displayField.setText("");
+            alert.showAndWait(); 
         }
+        displayField.setText("");
    }
 
     

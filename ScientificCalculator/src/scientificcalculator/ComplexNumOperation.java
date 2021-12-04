@@ -13,14 +13,25 @@ public class ComplexNumOperation {
 
     private Deque<Complex> stack;
 
+    /**
+     * @brief Constructor
+     * @param stack stack containing the complex numbers
+     */
     public ComplexNumOperation(Deque<Complex> stack) {
         this.stack = stack;
     }
 
+    /**
+     * @brief method to insert a complex number onto the stack
+     * @param z complex number to add onto the stack
+     */
     public void insertion(Complex z) {
         stack.addFirst(z);
     }
     
+    /**
+     * @brief method to sum 2 complex numbers pulled from the top of the stack
+     */
     public void sum() {
 
         Complex op1 = stack.removeFirst();
@@ -30,6 +41,9 @@ public class ComplexNumOperation {
 
     }
     
+    /**
+     * @brief method to subtract 2 complex numbers pulled from the top of the stack
+     */
     public void subtraction() {
         
         Complex op1 = stack.removeFirst();
@@ -39,6 +53,9 @@ public class ComplexNumOperation {
         
     }
     
+    /**
+     * @brief method to multiply 2 complex numbers pulled from the top of the stack
+     */
     public void product(){
         
         Complex op1 = stack.removeFirst();
@@ -47,6 +64,10 @@ public class ComplexNumOperation {
         stack.addFirst(op1.multiply(op2));
     }
 
+    /**
+     * @brief method to divide 2 complex numbers pulled from the top of the stack. 
+     * It calls the ZeroDivisionException when a complex number is divided by 0 
+     */
     public void division() throws ZeroDivisionException {
 
         Complex op1 = stack.removeFirst();
@@ -59,6 +80,9 @@ public class ComplexNumOperation {
 
     }
     
+    /**
+     * @brief method to apply the square root of a complex number pulled from the top of the stack
+     */
     public void squareRoot() {
 
         Complex op1 = stack.removeFirst();
@@ -67,6 +91,9 @@ public class ComplexNumOperation {
 
     }
 
+    /**
+     * @brief method to invert the sign of a complex number pulled from the top of the stack
+     */
     public void invertedSign() {
 
         Complex op1 = stack.removeFirst();
@@ -74,8 +101,5 @@ public class ComplexNumOperation {
         stack.addFirst(op1.negate());
 
     }
-    
-    
-    
-    
+
 }

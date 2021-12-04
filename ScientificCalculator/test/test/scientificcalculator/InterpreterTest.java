@@ -54,6 +54,50 @@ public class InterpreterTest {
         interpreter.parse("42j");
         assertEquals(stack.getFirst(), new Complex(0, 42));
 
+        interpreter.parse("-4-2j");
+        assertEquals(stack.getFirst(),new Complex(-4,-2));
+        
+        interpreter.parse("0");
+        assertEquals(stack.getFirst(),new Complex(0,0));
+
+        interpreter.parse("+0");
+        assertEquals(stack.getFirst(),new Complex(0,0));
+
+	interpreter.parse("-0");
+        assertEquals(stack.getFirst(),new Complex(-0.0,0.0));
+
+	interpreter.parse("0j");
+	assertEquals(stack.getFirst(),new Complex(0,0));
+
+	interpreter.parse(".2+2j");
+        assertEquals(stack.getFirst(),new Complex(0.2,2));
+
+	interpreter.parse("9+.2j");
+        assertEquals(stack.getFirst(),new Complex(9,0.2));
+
+	
+	interpreter.parse("0.0001+3j");
+        assertEquals(stack.getFirst(),new Complex(0.0001,3));
+        
+        interpreter.parse("1-0.00001j");
+        assertEquals(stack.getFirst(),new Complex(1,-0.00001));
+
+		
+	interpreter.parse("-9999999-9999999j");
+        assertEquals(stack.getFirst(),new Complex(-9999999,-9999999));
+
+	interpreter.parse("1234567-1234567j");
+        assertEquals(stack.getFirst(),new Complex(1234567,-1234567));
+        
+       // interpreter.parse("+j"); BUG TO FIX
+        //interpreter.parse("-j"); BUG TO FIX
+        //interpreter.parse("j");  BUG TO FIX
+        //interpreter.parse("1+j"); BUG TO FIX
+        //interpreter.parse("1-j"); BUG TO FIX
+        
+        
+        
+        
     }
 
     /**

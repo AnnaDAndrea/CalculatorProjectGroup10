@@ -101,7 +101,7 @@ public class InterpreterTest {
     }
 
     /**
-     * @brief testParseInsertion1 method checks that if there is a wrong operand
+     * @brief testParseInsertion1 method checks that if there is a wrong operand (jb is invalid, bj is valid)
      * or wrong operation then InterpterExcpetion is thrown
      * @throws InterpreterException
      * @throws ZeroDivisionException
@@ -229,6 +229,10 @@ public class InterpreterTest {
     public void testParseAssignToVar1() throws InterpreterException, ZeroDivisionException {
         interpreter.parse(">xSE");
 
+    }
+    
+    @Test(expected = InterpreterException.class)
+    public void testParseAssignToVar2() throws InterpreterException, ZeroDivisionException {
         interpreter.parse("SE>x");
     }
 
@@ -249,6 +253,21 @@ public class InterpreterTest {
         assertEquals(stack.getFirst(), new Complex(3, 3));
 
     }
+    
+    /**
+     * @brief the following two methods verify that with a wrong insertion an InterpreterException is thrown
+     * @throws InterpreterException
+     * @throws ZeroDivisionException 
+     */
+    @Test(expected = InterpreterException.class)
+    public void testParseSumToVar1() throws InterpreterException, ZeroDivisionException {
+        interpreter.parse("+xSE");
+    }
+    
+    @Test(expected = InterpreterException.class)
+    public void testParseSumToVar2() throws InterpreterException, ZeroDivisionException {
+        interpreter.parse("SE+x");
+    }
 
     /**
      * @brief testParseSubctractionToVar method verifies that if there is "-var"
@@ -265,6 +284,22 @@ public class InterpreterTest {
         interpreter.parse("<x");
 
         assertEquals(stack.getFirst(), new Complex(-1, -1));
+
+    }
+    /**
+     * @brief the following two methods verify that with a wrong insertion an InterpreterException is thrown
+     * @throws InterpreterException
+     * @throws ZeroDivisionException 
+     */
+    @Test(expected = InterpreterException.class)
+    public void testParseSubctractionToVar1() throws InterpreterException, ZeroDivisionException {
+        interpreter.parse("-xSE");
+
+    }
+    
+    @Test(expected = InterpreterException.class)
+    public void testParseSubctractionToVar2() throws InterpreterException, ZeroDivisionException {
+        interpreter.parse("SE-x");
 
     }
 

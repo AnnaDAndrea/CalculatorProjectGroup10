@@ -3,7 +3,7 @@ package exception;
 /**
  *
  * @author Group 10
- * @brief This is the Exception called when a key already exists in a data structure
+ * @brief This is the RunTimeException called when a key already exists in a data structure
  */
 public class KeyAlreadyExistException extends RuntimeException {
 

@@ -30,12 +30,11 @@ public class Interpreter {
         
     }
     /**
-     * @brief isComplex method returns true if the string is an operand
+     * @brief isComplex method returns true if the string is a complex operand
      * @param s is the input text
      * @return boolean
      */   
     private boolean isComplex(String s){
-        //return s.matches("^(?=[j.\\d+-])([+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?(?![j.\\d]))([+-]?(?:(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[e][+-]?\\d+)?)?[j])?$");
         return s.matches("^(?=[j.\\d+-])([+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?![j.\\d]))([+-]?(?:(?:\\d+(?:\\.\\d*)?|\\.\\d+))?[j])?$");
     }
     /**
@@ -44,12 +43,11 @@ public class Interpreter {
      * @return 
      */
     private boolean isImaginary(String s){
-        //return s.matches("^(?=[j.\\d+-])([+-]?(?:(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[e][+-]?\\d+)?)?[j])?$");
         return s.matches("^(?=[j.\\d+-])([+-]?(?:(?:\\d+(?:\\.\\d*)?|\\.\\d+))?[j])?$");
     }
     /**
      * @brief parse method is used to separate the string input in tokens that are complex numbers(operators) or operators
-     * This method calls each method of the class ComplexNumOperation to calculate basic operations and each method of the class StackManipulation
+     * This method calls each method of the class ComplexNumOperation to calculate basic operations,each method of the class StackManipulation,each method of the class Variables
      * @param s is the content of the text field(display)
      * @throws InterpreterException if there are either wrong operators or wrong operands
      * @throws ZeroDivisionException 
@@ -117,7 +115,11 @@ public class Interpreter {
         }
     
     }
-    
+ /**
+  * @brief check method returns true if a sequence is allowed,correct and all the containing operations exist
+  * @param s is a sequence to be checked
+  * @return boolean
+  */
     public boolean check(String s){
         StringTokenizer ops = new StringTokenizer(s, " ");
         boolean flag = true;

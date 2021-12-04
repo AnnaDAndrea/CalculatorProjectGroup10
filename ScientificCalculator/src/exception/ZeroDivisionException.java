@@ -3,6 +3,7 @@ package exception;
 /**
  *
  * @author Group 10
+ * @brief This is the Exception called when an operand is divided by 0
  */
 public class ZeroDivisionException extends Exception {
 

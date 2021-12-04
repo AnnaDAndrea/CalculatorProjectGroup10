@@ -26,6 +26,7 @@ public class StackManipulation {
     
     /**
      * @brief This method removes the last element (i.e. the top) from the stack
+     * It calls the NoSuchElementException if the stack is empty
      */
     public void drop() {
         
@@ -35,6 +36,7 @@ public class StackManipulation {
 
     /**
      * @brief This method pushes a copy of the last element onto the stack
+     * It calls the NoSuchElementException if the stack is empty
      */
     public void dup() {
         
@@ -47,6 +49,7 @@ public class StackManipulation {
     
     /**
      * @brief This method exchanges the last two elements of the stack
+     * It calls the NoSuchElementException if the stack is empty or if there aren't enough elements
      */
     public void swap() {
         
@@ -60,6 +63,7 @@ public class StackManipulation {
     
     /**
      * @brief This method pushes a copy of the second last element onto the stack
+     * It calls the NoSuchElementException if the stack is empty or if there aren't enough elements
      */
     public void over() {
         

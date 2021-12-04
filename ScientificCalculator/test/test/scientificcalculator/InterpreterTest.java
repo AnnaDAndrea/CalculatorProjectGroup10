@@ -224,16 +224,30 @@ public class InterpreterTest {
 
     }
 
+    /**
+     * @brief testCheckBaseOp method verifies that all the basic operations are allowed 
+     * and check if the wrong basic operations aren't allowed
+     */
     @Test
     public void testCheckBaseOp() {
 
+        assertEquals(interpreter.check("0"), true);
+        assertEquals(interpreter.check("0j"), true);
         assertEquals(interpreter.check(".2"), true);
         assertEquals(interpreter.check(".2j"), true);
         assertEquals(interpreter.check("2"), true);
         assertEquals(interpreter.check("2j"), true);
-        //assertEquals(interpreter.check("2+j"), true); finire
-        assertEquals(interpreter.check("0"), true);
-        assertEquals(interpreter.check("0j"), true);
+        assertEquals(interpreter.check("+2j"), true);
+        assertEquals(interpreter.check("-2j"), true);
+        assertEquals(interpreter.check("+2"), true);
+        assertEquals(interpreter.check("-2.1"), true);
+        //assertEquals(interpreter.check("2+j"), true); BUG
+        //assertEquals(interpreter.check("2-j"), true); BUG
+        //assertEquals(interpreter.check("+j"), true); BUG
+        //assertEquals(interpreter.check("-j"), true); BUG
+        //assertEquals(interpreter.check("j"), true); BUG
+        assertEquals(interpreter.check("2.2-1j"), true);
+        assertEquals(interpreter.check("2.2+2.1j"), true);
         assertEquals(interpreter.check("+"), true);
         assertEquals(interpreter.check("-"), true);
         assertEquals(interpreter.check("/"), true);
@@ -245,9 +259,22 @@ public class InterpreterTest {
         assertEquals(interpreter.check("drop"), true);
         assertEquals(interpreter.check("over"), true);
         assertEquals(interpreter.check("swap"), true);
+        assertEquals(interpreter.check("/s"), false);
+        assertEquals(interpreter.check("*s"), false);
+        assertEquals(interpreter.check("+-d"), false);
+        assertEquals(interpreter.check("sqrtc"), false);
+        assertEquals(interpreter.check("clears"), false);
+        assertEquals(interpreter.check("sdup"), false);
+        assertEquals(interpreter.check("dropd"), false);
+        assertEquals(interpreter.check("overd"), false);
+        assertEquals(interpreter.check("swapd"), false);
 
     }
 
+    /**
+     * @brief testCheckVar method verifies that all the variables operations are allowed 
+     * and check if the wrong variables operations aren't allowed
+     */
     @Test
     public void testCheckVar() {
         assertEquals(interpreter.check(">"), false);
@@ -263,16 +290,26 @@ public class InterpreterTest {
 
     }
 
+    /**
+     * @brief testCheckUserOp method verifies that all the UserDefined operations are allowed 
+     * and check if the wrong UserDefined operations aren't allowed
+     */
     @Test
     public void testCheckUserOp() {
         assertEquals(interpreter.check("op1"), false);
         assertEquals(interpreter.check("op2"), false);
         userOperations.newOperation("op1", "+ - /");
+        assertEquals(interpreter.check("op1"), true);
+        assertEquals(interpreter.check("op2"), false);
         userOperations.newOperation("op2", "+ + /");
         assertEquals(interpreter.check("op1"), true);
         assertEquals(interpreter.check("op2"), true);
     }
 
+    /**
+     * @brief testCheckSequence method verifies that correct sequence of operations are allowed 
+     * and check if the wrong sequence of operations aren't allowed
+     */
     @Test
     public void testCheckSequence() {
         assertEquals(interpreter.check("+ -"), true);
@@ -283,7 +320,22 @@ public class InterpreterTest {
         assertEquals(interpreter.check("+ - / * +- sqrt <a"), true);
         assertEquals(interpreter.check("+ >a / * +- sqrt"), true);
         assertEquals(interpreter.check("+ > a / * +- sqrt"), false);
-
+        assertEquals(interpreter.check("+ <a / * +- sqrt"), true);
+        assertEquals(interpreter.check("+ < a / * +- sqrt"), false);
+        assertEquals(interpreter.check("2+5j <a / * +- sqrt"), true);
+        assertEquals(interpreter.check("2+.1j <a / * +- sqrt"), true);
+        assertEquals(interpreter.check("2+0.1j <a / * +- sqrt"), true);
+        assertEquals(interpreter.check("0+0.1j <a / * +- sqrt"), true);
+        assertEquals(interpreter.check("0j <a / * +- sqrt"), true);
+        assertEquals(interpreter.check("0 <a / * +- sqrt"), true);
+        assertEquals(interpreter.check("+0.1-5j <a / * +- sqrt"), true);
+        assertEquals(interpreter.check("+0.1 <a / * +- sqrt"), true);
+        assertEquals(interpreter.check("-0.1 <a / * +- sqrt"), true);
+        //assertEquals(interpreter.check("j <a / * +- sqrt"), true); BUG   
+        //assertEquals(interpreter.check("+j <a / * +- sqrt"), true); BUG  
+        //assertEquals(interpreter.check("-j <a / * +- sqrt"), true); BUG
+        //assertEquals(interpreter.check("2-j <a / * +- sqrt"), true); BUG  
+        //assertEquals(interpreter.check("2+j <a / * +- sqrt"), true); BUG  
     }
 
 }

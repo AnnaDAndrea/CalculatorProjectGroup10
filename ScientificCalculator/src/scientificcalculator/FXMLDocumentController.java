@@ -36,6 +36,7 @@ import org.apache.commons.math3.util.Precision;
 /**
  *
  * @author Group 10
+ * @brief This is the Controller, so the Class that acts as an intermediary between the View and the Model
  */
 public class FXMLDocumentController implements Initializable {
 

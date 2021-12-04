@@ -304,6 +304,8 @@ public class InterpreterTest {
         userOperations.newOperation("op2", "+ + /");
         assertEquals(interpreter.check("op1"), true);
         assertEquals(interpreter.check("op2"), true);
+        
+        
     }
 
     /**
@@ -322,6 +324,10 @@ public class InterpreterTest {
         assertEquals(interpreter.check("+ > a / * +- sqrt"), false);
         assertEquals(interpreter.check("+ <a / * +- sqrt"), true);
         assertEquals(interpreter.check("+ < a / * +- sqrt"), false);
+        userOperations.newOperation("op1", "+ - /");
+        assertEquals(interpreter.check("+c <a op1"), true);
+        assertEquals(interpreter.check("+c <a op3"), false);
+        assertEquals(interpreter.check("+c op1 op3"), false);
         assertEquals(interpreter.check("2+5j <a / * +- sqrt"), true);
         assertEquals(interpreter.check("2+.1j <a / * +- sqrt"), true);
         assertEquals(interpreter.check("2+0.1j <a / * +- sqrt"), true);
@@ -331,6 +337,7 @@ public class InterpreterTest {
         assertEquals(interpreter.check("+0.1-5j <a / * +- sqrt"), true);
         assertEquals(interpreter.check("+0.1 <a / * +- sqrt"), true);
         assertEquals(interpreter.check("-0.1 <a / * +- sqrt"), true);
+        
         //assertEquals(interpreter.check("j <a / * +- sqrt"), true); BUG   
         //assertEquals(interpreter.check("+j <a / * +- sqrt"), true); BUG  
         //assertEquals(interpreter.check("-j <a / * +- sqrt"), true); BUG

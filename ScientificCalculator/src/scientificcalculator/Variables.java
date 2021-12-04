@@ -45,6 +45,8 @@ public class Variables {
         
     /**
      * @brief method to pull a complex number from the stack and assign it to a variable
+     * It calls the VarOutOfRangeException if the variable is not contained in [a, b, ..., z]
+     * It call the NoSuchElementException if the stack is empty
      * @param var indicates the variable that will contain the assigned complex number 
      */
     public void assignToVar(char var){
@@ -55,6 +57,8 @@ public class Variables {
     
     /**
      * @brief method to copy the value of a variable and push it onto the stack
+     * It calls the VarOutOfRangeException if the variable is not contained in [a, b, ..., z]
+     * It calls the NullArgumentException if the variable is empty
      * @param var indicates the variable that will contain the value to copy onto the stack 
      */
     public void copyFromVar(char var){
@@ -68,6 +72,9 @@ public class Variables {
     /**
      * @brief method to pull a complex number from the stack and sum it to the variable
      * value and save the result into the variable itself
+     * It calls the VarOutOfRangeException if the variable is not contained in [a, b, ..., z]
+     * It call the NoSuchElementException if the stack is empty
+     * It calls the NullArgumentException if the variable is empty
      * @param var indicates the variable that will contain the value of the sum 
      */
     public void sumToVar(char var){
@@ -82,6 +89,9 @@ public class Variables {
     /**
      * @brief method to pull a complex number from the stack and subtract it to the variable
      * value and save the result into the variable itself
+     * It calls the VarOutOfRangeException if the variable is not contained in [a, b, ..., z]
+     * It call the NoSuchElementException if the stack is empty
+     * It calls the NullArgumentException if the variable is empty
      * @param var indicates the variable that will contain the value of the subtraction  
      */
     public void subtractToVar(char var){

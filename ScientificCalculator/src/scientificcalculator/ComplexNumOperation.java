@@ -7,6 +7,7 @@ import org.apache.commons.math3.complex.Complex;
 /**
  *
  * @author Group 10
+ * @brief This is the Class used to apply the basic operations on the complex numbers exploiting the stack
  */
 public class ComplexNumOperation {
 

@@ -46,8 +46,14 @@ public class UserDefinedOperationTest
     @Test
     public void testNewOperation1() {
         userDefinedOperation.newOperation("op2", "3+2j 4+4j swap");
+        userDefinedOperation.newOperation("op3", "2j 3j over");
+        
+       
 
         assertEquals("3+2j 4+4j swap", userDefinedOperation.getSequence("op2"));
+        
+    
+        
     }
   
 }

@@ -3,7 +3,7 @@ package exception;
 /**
  *
  * @author Group 10
- * @brief This is the Exception called when the variable is not contained in [a, b, ..., z]
+ * @brief This is the RunTimeException called when the variable is not contained in [a, b, ..., z]
  */
 public class VarOutOfRangeException extends RuntimeException {
 

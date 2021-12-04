@@ -60,7 +60,7 @@ public class FXMLDocumentController implements Initializable {
     private ComboBox<String> userDefList;
 
     /**
-     * @brief initialize method is used to associate an observable list to a list view that contains complex numbers with the format a+bj
+     * @brief method to initialize Model and GUI
      * @param url
      * @param rb 
      */
@@ -132,8 +132,9 @@ public class FXMLDocumentController implements Initializable {
         userDefList.setItems(userDefObs);
     }
 /**
- * @brief the following methods are used to write in the text field a complex number or an operator or the space character
- * @param event 
+ * @brief the following methods are used to write in the text field a complex number
+ * or an operator or the space character
+ * @param event when one of the associated buttons is pushed
  */
     @FXML
     private void sevenAction(ActionEvent event) { displayField.setText(displayField.getText()+"7"); }
@@ -219,6 +220,10 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void subtractToVarAction(ActionEvent event) { displayField.setText(displayField.getText() + "-" + variablesList.getValue()); }
     
+    /**
+     * @brief method called when the "new" button is pushed. It allows to create a new User-Defined Operation
+     * @param event is the event when the new button is pushed
+     */
     @FXML
     private void newAction(ActionEvent event) {
         String input=displayField.getText();
@@ -260,8 +265,9 @@ public class FXMLDocumentController implements Initializable {
     }
 
     /**
-     * @brief  cancAction method is used to delete from text field a character is there aren't space characters or a sequence until the previous space character
-     * @param event is the event when the canc button is clicked
+     * @brief cancAction method is used to delete from text field a character 
+     * is there aren't space characters or a sequence until the previous space character
+     * @param event is the event when the canc button is pushed
      */
     @FXML
     private void cancAction(ActionEvent event) {
@@ -281,10 +287,9 @@ public class FXMLDocumentController implements Initializable {
      * @brief sendAction method uses the interpreter to translate input in complex numbers and operators and to do any operations
      * This methos also handles exceptions by showing an alert
      * @param event is the event when the send button is clicked
-     * @throws InterpreterException 
      */
     @FXML
-    private void sendAction(ActionEvent event) throws InterpreterException {
+    private void sendAction(ActionEvent event) {
       showDialogAndCallParse();
     }
 
@@ -296,58 +301,57 @@ public class FXMLDocumentController implements Initializable {
         
     }
 
-   private void showDialogAndCallParse(){
-        String input=displayField.getText();
-        if(input.length()!=0){
+    /**
+     * @brief method to execute the sequence of operations inserted on the text field. 
+     * It shows an error dialog according to the exception
+     */
+    private void showDialogAndCallParse(){
+         String input=displayField.getText();
+         if(input.length()!=0){
 
-            try{    
-                parser.parse(input);
-            } catch(InterpreterException ex){
-                alert.setAlertType(AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("Wrong command/s");
-                alert.setContentText("You inserted wrong command/s.\nEnter the operations to be performed again.");
-                alert.showAndWait();
-            } catch(NoSuchElementException ex){
-                alert.setAlertType(AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("Not enough operands");
-                alert.setContentText("There are not enough operands.\nEnter the operations to be performed again");
-                alert.showAndWait();
-            } catch (ZeroDivisionException ex) {
-                alert.setAlertType(AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("Divison with 0");
-                alert.setContentText("Division Error");
-                alert.showAndWait();
-            } catch (VarOutOfRangeException ex) {
-                alert.setAlertType(AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("Variable Error");
-                alert.setContentText("Variable inserted not exist");
-                alert.showAndWait();
-            } catch (NullArgumentException ex) {
-                alert.setAlertType(AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("Variable Error");
-                alert.setContentText("Variable inserted hasn't a value");
-                alert.showAndWait();
-            } finally{
-                stackObs.setAll(stack);
-            }
-        }else{
-            alert.setAlertType(AlertType.WARNING);
-            alert.setTitle("Warning");
-            alert.setHeaderText("Insert one or more operations");
-            alert.setContentText("You must insert one or more operations.");
-            alert.showAndWait(); 
-        }
-        displayField.setText("");
-   }
+             try{    
+                 parser.parse(input);
+             } catch(InterpreterException ex){
+                 alert.setAlertType(AlertType.ERROR);
+                 alert.setTitle("Error");
+                 alert.setHeaderText("Wrong command/s");
+                 alert.setContentText("You inserted wrong command/s.\nEnter the operations to be performed again.");
+                 alert.showAndWait();
+             } catch(NoSuchElementException ex){
+                 alert.setAlertType(AlertType.ERROR);
+                 alert.setTitle("Error");
+                 alert.setHeaderText("Not enough operands");
+                 alert.setContentText("There are not enough operands.\nEnter the operations to be performed again");
+                 alert.showAndWait();
+             } catch (ZeroDivisionException ex) {
+                 alert.setAlertType(AlertType.ERROR);
+                 alert.setTitle("Error");
+                 alert.setHeaderText("Divison with 0");
+                 alert.setContentText("Division Error");
+                 alert.showAndWait();
+             } catch (VarOutOfRangeException ex) {
+                 alert.setAlertType(AlertType.ERROR);
+                 alert.setTitle("Error");
+                 alert.setHeaderText("Variable Error");
+                 alert.setContentText("Variable inserted not exist");
+                 alert.showAndWait();
+             } catch (NullArgumentException ex) {
+                 alert.setAlertType(AlertType.ERROR);
+                 alert.setTitle("Error");
+                 alert.setHeaderText("Variable Error");
+                 alert.setContentText("Variable inserted hasn't a value");
+                 alert.showAndWait();
+             } finally{
+                 stackObs.setAll(stack);
+             }
+         }else{
+             alert.setAlertType(AlertType.WARNING);
+             alert.setTitle("Warning");
+             alert.setHeaderText("Insert one or more operations");
+             alert.setContentText("You must insert one or more operations.");
+             alert.showAndWait(); 
+         }
+         displayField.setText("");
+    }
 
-    
-
-    
-    
- 
 }

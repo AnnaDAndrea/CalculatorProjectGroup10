@@ -2,6 +2,7 @@ package exception;
 
 /**
  * @author Group 10
+ * @brief This is the Exception called when there is a syntax error into the string read by Interpreter
  */
 public class InterpreterException extends Exception {
 

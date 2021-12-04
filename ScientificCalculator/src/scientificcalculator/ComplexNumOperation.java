@@ -22,7 +22,7 @@ public class ComplexNumOperation {
     }
 
     /**
-     * @brief method to insert a complex number onto the stack
+     * @brief method to insert a complex number onto the stack. 
      * @param z complex number to add onto the stack
      */
     public void insertion(Complex z) {
@@ -30,7 +30,8 @@ public class ComplexNumOperation {
     }
     
     /**
-     * @brief method to sum 2 complex numbers pulled from the top of the stack
+     * @brief method to sum 2 complex numbers pulled from the top of the stack.
+     * It calls the NoSuchElementException if the stack is empty or if there aren't enough operands
      */
     public void sum() {
 
@@ -43,6 +44,7 @@ public class ComplexNumOperation {
     
     /**
      * @brief method to subtract 2 complex numbers pulled from the top of the stack
+     * It calls the NoSuchElementException if the stack is empty or if there aren't enough operands
      */
     public void subtraction() {
         
@@ -55,6 +57,7 @@ public class ComplexNumOperation {
     
     /**
      * @brief method to multiply 2 complex numbers pulled from the top of the stack
+     * It calls the NoSuchElementException if the stack is empty or if there aren't enough operands
      */
     public void product(){
         
@@ -67,6 +70,7 @@ public class ComplexNumOperation {
     /**
      * @brief method to divide 2 complex numbers pulled from the top of the stack. 
      * It calls the ZeroDivisionException when a complex number is divided by 0 
+     * It calls the NoSuchElementException if the stack is empty or if there aren't enough operands
      */
     public void division() throws ZeroDivisionException {
 
@@ -82,6 +86,7 @@ public class ComplexNumOperation {
     
     /**
      * @brief method to apply the square root of a complex number pulled from the top of the stack
+     * It calls the NoSuchElementException if the stack is empty 
      */
     public void squareRoot() {
 
@@ -93,6 +98,7 @@ public class ComplexNumOperation {
 
     /**
      * @brief method to invert the sign of a complex number pulled from the top of the stack
+     * It calls the NoSuchElementException if the stack is empty 
      */
     public void invertedSign() {
 

@@ -19,7 +19,7 @@ import scientificcalculator.Variables;
 public class VariablesTest {
     
     /**
-     * @brief Definition of a fixture composed of the stack and of the variables stack
+     * @brief Definition of a fixture composed of the stack and of an instance of Variables
      */
     private Deque<Complex> stack;
     private Variables varStack;
@@ -58,7 +58,7 @@ public class VariablesTest {
     }
     
     /**
-     * @brief Method to test the assignToVar method with more Complex numbers
+     * @brief Method to test the assignToVar method with more Complex numbers using 2 variables
      */
     @Test
     public void assignToVarTest2(){  
@@ -74,6 +74,7 @@ public class VariablesTest {
         assertEquals(c1, stack.peekFirst());
         
         varStack.assignToVar('b');
+        
         // Checking stack size and if c1 has effectively been removed from stack 
         assertEquals(0, stack.size());
         assertEquals(null, stack.peekFirst());
@@ -88,7 +89,37 @@ public class VariablesTest {
     }
     
     /**
-     * @brief Method to test the assignToVar method fail calling the NoSuchElementException
+     * @brief Method to test the assignToVar method using all the availables variables
+     */
+    @Test
+    public void assignToVarTest3(){  
+        for(int i = 0; i < 26; i++)
+            stack.addFirst(new Complex(i));
+        
+        for(char c = 'a'; c <= 'z'; c++)
+            varStack.assignToVar(c);
+        
+        assertEquals(0, stack.size());
+        
+        for(char c = 'a'; c <= 'z'; c++)
+            varStack.copyFromVar(c);
+        
+        for(char c = 'a'; c <= 'z'; c++)
+            varStack.copyFromVar(c);
+        
+        assertEquals(52, stack.size());
+        
+        for(int i = 0; i < 26; i++){
+            assertEquals(new Complex(i), stack.removeFirst());
+        }
+        
+        for(int i = 0; i < 26; i++){
+            assertEquals(new Complex(i), stack.removeFirst());
+        }         
+    }
+    
+    /**
+     * @brief Method to test the assignToVar method fail calling the NoSuchElementException (empty stack)
      */
     @Test(expected = NoSuchElementException.class)
     public void assignToVarTestFail(){       
@@ -171,10 +202,25 @@ public class VariablesTest {
         varStack.copyFromVar('a');
         assertEquals(s1 + 1, stack.size());
         assertEquals(c2, stack.peekFirst());
+        
+        // Checking if after the editing of the value copied from the variable, the value contained in the variable is unchanged
+        Complex c2mod = stack.removeFirst().add(1);
+        stack.addFirst(c2mod);
+        
+        varStack.copyFromVar('a');
+        assertEquals(s1 + 2, stack.size());
+        assertEquals(c2, stack.peekFirst());
+        
+        // Checking if after adding a new value to the stack and assigning it to the variable, the stack content is unchanged
+        stack.addFirst(new Complex(1, 1));
+        varStack.assignToVar('a');
+        assertEquals(new Complex(3, 5), stack.removeFirst());
+        assertEquals(new Complex (4, 5), stack.removeFirst());
+        assertEquals(new Complex(3, 3), stack.removeFirst());
     }
     
     /**
-     * @brief Method to test the copyFromVar method fail calling the NullArgumentException
+     * @brief Method to test the copyFromVar method fail calling the NullArgumentException (empty variable)
      */
     @Test(expected = NullArgumentException.class)
     public void copyFromVarTestFail(){  
@@ -237,28 +283,59 @@ public class VariablesTest {
      */
     @Test
     public void sumToVarTest(){
-        Complex c1 = new Complex(3,3);
-        Complex c2 = new Complex(3,5);
-        Complex c3 = new Complex(5,1);
+        Complex c1 = new Complex(3,5);
+        Complex c2 = new Complex(5,1);
         stack.addFirst(c1);
         stack.addFirst(c2);
-        stack.addFirst(c3);
         varStack.assignToVar('a');
         int s1 = stack.size();
         
         // Checking if an element has effectively been removed from the stack and if the sum has been done correctly
         varStack.sumToVar('a');
         assertEquals(s1 - 1, stack.size());
-        assertEquals(c2, (c3.add(c2)).subtract(c3));  /* the sum result - the previous value of the variable 
-                                                         should correspond to the value added */
+        varStack.copyFromVar('a');
+        assertEquals(s1, stack.size());
+        assertEquals(new Complex(8,6), stack.peekFirst());
+        
+        // Checking if recalling the sumToVar method, the previous result hasn't changed
+        stack.addFirst(new Complex(1));
         varStack.sumToVar('a');
-        assertEquals(0, stack.size());
-        assertEquals(c1, ((c3.add(c2)).add(c1)).subtract(c3.add(c2)));  /* the sum result - the previous value of the variable 
-                                                                           should correspond to the value added */
+        assertEquals(new Complex(8,6), stack.peekFirst());
     }
     
     /**
-     * @brief Method to test the sumToVar method fail calling the NoSuchElementException
+     * @brief Method to test the sumToVar method using all the availables variables
+     */
+    @Test
+    public void sumToVarTest2(){  
+        for(int i = 0; i < 26; i++)
+            stack.addFirst(new Complex(i));
+        
+        for(int i = 0; i < 26; i++)
+            stack.addFirst(new Complex(i)); 
+        
+        for(char c = 'a'; c <= 'z'; c++)
+            varStack.assignToVar(c);
+        
+        assertEquals(26, stack.size());
+        
+        for(char c = 'a'; c <= 'z'; c++)
+            varStack.sumToVar(c);
+        
+        assertEquals(0, stack.size());
+        
+        for(char c = 'a'; c <= 'z'; c++)
+            varStack.copyFromVar(c);
+        
+        assertEquals(26, stack.size());
+        
+        for(int i = 0; i < 26; i++){
+            assertEquals(new Complex(i*2), stack.removeFirst());
+        }        
+    }
+    
+    /**
+     * @brief Method to test the sumToVar method fail calling the NoSuchElementException (empty stack)
      */
     @Test(expected = NoSuchElementException.class)
     public void sumToVarTestFail(){  
@@ -266,7 +343,7 @@ public class VariablesTest {
     }
     
     /**
-     * @brief Method to test the sumToVar method fail calling the NullArgumentException
+     * @brief Method to test the sumToVar method fail calling the NullArgumentException (empty variable)
      */
     @Test(expected = NullArgumentException.class)
     public void sumToVarTestFail2(){  
@@ -332,31 +409,60 @@ public class VariablesTest {
      */
     @Test
     public void subtractToVarTest(){
-        Complex c1 = new Complex(3,3);
-        Complex c2 = new Complex(3,5);
-        Complex c3 = new Complex(5,1);
+        Complex c1 = new Complex(3,5);
+        Complex c2 = new Complex(5,1);
         stack.addFirst(c1);
         stack.addFirst(c2);
-        stack.addFirst(c3);
         varStack.assignToVar('a');
         int s1 = stack.size();
         
         // Checking if an element has effectively been removed from the stack and if the subtraction has been done correctly
         varStack.subtractToVar('a');
         assertEquals(s1 - 1, stack.size());
-        assertEquals(c2, c3.subtract(c3.subtract(c2)));  /* the previous value of the variable - the subtraction result 
-                                                            should correspond to the value subtracted */
+        varStack.copyFromVar('a');
+        assertEquals(s1, stack.size());
+        assertEquals(new Complex(2,-4), stack.peekFirst());
         
-         // Checking if an element has effectively been removed from the stack and if the subtraction has been done correctly
+        // Checking if recalling the subtractToVar method, the previous result hasn't changed
+        stack.addFirst(new Complex(1));
         varStack.subtractToVar('a');
+        assertEquals(new Complex(2,-4), stack.peekFirst());
+    }
+    
+    /**
+     * @brief Method to test the subtractToVar method using all the availables variables
+     */
+    @Test
+    public void subtractToVarTest2(){  
+        for(int i = 0; i < 26; i++)
+            stack.addFirst(new Complex(i+1));
+        
+        for(int i = 0; i < 26; i++)
+            stack.addFirst(new Complex(i)); 
+        
+        for(char c = 'a'; c <= 'z'; c++)
+            varStack.assignToVar(c);
+        
+        assertEquals(26, stack.size());
+        
+        for(char c = 'a'; c <= 'z'; c++)
+            varStack.subtractToVar(c);
+        
         assertEquals(0, stack.size());
-        assertEquals(c1, (c3.subtract(c2)).subtract(c3.subtract(c2).subtract(c1)));  /* the previous value of the variable - the subtraction result 
-                                                                                        should correspond to the value subtracted */
+        
+        for(char c = 'a'; c <= 'z'; c++)
+            varStack.copyFromVar(c);
+        
+        assertEquals(26, stack.size());
+        
+        for(int i = 0; i < 26; i++){
+            assertEquals(new Complex(-1), stack.removeFirst());
+        }        
     }
     
     
     /**
-     * @brief Method to test the subtractToVar method fail calling the NoSuchElementException
+     * @brief Method to test the subtractToVar method fail calling the NoSuchElementException (empty stack)
      */
     @Test(expected = NoSuchElementException.class)
     public void subtractToVarTestFail(){  
@@ -365,7 +471,7 @@ public class VariablesTest {
     
     
     /**
-     * @brief Method to test the subtractToVar method fail calling the NullArgumentException
+     * @brief Method to test the subtractToVar method fail calling the NullArgumentException (empty variable)
      */
     @Test(expected = NullArgumentException.class)
     public void subtractToVarTestFail2(){  

@@ -45,6 +45,19 @@ public class UserDefinedOperation{
             throw new KeyAlreadyExistException();
         userOperations.put(name, value);
     }
+
+    
+/**
+ * @brief delete method remove from the Map the user defined operation with key "name"
+ * @param name 
+ */    
+    public String delete(String name){
+        return userOperations.remove(name);
+    }
+    
+    public void deleteDependencies(String name){
+        
+    }
     
   
 }

@@ -55,5 +55,14 @@ public class UserDefinedOperationTest
     
         
     }
+    
+    
+    @Test
+    public void testDelete(){
+        userDefinedOperation.newOperation("op1","1+2j 1-2j +");
+        userDefinedOperation.newOperation("op2","1-2j 1-2j -");
+        
+        assertEquals(userDefinedOperation.delete("op1"),"1+2j 1-2j +");
+    }
   
 }

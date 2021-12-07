@@ -2,6 +2,7 @@ package scientificcalculator;
 
 import exception.KeyAlreadyExistException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -54,9 +55,18 @@ public class UserDefinedOperation{
     public String delete(String name){
         return userOperations.remove(name);
     }
+
     
-    public void deleteDependencies(String name){
-        
+    
+    
+    
+    public Set<String> searchDependencies(String name){
+        Set<String> dep = new HashSet<>();
+        for(Map.Entry<String, String> kv: userOperations.entrySet()){
+            if(kv.getValue().contains(name))
+                dep.add(kv.getKey());
+        }
+        return dep;
     }
     
   

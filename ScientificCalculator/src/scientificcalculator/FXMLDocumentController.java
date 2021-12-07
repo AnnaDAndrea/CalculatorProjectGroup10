@@ -317,14 +317,36 @@ public class FXMLDocumentController implements Initializable {
             String choose = chooseAlert.showAndWait().get().getText();
             
             if(choose.equals("Cascade")){
-                System.out.println("cascade action");
+                String ret = userOperations.deleteAllDependencies(userDefList.getValue());
+                alert.setAlertType(AlertType.INFORMATION);
+                alert.setTitle("Information");
+                alert.setHeaderText("Deleted User Defined Operations");
+                alert.setContentText("The deleted user defined operations are:\n" + ret);
+                alert.showAndWait();
                 
             }else if(choose.equals("No action")){
-                System.out.println("no action");
+               Set<String> depSet = userOperations.searchDependencies(userDefList.getValue());
                
+               if(depSet.isEmpty()){
+                    userOperations.delete(userDefList.getValue());
+                    
+                    alert.setAlertType(AlertType.INFORMATION);
+                    alert.setTitle("Information");
+                    alert.setHeaderText("Deleted User Defined Operation");
+                    alert.setContentText(userDefList.getValue() + " has been deleted ");
+                    alert.showAndWait();
+               }else{
+                    alert.setAlertType(AlertType.INFORMATION);
+                    alert.setTitle("Information");
+                    alert.setHeaderText("Dependencies found");
+                    alert.setContentText(userDefList.getValue() + " has dependencies, so it hasn't been deleted");
+                    alert.showAndWait();
+               }
             }
             
-            
+            userDefObs.setAll(userOperations.getNameOperations());
+            userDefList.setItems(userDefObs);
+            userDefList.getSelectionModel().select(0);
             
         }else{
             alert.setAlertType(AlertType.WARNING);
@@ -409,6 +431,14 @@ public class FXMLDocumentController implements Initializable {
              alert.showAndWait(); 
          }
          displayField.setText("");
+    }
+
+    @FXML
+    private void saveUserAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void reloadUserAction(ActionEvent event) {
     }
 
 

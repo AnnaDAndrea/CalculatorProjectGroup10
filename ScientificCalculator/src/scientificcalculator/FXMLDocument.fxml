@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.effect.*?>
-<?import com.jfoenix.controls.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="576.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scientificcalculator.FXMLDocumentController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="576.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scientificcalculator.FXMLDocumentController">
     <children>
       <HBox prefHeight="100.0" prefWidth="200.0" spacing="16.0" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0">
          <children>
@@ -227,6 +235,16 @@
                                              </font>
                                           </Button>
                                           <Button layoutX="282.0" layoutY="47.0" minWidth="65.0" mnemonicParsing="false" onAction="#callAction" prefWidth="65.0" text="Call">
+                                             <font>
+                                                <Font name="Arial Bold" size="15.0" />
+                                             </font>
+                                          </Button>
+                                          <Button minWidth="65.0" mnemonicParsing="false" onAction="#deleteAction" text="Delete">
+                                             <font>
+                                                <Font name="Arial Bold" size="15.0" />
+                                             </font>
+                                          </Button>
+                                          <Button layoutX="357.0" layoutY="46.0" minWidth="65.0" mnemonicParsing="false" onAction="#editAction" text="Edit">
                                              <font>
                                                 <Font name="Arial Bold" size="15.0" />
                                              </font>

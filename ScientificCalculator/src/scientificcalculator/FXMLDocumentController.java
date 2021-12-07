@@ -9,6 +9,7 @@ import java.util.LinkedList;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.Set;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,6 +20,8 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -298,6 +301,45 @@ public class FXMLDocumentController implements Initializable {
         }
 
     }
+    
+    @FXML
+    private void deleteAction(ActionEvent event) {
+        if(userDefList.getValue()!=null){
+            ButtonType cascade = new ButtonType("Cascade");
+            ButtonType noAction = new ButtonType("No action");
+            ButtonType cancel = new ButtonType("Cancel",ButtonBar.ButtonData.CANCEL_CLOSE);
+            
+            Alert chooseAlert = new Alert(AlertType.WARNING, "", cascade,noAction,cancel);
+            
+            chooseAlert.setTitle("Warning");
+            chooseAlert.setHeaderText("Cascade or No action");
+            chooseAlert.setContentText("Do you want to apply the cascade policy or the no action policy?");
+            String choose = chooseAlert.showAndWait().get().getText();
+            
+            if(choose.equals("Cascade")){
+                System.out.println("cascade action");
+                
+            }else if(choose.equals("No action")){
+                System.out.println("no action");
+               
+            }
+            
+            
+            
+        }else{
+            alert.setAlertType(AlertType.WARNING);
+            alert.setTitle("Warning");
+            alert.setHeaderText("Select User Defined Operation");
+            alert.setContentText("You must select one user defined operation");
+            alert.showAndWait(); 
+        }
+        
+    }
+
+    @FXML
+    private void editAction(ActionEvent event) {
+    }
+    
     /**
      * @brief sendAction method uses the interpreter to translate input in complex numbers and operators and to do any operations
      * This methos also handles exceptions by showing an alert
@@ -368,6 +410,8 @@ public class FXMLDocumentController implements Initializable {
          }
          displayField.setText("");
     }
+
+
 
     
 

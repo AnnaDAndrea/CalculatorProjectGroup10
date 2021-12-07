@@ -1,6 +1,7 @@
 package scientificcalculator;
 
 import java.util.Deque;
+import java.util.NoSuchElementException;
 import org.apache.commons.math3.complex.Complex;
 
 /**
@@ -53,11 +54,15 @@ public class StackManipulation {
      */
     public void swap() {
         
-        Complex op1 = stack.removeFirst();
-        Complex op2 = stack.removeFirst();
-        
-        stack.addFirst(op1);
-        stack.addFirst(op2);
+        if(stack.size()>=2){
+            Complex op1 = stack.removeFirst();
+            Complex op2 = stack.removeFirst();
+
+            stack.addFirst(op1);
+            stack.addFirst(op2);
+        }
+        else
+            throw new NoSuchElementException();
         
     }
     
@@ -65,14 +70,19 @@ public class StackManipulation {
      * @brief This method pushes a copy of the second last element onto the stack
      * It calls the NoSuchElementException if the stack is empty or if there aren't enough elements
      */
-    public void over() {
+    public void over(){
         
-        Complex op1 = stack.removeFirst();
-        Complex op2 = stack.removeFirst();
-        
-        stack.addFirst(op2);
-        stack.addFirst(op1);
-        stack.addFirst(op2);
-        
+        if(stack.size()>=2){
+            Complex op1 = stack.removeFirst();
+            Complex op2 = stack.removeFirst();
+
+            stack.addFirst(op2);
+            stack.addFirst(op1);
+            stack.addFirst(op2);   
+        }
+        else
+            throw new NoSuchElementException();
     }
+    
+
 }

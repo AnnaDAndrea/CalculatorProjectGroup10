@@ -2,6 +2,7 @@ package scientificcalculator;
 
 import exception.ZeroDivisionException;
 import java.util.Deque;
+import java.util.NoSuchElementException;
 import org.apache.commons.math3.complex.Complex;
 
 /**
@@ -35,11 +36,14 @@ public class ComplexNumOperation {
      */
     public void sum() {
 
-        Complex op1 = stack.removeFirst();
-        Complex op2 = stack.removeFirst();
-
-        stack.addFirst(op1.add(op2));
-
+        if(stack.size()>=2){
+          Complex  op1 = stack.removeFirst();
+          Complex op2 = stack.removeFirst();
+          stack.addFirst(op1.add(op2));
+        }
+        else
+            throw new NoSuchElementException();
+       
     }
     
     /**
@@ -48,11 +52,16 @@ public class ComplexNumOperation {
      */
     public void subtraction() {
         
-        Complex op1 = stack.removeFirst();
-        Complex op2 = stack.removeFirst();
+    
+        if(stack.size()>=2){
+            Complex op1 = stack.removeFirst();
+            Complex op2 = stack.removeFirst();
 
-        stack.addFirst(op2.subtract(op1));
-        
+            stack.addFirst(op2.subtract(op1));
+        }
+        else
+            throw new NoSuchElementException();
+            
     }
     
     /**
@@ -61,10 +70,14 @@ public class ComplexNumOperation {
      */
     public void product(){
         
-        Complex op1 = stack.removeFirst();
-        Complex op2 = stack.removeFirst();
+        if(stack.size()>=2){
+            Complex op1 = stack.removeFirst();
+            Complex op2 = stack.removeFirst();
 
-        stack.addFirst(op1.multiply(op2));
+            stack.addFirst(op1.multiply(op2));
+        }
+        else
+            throw new NoSuchElementException();
     }
 
     /**
@@ -74,15 +87,19 @@ public class ComplexNumOperation {
      */
     public void division() throws ZeroDivisionException {
 
-        Complex op1 = stack.removeFirst();
-        Complex op2 = stack.removeFirst();
-        Complex res = op2.divide(op1);
-        if(!res.isNaN() && !res.isInfinite())
-            stack.addFirst(res);
+        if(stack.size()>=2){
+            Complex op1 = stack.removeFirst();
+            Complex op2 = stack.removeFirst();
+            Complex res = op2.divide(op1);
+            if(!res.isNaN() && !res.isInfinite())
+                stack.addFirst(res);
+            else
+                throw new ZeroDivisionException();
+        }
         else
-            throw new ZeroDivisionException();
-
+            throw new NoSuchElementException();
     }
+            
     
     /**
      * @brief method to apply the square root of a complex number pulled from the top of the stack

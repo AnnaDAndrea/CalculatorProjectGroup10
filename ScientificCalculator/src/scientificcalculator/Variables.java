@@ -77,13 +77,16 @@ public class Variables {
      * It calls the NullArgumentException if the variable is empty
      * @param var indicates the variable that will contain the value of the sum 
      */
-    public void sumToVar(char var){
+    public void sumToVar(char var) {
         int pos = charToCode(var);
-        Complex stackElem = stack.removeFirst();
+
         Complex val = stackVar.get(sp + pos);
-        if (val == null)
+        if (val == null) {
             throw new NullArgumentException();
+        }
+        Complex stackElem = stack.removeFirst();
         stackVar.set(sp + pos, val.add(stackElem));
+
     }
     
     /**
@@ -94,13 +97,16 @@ public class Variables {
      * It calls the NullArgumentException if the variable is empty
      * @param var indicates the variable that will contain the value of the subtraction  
      */
-    public void subtractToVar(char var){
+    public void subtractToVar(char var) {
         int pos = charToCode(var);
-        Complex stackElem = stack.removeFirst();
+
         Complex val = stackVar.get(sp + pos);
-        if (val == null)
+        if (val == null) {
             throw new NullArgumentException();
+        }
+        Complex stackElem = stack.removeFirst();
         stackVar.set(sp + pos, val.subtract(stackElem));
+
     }
     
        

@@ -220,6 +220,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void subtractToVarAction(ActionEvent event) { displayField.setText(displayField.getText() + "-" + variablesList.getValue()); }
     
+    
+    
     /**
      * @brief method called when the "new" button is pushed. It allows to create a new User-Defined Operation
      * @param event is the event when the new button is pushed
@@ -262,6 +264,19 @@ public class FXMLDocumentController implements Initializable {
             alert.showAndWait(); 
         }
         
+    }
+    
+    @FXML
+    private void callAction(ActionEvent event) {
+        if(userDefList.getValue() != null){
+            displayField.setText(displayField.getText() + userDefList.getValue());
+        }else{
+            alert.setAlertType(AlertType.WARNING);
+            alert.setTitle("Warning");
+            alert.setHeaderText("Select User Defined Operation");
+            alert.setContentText("You must select one user defined operation");
+            alert.showAndWait(); 
+        }
     }
 
     /**
@@ -353,5 +368,7 @@ public class FXMLDocumentController implements Initializable {
          }
          displayField.setText("");
     }
+
+    
 
 }

@@ -73,8 +73,9 @@ public class UserDefinedOperation{
         
         for(String s: dep){
             if(getSequence(s)!=null)
-                deleteAllDependencies(s);
+                ret += deleteAllDependencies(s) + " ";
         }
+        
         if(delete(name) != null)
             ret += name + " ";
         return ret;

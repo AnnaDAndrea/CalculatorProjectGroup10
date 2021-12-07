@@ -65,7 +65,7 @@ public class UserDefinedOperationTest
     }
     
     /**
-     * @brief 
+     * @brief testDeleteAllDependencies method verifies that a user defined operation and all its dependences are removed
      */
     @Test
     public void testDeleteAllDependencies(){
@@ -107,7 +107,10 @@ public class UserDefinedOperationTest
        assertNull(userDefinedOperation.getSequence("op6"));
        assertEquals("1+2j 1+2j *",userDefinedOperation.getSequence("op7"));
        
- 
+       userDefinedOperation.deleteAllDependencies("op10");
+       assertNull(userDefinedOperation.getSequence("op10"));
+       assertEquals("1+2j 1+2j *",userDefinedOperation.getSequence("op7"));
+
     }
   
 }

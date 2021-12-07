@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -18,7 +23,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="576.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scientificcalculator.FXMLDocumentController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="576.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scientificcalculator.FXMLDocumentController">
     <children>
       <HBox prefHeight="100.0" prefWidth="200.0" spacing="16.0" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0">
          <children>
@@ -226,31 +231,49 @@
                               </Tab>
                               <Tab text="User Op">
                                  <content>
-                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <VBox prefHeight="200.0" prefWidth="100.0">
                                        <children>
-                                          <ComboBox fx:id="userDefList" prefHeight="25.0" prefWidth="116.0" />
-                                          <Button minWidth="65.0" mnemonicParsing="false" onAction="#newAction" prefWidth="65.0" text="New">
-                                             <font>
-                                                <Font name="Arial Bold" size="15.0" />
-                                             </font>
-                                          </Button>
-                                          <Button layoutX="282.0" layoutY="47.0" minWidth="65.0" mnemonicParsing="false" onAction="#callAction" prefWidth="65.0" text="Call">
-                                             <font>
-                                                <Font name="Arial Bold" size="15.0" />
-                                             </font>
-                                          </Button>
-                                          <Button minWidth="65.0" mnemonicParsing="false" onAction="#deleteAction" text="Delete">
-                                             <font>
-                                                <Font name="Arial Bold" size="15.0" />
-                                             </font>
-                                          </Button>
-                                          <Button layoutX="357.0" layoutY="46.0" minWidth="65.0" mnemonicParsing="false" onAction="#editAction" text="Edit">
-                                             <font>
-                                                <Font name="Arial Bold" size="15.0" />
-                                             </font>
-                                          </Button>
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                             <children>
+                                                <ComboBox fx:id="userDefList" prefHeight="25.0" prefWidth="116.0" />
+                                                <Button minWidth="65.0" mnemonicParsing="false" onAction="#newAction" prefWidth="65.0" text="New">
+                                                   <font>
+                                                      <Font name="Arial Bold" size="15.0" />
+                                                   </font>
+                                                </Button>
+                                                <Button layoutX="282.0" layoutY="47.0" minWidth="65.0" mnemonicParsing="false" onAction="#callAction" prefWidth="65.0" text="Call">
+                                                   <font>
+                                                      <Font name="Arial Bold" size="15.0" />
+                                                   </font>
+                                                </Button>
+                                                <Button minWidth="65.0" mnemonicParsing="false" onAction="#deleteAction" text="Delete">
+                                                   <font>
+                                                      <Font name="Arial Bold" size="15.0" />
+                                                   </font>
+                                                </Button>
+                                                <Button layoutX="357.0" layoutY="46.0" minWidth="65.0" mnemonicParsing="false" onAction="#editAction" text="Edit">
+                                                   <font>
+                                                      <Font name="Arial Bold" size="15.0" />
+                                                   </font>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                             <children>
+                                                <Button minWidth="65.0" mnemonicParsing="false" onAction="#saveUserAction" prefWidth="65.0" text="Save">
+                                                   <font>
+                                                      <Font name="Arial Bold" size="15.0" />
+                                                   </font>
+                                                </Button>
+                                                <Button layoutX="357.0" layoutY="46.0" minWidth="65.0" mnemonicParsing="false" onAction="#reloadUserAction" text="Reload">
+                                                   <font>
+                                                      <Font name="Arial Bold" size="15.0" />
+                                                   </font>
+                                                </Button>
+                                             </children>
+                                          </HBox>
                                        </children>
-                                    </HBox>
+                                    </VBox>
                                  </content>
                               </Tab>
                           </tabs>

@@ -55,9 +55,6 @@ public class UserDefinedOperation{
     public String delete(String name){
         return userOperations.remove(name);
     }
-
-    
-    
     
     
     public Set<String> searchDependencies(String name){
@@ -69,5 +66,18 @@ public class UserDefinedOperation{
         return dep;
     }
     
+    
+        public String deleteAllDependencies(String name){
+        Set<String> dep = searchDependencies(name);
+        String ret = "";
+        
+        for(String s: dep){
+            if(getSequence(s)!=null)
+                deleteAllDependencies(s);
+        }
+        if(delete(name) != null)
+            ret += name + " ";
+        return ret;
+    }
   
 }

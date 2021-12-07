@@ -302,6 +302,50 @@ public class InterpreterTest {
         interpreter.parse("SE-x");
 
     }
+    
+    @Test
+    public void testParseUserDef() throws InterpreterException, ZeroDivisionException{
+        interpreter.parse("2 4 5 6");
+        userOperations.newOperation("tripleSum", "+ + +");
+        
+        interpreter.parse("tripleSum");
+        
+        assertEquals(stack.size(), 1);
+        assertEquals(stack.removeFirst(), new Complex(17));
+        
+        //empty stack
+        
+        interpreter.parse("2 4 5 6 7");
+        
+        interpreter.parse("- tripleSum +-");
+        
+        assertEquals(stack.size(), 1);
+        assertEquals(stack.removeFirst(), new Complex(-10, -0.0)); 
+        
+        //empty stack
+        
+        userOperations.newOperation("quadSum", "+ tripleSum");
+        interpreter.parse("2 4 5 6 7");
+        
+        interpreter.parse("quadSum +-");
+        
+        assertEquals(stack.size(), 1);
+        assertEquals(stack.removeFirst(), new Complex(-24,-0.0)); 
+        
+        //empty stack
+
+    }
+    
+    @Test(expected = InterpreterException.class)
+    public void testParseUserDefExc() throws InterpreterException, ZeroDivisionException{
+        interpreter.parse("tripleSum");
+    }
+    
+    @Test(expected = InterpreterException.class)
+    public void testParseUserDefExc1() throws InterpreterException, ZeroDivisionException{
+        interpreter.parse("2 4");
+        interpreter.parse(" + tripleSum +-");
+    }
 
     /**
      * @brief testCheckBaseOp method verifies that all the basic operations are allowed 
@@ -393,6 +437,8 @@ public class InterpreterTest {
      */
     @Test
     public void testCheckSequence() {
+        assertEquals(interpreter.check(" "), false);
+        assertEquals(interpreter.check("     "), false);
         assertEquals(interpreter.check("+ -"), true);
         assertEquals(interpreter.check("+ - / * +- sqrt"), true);
         assertEquals(interpreter.check("+ - / * +- sqrt   "), true);

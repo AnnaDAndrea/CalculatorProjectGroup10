@@ -109,8 +109,14 @@ public class Interpreter {
                 variablesStack.sumToVar(op.charAt(1));
             else if(op.length()==2 && op.charAt(0)=='-')
                 variablesStack.subtractToVar(op.charAt(1));
-            else   
-                 throw new InterpreterException();
+            else {  
+                String userDef= userOperations.getSequence(op);
+                if(userDef == null)
+                    throw new InterpreterException();
+                else{
+                    parse(userDef);
+                }
+            }
         
         }
     
@@ -122,11 +128,11 @@ public class Interpreter {
   */
     public boolean check(String s){
         StringTokenizer ops = new StringTokenizer(s, " ");
-        boolean flag = true;
+        boolean flag = true, flag1 = false;
         
         while(ops.hasMoreTokens() && flag==true){
             String op = ops.nextToken();
-            
+            flag1 = true;
             if(isComplex(op))
             {}
             else if(isImaginary(op))
@@ -165,7 +171,7 @@ public class Interpreter {
             {}
             else flag = false;
         }
-        return flag;
+        return flag && flag1;
     }
     
 }

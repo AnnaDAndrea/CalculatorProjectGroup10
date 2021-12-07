@@ -226,6 +226,11 @@
                                                 <Font name="Arial Bold" size="15.0" />
                                              </font>
                                           </Button>
+                                          <Button layoutX="282.0" layoutY="47.0" minWidth="65.0" mnemonicParsing="false" onAction="#callAction" prefWidth="65.0" text="Call">
+                                             <font>
+                                                <Font name="Arial Bold" size="15.0" />
+                                             </font>
+                                          </Button>
                                        </children>
                                     </HBox>
                                  </content>

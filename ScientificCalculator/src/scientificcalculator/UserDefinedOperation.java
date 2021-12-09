@@ -1,13 +1,23 @@
 package scientificcalculator;
 
 import exception.KeyAlreadyExistException;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
- *@brief this class implements the logic needed to maintain a data structure that stores user-defined operations and methods to manage them
+ *this class implements the logic needed to maintain a data structure that stores user-defined operations and methods to manage them
  * 
  The Map data structure is a key-value map, where the key is the name of the user-defined and the value is the sequence representing the operation
  * @author Group 10
@@ -21,7 +31,7 @@ public class UserDefinedOperation{
     }
 
 /**
- * @brief getNameOperations method returns a set containing all the keys
+ * getNameOperations method returns a set containing all the keys
  * @return Set<String>
  */
     public Set<String> getNameOperations() {
@@ -29,15 +39,15 @@ public class UserDefinedOperation{
     }
 
 /**
- * @brief getSequence method returns the value related to the key
+ * getSequence method returns the value related to the key or null if the key doesn't exists
  * @param op is key
- * @return 
+ * @return String
  */
     public String getSequence(String op) {
         return userOperations.get(op);
     }
 /**
- * @brief newOperation method adds a new couple key-value and if the key already exists throws a KeyAlreadyExistException
+ * newOperation method adds a new couple key-value and if the key already exists throws a KeyAlreadyExistException
  * @param name
  * @param value 
  */
@@ -49,14 +59,19 @@ public class UserDefinedOperation{
 
     
 /**
- * @brief delete method remove from the Map the user defined operation with key "name"
+ * delete method remove from the Map the user defined operation with key "name" and returns the value related to the key
  * @param name 
+ * @return String
  */    
     public String delete(String name){
         return userOperations.remove(name);
     }
     
-    
+/**
+ * searchDependencies method returns a Set<String> containing all the dependencies of the name user defined operation
+ * @param name
+ * @return Set<String>
+ */
     public Set<String> searchDependencies(String name){
         Set<String> dep = new HashSet<>();
         for(Map.Entry<String, String> kv: userOperations.entrySet()){
@@ -66,19 +81,52 @@ public class UserDefinedOperation{
         return dep;
     }
     
-    
-        public String deleteAllDependencies(String name){
+/**
+ * deleteAllDependencies method removes both the user-defined operation with key "name" and all its dependencies 
+ * and returns a String containing the keys of all the user-defined operation deleted
+ * @param name
+ * @return String
+ */
+    public String deleteAllDependencies(String name) {
         Set<String> dep = searchDependencies(name);
         String ret = "";
-        
-        for(String s: dep){
-            if(getSequence(s)!=null)
+
+        for (String s : dep) {
+            if (getSequence(s) != null) {
                 ret += deleteAllDependencies(s) + " ";
+            }
         }
-        
-        if(delete(name) != null)
+
+        if (delete(name) != null) {
             ret += name + " ";
+        }
         return ret;
     }
+    
+/**
+    
+ * save method saves the whole object userOperations in a binary file
+ * @param fileName 
+ */
+    public void save(String fileName) throws IOException{
+        
+        ObjectOutputStream out= new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(fileName)));
+        out.writeObject(userOperations);
+  
+    }
+/**
+ * reload method reload the object userOperations from a binary file
+ * @param fileName
+ * @throws IOException
+ * @throws ClassNotFoundException 
+ */
+    public void reload(String fileName) throws IOException, ClassNotFoundException{
+        HashMap<String,String> userDef=null;
+        
+        ObjectInputStream in=new ObjectInputStream(new BufferedInputStream(new FileInputStream(fileName)));
+        userDef=(HashMap<String, String>) in.readObject();
+        
+        userOperations=userDef;
+    }  
   
 }

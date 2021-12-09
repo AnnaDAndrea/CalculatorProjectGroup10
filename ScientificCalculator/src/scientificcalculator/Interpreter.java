@@ -57,9 +57,12 @@ public class Interpreter {
         
         while(ops.hasMoreTokens()){
             String op = ops.nextToken();
-            Complex c;
-            
-            if(isComplex(op)){
+            Complex c = null;
+            if(op.equals("j")){
+                c= new Complex(0,1);
+                baseOp.insertion(c);
+            } 
+            else if(isComplex(op)){
                 if(op.charAt(0)=='+')
                     c = cf.parse(op.substring(1));
                 else
@@ -68,7 +71,7 @@ public class Interpreter {
                 baseOp.insertion(c);
             }
             else if(isImaginary(op)){
-                
+             
                 if(op.charAt(0)=='-')
                     c = cf.parse("0"+op);
                 else if(op.charAt(0)=='+')

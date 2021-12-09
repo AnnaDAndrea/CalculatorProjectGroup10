@@ -9,7 +9,7 @@ package exception;
  *
  * @author duino
  */
-public class LoopException extends Exception {
+public class LoopException extends RuntimeException {
 
     /**
      * Creates a new instance of <code>LoopException</code> without detail

@@ -1,6 +1,7 @@
 package scientificcalculator;
 
 import exception.KeyAlreadyExistException;
+import exception.LoopException;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
@@ -13,6 +14,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -150,6 +152,36 @@ public class UserDefinedOperation {
             userDef = (HashMap<String, String>) in.readObject();
         }
         userOperations = userDef;
+    }
+    
+    private boolean checkLoop(String value, String init){
+        StringTokenizer ops = new StringTokenizer(value, " ");
+        
+        while(ops.hasMoreTokens()){
+            String op = ops.nextToken();
+            
+            if(op.equals(init))
+                return true;
+            else{
+                String newValue = getSequence(op);
+                if(newValue != null)
+                {
+                    if(checkLoop(newValue, init)==true)
+                        return true;
+                }
+            }
+            
+            
+        }
+        
+        return false;
+    }
+    
+    public void editSequence(String name, String value) throws LoopException{
+        if(!checkLoop(value, name))
+            userOperations.replace(name, value);
+        else
+            throw new LoopException();
     }
 
 }

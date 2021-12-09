@@ -1,6 +1,7 @@
 package scientificcalculator;
 
 import exception.InterpreterException;
+import exception.LoopException;
 import exception.ZeroDivisionException;
 import exception.VarOutOfRangeException;
 import java.io.File;
@@ -428,6 +429,22 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void editAction(ActionEvent event) {
+
+        if (userDefList.getValue() != null) {
+            TextInputDialog dialog = new TextInputDialog(userOperations.getSequence(userDefList.getValue()));
+            dialog.setHeaderText("Edit User Operation");
+            dialog.setContentText("Set a new sequence of " + userDefList.getValue());
+            Optional<String> ret = dialog.showAndWait();
+            //to complete
+            
+        } else {
+            alert.setAlertType(AlertType.WARNING);
+            alert.setTitle("Warning");
+            alert.setHeaderText("Select User Defined Operation");
+            alert.setContentText("You must select one user defined operation");
+            alert.showAndWait();
+        }
+        
     }
 
     /**

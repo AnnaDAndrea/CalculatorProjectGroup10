@@ -66,6 +66,15 @@ public class UserDefinedOperationTest
         assertNull(userDefinedOperation.delete("op1"));
     }
     
+    /**
+     * @brief testDelete1 method verifies that when there aren't any user-defined operation saved in the data structure
+ *   a deletion of a user defined operation that hasn't been saved returns null
+     */
+    @Test
+    public void testDelete1(){
+        assertNull(userDefinedOperation.delete("op1"));
+    }
+    
     
     /**
      * @brief testSearchDependencies method verifies that all dependencies of a UserDefined Operation are found 
@@ -148,6 +157,7 @@ public class UserDefinedOperationTest
        assertEquals("triplSum + +",userDefinedOperation.getSequence("quintSum"));
         
        userDefinedOperation.deleteAllDependencies("quadSum");
+       assertNull(userDefinedOperation.getSequence("quadSum"));
        assertEquals("1+2j 1+2j +",userDefinedOperation.getSequence("op6"));
        assertEquals("1+2j 1+2j *",userDefinedOperation.getSequence("op7"));
        assertEquals("+ + +",userDefinedOperation.getSequence("triplSum"));
@@ -167,6 +177,16 @@ public class UserDefinedOperationTest
        assertNull(userDefinedOperation.getSequence("op10"));
        assertEquals("1+2j 1+2j *",userDefinedOperation.getSequence("op7"));
 
+    }
+    
+/**
+ * @brief testDeleteAllDependencies1 method verifies that when there aren't any user-defined operation saved in the data structure
+ * a deletion of all dependencies of a user defined operation that hasn't been saved returns an empty string
+ */
+    @Test
+    public void testDeleteAllDependencies1(){
+        assertEquals("",userDefinedOperation.deleteAllDependencies("op1"));
+           
     }
     
     

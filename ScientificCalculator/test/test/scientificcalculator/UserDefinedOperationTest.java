@@ -6,6 +6,8 @@
 package test.scientificcalculator;
 
 import exception.KeyAlreadyExistException;
+import java.util.LinkedList;
+import java.util.Set;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -64,6 +66,60 @@ public class UserDefinedOperationTest
         assertNull(userDefinedOperation.delete("op1"));
     }
     
+    
+    /**
+     * @brief testSearchDependencies method verifies that all dependencies of a UserDefined Operation are found 
+     */
+    @Test
+    public void testSearchDependencies(){
+        Set<String> dep;
+        
+        
+        dep = userDefinedOperation.searchDependencies("op1");
+        assertEquals(dep.size(), 0);
+        
+        
+        
+        userDefinedOperation.newOperation("op1","1 2 swap"); 
+        dep = userDefinedOperation.searchDependencies("op1");
+        assertEquals(dep.size(), 0);
+
+        
+        
+        userDefinedOperation.newOperation("op2","1 2 op1");
+        dep = userDefinedOperation.searchDependencies("op1");
+        assertEquals(dep.size(), 1);
+        assertTrue(dep.contains("op2"));
+        
+
+
+        dep = userDefinedOperation.searchDependencies("op2");
+        assertEquals(dep.size(), 0);
+        
+        
+        
+        userDefinedOperation.newOperation("op3","1 2 op1");
+        dep = userDefinedOperation.searchDependencies("op1");
+        assertEquals(dep.size(), 2);
+        assertTrue(dep.contains("op2"));
+        assertTrue(dep.contains("op3"));
+        
+        
+        
+        userDefinedOperation.newOperation("op4","op1 1 2 op2");
+        dep = userDefinedOperation.searchDependencies("op1");
+        assertEquals(dep.size(), 3);
+        assertTrue(dep.contains("op2"));
+        assertTrue(dep.contains("op3"));
+        assertTrue(dep.contains("op4"));
+        dep = userDefinedOperation.searchDependencies("op2");
+        assertEquals(dep.size(), 1);
+        assertTrue(dep.contains("op4"));
+        
+                
+    }
+    
+    
     /**
      * @brief testDeleteAllDependencies method verifies that a user defined operation and all its dependences are removed
      */
@@ -112,5 +168,7 @@ public class UserDefinedOperationTest
        assertEquals("1+2j 1+2j *",userDefinedOperation.getSequence("op7"));
 
     }
+    
+    
   
 }

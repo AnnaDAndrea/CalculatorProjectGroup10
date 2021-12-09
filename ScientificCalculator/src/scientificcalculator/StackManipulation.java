@@ -6,7 +6,7 @@ import org.apache.commons.math3.complex.Complex;
 
 /**
  * @author Group 10
- * @brief This is the Class used to manipulate the Stack
+ * This is the Class used to manipulate the Stack containing the Complex Numbers
  */
 public class StackManipulation {
     
@@ -17,7 +17,7 @@ public class StackManipulation {
     }
     
     /**
-     * @brief This method removes all the elements from the stack
+     * This method removes all the elements from the stack
      */
     public void clear(){
         
@@ -26,7 +26,7 @@ public class StackManipulation {
     }
     
     /**
-     * @brief This method removes the last element (i.e. the top) from the stack
+     * This method removes the last element (i.e. the top) from the stack
      * It calls the NoSuchElementException if the stack is empty
      */
     public void drop() {
@@ -36,7 +36,7 @@ public class StackManipulation {
     }
 
     /**
-     * @brief This method pushes a copy of the last element onto the stack
+     * This method pushes a copy of the last element onto the stack
      * It calls the NoSuchElementException if the stack is empty
      */
     public void dup() {
@@ -49,7 +49,7 @@ public class StackManipulation {
     }
     
     /**
-     * @brief This method exchanges the last two elements of the stack
+     * This method exchanges the last two elements of the stack
      * It calls the NoSuchElementException if the stack is empty or if there aren't enough elements
      */
     public void swap() {
@@ -67,7 +67,7 @@ public class StackManipulation {
     }
     
     /**
-     * @brief This method pushes a copy of the second last element onto the stack
+     * This method pushes a copy of the second last element onto the stack
      * It calls the NoSuchElementException if the stack is empty or if there aren't enough elements
      */
     public void over(){

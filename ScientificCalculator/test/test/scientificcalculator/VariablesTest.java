@@ -339,6 +339,10 @@ public class VariablesTest {
      */
     @Test(expected = NoSuchElementException.class)
     public void sumToVarTestFail(){  
+        Complex c1 = new Complex(3,5);
+        stack.addFirst(c1);
+        varStack.assignToVar('a');
+        
         varStack.sumToVar('a');
     }
     
@@ -466,6 +470,10 @@ public class VariablesTest {
      */
     @Test(expected = NoSuchElementException.class)
     public void subtractToVarTestFail(){  
+        Complex c1 = new Complex(3,5);
+        stack.addFirst(c1);
+        varStack.assignToVar('a');
+        
         varStack.subtractToVar('a');
     }
     

@@ -316,7 +316,7 @@ public class FXMLDocumentController implements Initializable {
                 alert.setAlertType(AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setHeaderText("Operation not allowed");
-                alert.setContentText("The name of operation or the sequence contains error");
+                alert.setContentText("The name of the operation or the sequence is\ninvalid");
                 alert.showAndWait();
             }
 

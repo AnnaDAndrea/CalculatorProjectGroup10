@@ -154,34 +154,31 @@ public class UserDefinedOperation {
         userOperations = userDef;
     }
     
-    private boolean checkLoop(String value, String init){
+    private void checkLoop(String value, String init){
         StringTokenizer ops = new StringTokenizer(value, " ");
         
         while(ops.hasMoreTokens()){
             String op = ops.nextToken();
             
             if(op.equals(init))
-                return true;
+                throw new LoopException();
             else{
                 String newValue = getSequence(op);
                 if(newValue != null)
                 {
-                    if(checkLoop(newValue, init)==true)
-                        return true;
+                    checkLoop(newValue, init);
                 }
             }
             
             
         }
         
-        return false;
     }
     
-    public void editSequence(String name, String value) throws LoopException{
-        if(!checkLoop(value, name))
+    public void editSequence(String name, String value){
+            checkLoop(value, name);
             userOperations.replace(name, value);
-        else
-            throw new LoopException();
+        
     }
 
 }

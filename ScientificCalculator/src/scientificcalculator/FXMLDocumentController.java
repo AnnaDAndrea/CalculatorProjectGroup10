@@ -435,7 +435,31 @@ public class FXMLDocumentController implements Initializable {
             dialog.setHeaderText("Edit User Operation");
             dialog.setContentText("Set a new sequence of " + userDefList.getValue());
             Optional<String> ret = dialog.showAndWait();
-            //to complete
+            
+            if (ret.isPresent() && !ret.get().isEmpty() && parser.check(ret.get())) {
+                try{
+                    userOperations.editSequence(userDefList.getValue(), ret.get());
+                    
+                    alert.setAlertType(AlertType.INFORMATION);
+                    alert.setTitle("Information");
+                    alert.setHeaderText("Edited");
+                    alert.setContentText(userDefList.getValue()  +" has been edited");
+                    alert.showAndWait();
+                }
+                catch(LoopException ex){
+                    alert.setAlertType(AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Loop found");
+                    alert.setContentText("The sequence of the operation make a loop. Editing Aborted.");
+                    alert.showAndWait();
+                }
+            } else {
+                alert.setAlertType(AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Operation not allowed");
+                alert.setContentText("The sequence of the operation is invalid. Editing Aborted.");
+                alert.showAndWait();
+            }
             
         } else {
             alert.setAlertType(AlertType.WARNING);

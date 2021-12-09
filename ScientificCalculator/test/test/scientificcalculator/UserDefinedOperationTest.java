@@ -6,6 +6,7 @@
 package test.scientificcalculator;
 
 import exception.KeyAlreadyExistException;
+import exception.LoopException;
 import java.util.LinkedList;
 import java.util.Set;
 import org.junit.After;
@@ -59,6 +60,8 @@ public class UserDefinedOperationTest
      */
     @Test
     public void testDelete(){
+        assertNull(userDefinedOperation.delete("op1"));
+        
         userDefinedOperation.newOperation("op1","1+2j 1-2j +");
         userDefinedOperation.newOperation("op2","1-2j 1-2j -");
         
@@ -66,14 +69,6 @@ public class UserDefinedOperationTest
         assertNull(userDefinedOperation.delete("op1"));
     }
     
-    /**
-     * @brief testDelete1 method verifies that when there aren't any user-defined operation saved in the data structure
- *   a deletion of a user defined operation that hasn't been saved returns null
-     */
-    @Test
-    public void testDelete1(){
-        assertNull(userDefinedOperation.delete("op1"));
-    }
     
     
     /**
@@ -134,6 +129,9 @@ public class UserDefinedOperationTest
      */
     @Test
     public void testDeleteAllDependencies(){
+        
+       assertEquals("",userDefinedOperation.deleteAllDependencies("op1"));
+        
        userDefinedOperation.newOperation("op1","1 2 swap"); 
        userDefinedOperation.newOperation("op2","1 2 op1");
        userDefinedOperation.newOperation("op3","3 6 op1");
@@ -179,16 +177,69 @@ public class UserDefinedOperationTest
 
     }
     
-/**
- * @brief testDeleteAllDependencies1 method verifies that when there aren't any user-defined operation saved in the data structure
- * a deletion of all dependencies of a user defined operation that hasn't been saved returns an empty string
- */
+    
     @Test
-    public void testDeleteAllDependencies1(){
-        assertEquals("",userDefinedOperation.deleteAllDependencies("op1"));
-           
+    public void testEditSequence1(){
+        userDefinedOperation.newOperation("op1","1 2 swap"); 
+        userDefinedOperation.newOperation("op2","op1"); 
+        
+        userDefinedOperation.editSequence("op1", "1 2");
+        
+        assertEquals("1 2", userDefinedOperation.getSequence("op1"));
+        assertEquals("op1", userDefinedOperation.getSequence("op2"));
+        
+        userDefinedOperation.newOperation("op3","1 2 op1 swap op2"); 
+        userDefinedOperation.editSequence("op3", "1 2 op1 op1 op2 swap");
+        
+        assertEquals("1 2", userDefinedOperation.getSequence("op1"));
+        assertEquals("op1", userDefinedOperation.getSequence("op2"));
+        assertEquals("1 2 op1 op1 op2 swap", userDefinedOperation.getSequence("op3"));
+        
+        userDefinedOperation.editSequence("op4", "1 2 op1");
+        
+        assertNull(userDefinedOperation.getSequence("op4"));
+
+        
+    }
+    
+    @Test(expected = LoopException.class)
+    public void testEditSequence2(){
+        userDefinedOperation.newOperation("op1","1 2 swap"); 
+        userDefinedOperation.newOperation("op2","op1"); 
+        
+        userDefinedOperation.editSequence("op1", "1 2 op2");
+  
+    }
+    
+    @Test(expected = LoopException.class)
+    public void testEditSequence3(){
+        userDefinedOperation.newOperation("op1","1 2 swap"); 
+        userDefinedOperation.newOperation("op2","1 op1"); 
+        userDefinedOperation.newOperation("op3","1 op2 op2"); 
+        userDefinedOperation.newOperation("op4","1 op3"); 
+        
+        userDefinedOperation.editSequence("op1", "1 2 op4");
+
     }
     
     
+    @Test(expected = LoopException.class)
+    public void testEditSequence4(){
+        userDefinedOperation.newOperation("op1","1 2 swap"); 
+        userDefinedOperation.newOperation("op2","1"); 
+        userDefinedOperation.newOperation("op3","1 op2 op2"); 
+        userDefinedOperation.newOperation("op4","1 op3"); 
+        
+        userDefinedOperation.editSequence("op2", "1 2 op1");
+        
+        assertEquals("1 2 op1", userDefinedOperation.getSequence("op2"));
+        
+        userDefinedOperation.editSequence("op1", "1 2");
+        
+        assertEquals("1 2", userDefinedOperation.getSequence("op1"));
+        
+        userDefinedOperation.editSequence("op1", "1 2 op4");
+  
+    }
   
 }

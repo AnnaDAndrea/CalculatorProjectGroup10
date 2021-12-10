@@ -362,6 +362,11 @@ public class InterpreterTest {
 
     }
     
+    /**
+     * testParseUserDef method verifies that the interpreter recognizes user defined operations
+     * @throws InterpreterException
+     * @throws ZeroDivisionException 
+     */
     @Test
     public void testParseUserDef() throws InterpreterException, ZeroDivisionException{
         interpreter.parse("2 4 5 6");
@@ -395,6 +400,11 @@ public class InterpreterTest {
 
     }
     
+    /**
+     * the following two methods verify that the interpreter doesn't recognize user defined operations that don't exist
+     * @throws InterpreterException
+     * @throws ZeroDivisionException 
+     */
     @Test(expected = InterpreterException.class)
     public void testParseUserDefExc() throws InterpreterException, ZeroDivisionException{
         interpreter.parse("tripleSum");

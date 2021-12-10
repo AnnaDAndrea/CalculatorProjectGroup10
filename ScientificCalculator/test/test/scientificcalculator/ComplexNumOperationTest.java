@@ -13,18 +13,18 @@ import exception.ZeroDivisionException;
 /**
  *
  * @author Group 10
- * @brief This is the Class used to test ComplexNumOperations methods
+ * This is the Class used to test ComplexNumOperations methods
  */
 public class ComplexNumOperationTest {
     
     /**
-     * @brief Definition of a fixture composed of the stack and of an instance of ComplexNumOperation
+     * Definition of a fixture composed of the stack and of an instance of ComplexNumOperation
      */
     private ComplexNumOperation complexNumOperation;
     private Deque<Complex> stack;
     
     /**
-     * @brief Method to initialize the fixture 
+     * Method to initialize the fixture 
      */
     @Before
     public void setUp() {
@@ -33,20 +33,20 @@ public class ComplexNumOperationTest {
     }
     
     /**
-     * @brief Method to test the insertion method
+     * Method to test the insertion method
      */
     @Test
     public void testInsertion(){
         complexNumOperation.insertion(new Complex(2, 5));
-        assertEquals(stack.getFirst(), new Complex(2,5));
+        assertEquals(new Complex(2,5), stack.getFirst());
         
         complexNumOperation.insertion(new Complex(2,8));
-        assertEquals(stack.removeFirst(), new Complex(2,8));
-        assertEquals(stack.removeFirst(), new Complex(2,5));
+        assertEquals(new Complex(2,8), stack.removeFirst());
+        assertEquals(new Complex(2,5), stack.removeFirst());
     }
     
     /**
-     * @brief Method to test the sum method
+     * Method to test the sum method
      */
     @Test
     public void testSum(){
@@ -55,8 +55,8 @@ public class ComplexNumOperationTest {
         Complex op2 = new Complex(5, 3);
         complexNumOperation.insertion(op2);
         complexNumOperation.sum();
-        assertEquals(stack.getFirst(), new Complex(11, 10));
-        assertEquals(stack.size(),1);
+        assertEquals(new Complex(11, 10), stack.getFirst());
+        assertEquals(1, stack.size());
         
         Complex op3 = new Complex(2, 4);
         complexNumOperation.insertion(op3);
@@ -65,15 +65,15 @@ public class ComplexNumOperationTest {
         Complex op5 = new Complex(7, 6);
         complexNumOperation.insertion(op5);
         complexNumOperation.sum();
-        assertEquals(stack.size(),3);
-        assertEquals(stack.removeFirst(), new Complex(10, 11));
-        assertEquals(stack.removeFirst(), new Complex(2, 4));
-        assertEquals(stack.removeFirst(), new Complex(11, 10));
+        assertEquals(3, stack.size());
+        assertEquals(new Complex(10, 11), stack.removeFirst());
+        assertEquals(new Complex(2, 4), stack.removeFirst());
+        assertEquals(new Complex(11, 10), stack.removeFirst());
         
     }
     
     /**
-     * @brief Method to test the sum method fail calling the NoSuchElementException
+     * Method to test the sum method fail calling the NoSuchElementException
      */
     @Test(expected = NoSuchElementException.class)
     public void testSumExc(){
@@ -84,7 +84,7 @@ public class ComplexNumOperationTest {
     }
     
     /**
-     * @brief Method to test the subtraction method
+     * Method to test the subtraction method
      */
     @Test
     public void testSubtraction(){
@@ -93,8 +93,8 @@ public class ComplexNumOperationTest {
         Complex op2 = new Complex(6, 9);
         complexNumOperation.insertion(op2);
         complexNumOperation.subtraction();
-        assertEquals(stack.getFirst(), new Complex(1,-1));
-        assertEquals(stack.size(),1);
+        assertEquals(new Complex(1,-1), stack.getFirst());
+        assertEquals(1, stack.size());
         
         Complex op3 = new Complex(5, 6);
         complexNumOperation.insertion(op3);
@@ -103,15 +103,15 @@ public class ComplexNumOperationTest {
         Complex op5 = new Complex(2, 8);
         complexNumOperation.insertion(op5);
         complexNumOperation.subtraction();
-        assertEquals(stack.size(),3);
-        assertEquals(stack.removeFirst(), new Complex(2, -5));
-        assertEquals(stack.removeFirst(), new Complex(5, 6));
-        assertEquals(stack.removeFirst(), new Complex(1, -1));
+        assertEquals(3, stack.size());
+        assertEquals(new Complex(2, -5), stack.removeFirst());
+        assertEquals(new Complex(5, 6), stack.removeFirst());
+        assertEquals(new Complex(1, -1), stack.removeFirst());
         
     }
     
     /**
-     * @brief Method to test the subtraction method fail calling the NoSuchElementException
+     * Method to test the subtraction method fail calling the NoSuchElementException
      */
     @Test(expected = NoSuchElementException.class)
     public void testSubtractionExc(){
@@ -122,7 +122,7 @@ public class ComplexNumOperationTest {
     }
     
     /**
-     * @brief Method to test the product method
+     * Method to test the product method
      */
     @Test
     public void testProduct(){
@@ -131,8 +131,8 @@ public class ComplexNumOperationTest {
         Complex op2 = new Complex(3, 4);
         complexNumOperation.insertion(op2);
         complexNumOperation.product();
-        assertEquals(stack.getFirst(), new Complex(-14, 23));
-        assertEquals(stack.size(),1);
+        assertEquals(new Complex(-14, 23), stack.getFirst());
+        assertEquals(1, stack.size());
         
         Complex op3 = new Complex(4, 2);
         complexNumOperation.insertion(op3);
@@ -141,14 +141,14 @@ public class ComplexNumOperationTest {
         Complex op5 = new Complex(3, 9);
         complexNumOperation.insertion(op5);
         complexNumOperation.product();
-        assertEquals(stack.size(), 3);
-        assertEquals(stack.removeFirst(), new Complex(-57, 69));
-        assertEquals(stack.removeFirst(), new Complex(4, 2));
-        assertEquals(stack.removeFirst(), new Complex(-14, 23));
+        assertEquals(3, stack.size());
+        assertEquals(new Complex(-57, 69), stack.removeFirst());
+        assertEquals(new Complex(4, 2), stack.removeFirst());
+        assertEquals(new Complex(-14, 23), stack.removeFirst());
     }
     
     /**
-     * @brief Method to test the product method fail calling the NoSuchElementException
+     * Method to test the product method fail calling the NoSuchElementException
      */
     @Test(expected = NoSuchElementException.class)
     public void testProductExc(){
@@ -159,7 +159,7 @@ public class ComplexNumOperationTest {
     }
     
     /**
-     * @brief Method to test the division method
+     * Method to test the division method
      */
     @Test
     public void testDivision() throws ZeroDivisionException{
@@ -168,8 +168,8 @@ public class ComplexNumOperationTest {
         Complex op2 = new Complex(2, 2);
         complexNumOperation.insertion(op2);
         complexNumOperation.division();
-        assertEquals(stack.getFirst(), new Complex(3.75, 0.75));
-        assertEquals(stack.size(),1);
+        assertEquals(new Complex(3.75, 0.75), stack.getFirst());
+        assertEquals(1, stack.size());
         
         Complex op3 = new Complex(24, 9);
         complexNumOperation.insertion(op3);
@@ -178,14 +178,14 @@ public class ComplexNumOperationTest {
         Complex op5 = new Complex(15, 5);
         complexNumOperation.insertion(op5);
         complexNumOperation.division();
-        assertEquals(stack.size(), 3);
-        assertEquals(stack.removeFirst(), new Complex(2.28, 0.64));
-        assertEquals(stack.removeFirst(), new Complex(24, 9));
-        assertEquals(stack.removeFirst(), new Complex(3.75, 0.75));
+        assertEquals(3, stack.size());
+        assertEquals(new Complex(2.28, 0.64), stack.removeFirst());
+        assertEquals(new Complex(24, 9), stack.removeFirst());
+        assertEquals(new Complex(3.75, 0.75), stack.removeFirst());
     }
     
     /**
-     * @brief Method to test the division method fail calling the NoSuchElementException
+     * Method to test the division method fail calling the NoSuchElementException
      */
     @Test(expected = NoSuchElementException.class)
     public void testDivisionExc() throws ZeroDivisionException{
@@ -196,7 +196,7 @@ public class ComplexNumOperationTest {
     }
     
     /**
-     * @brief Method to test the division method fail calling the ZeroDivisionException
+     * Method to test the division method fail calling the ZeroDivisionException
      */
     @Test(expected = ZeroDivisionException.class)
     public void testDivisionZeroExc() throws ZeroDivisionException{
@@ -209,20 +209,20 @@ public class ComplexNumOperationTest {
     }
     
     /**
-     * @brief Method to test the square root method
+     * Method to test the square root method
      */
     @Test
     public void testSquareRoot(){
         Complex op1 = new Complex(3, 4);
         complexNumOperation.insertion(op1);
         complexNumOperation.squareRoot();
-        assertEquals(stack.getFirst(), new Complex(2, 1));
-        assertEquals(stack.size(),1);
+        assertEquals(new Complex(2, 1), stack.getFirst());
+        assertEquals(1, stack.size());
 
     }
     
     /**
-     * @brief Method to test the square root method fail calling the NoSuchElementException
+     * Method to test the square root method fail calling the NoSuchElementException
      */
     @Test(expected = NoSuchElementException.class)
     public void testSquareRootExc(){
@@ -231,20 +231,20 @@ public class ComplexNumOperationTest {
     }
     
     /**
-     * @brief Method to test the inverted sign method
+     * Method to test the inverted sign method
      */
     @Test
     public void testInvertedSign(){
         Complex op1 = new Complex(3,2);
         complexNumOperation.insertion(op1);
         complexNumOperation.invertedSign();
-        assertEquals(stack.getFirst(), new Complex(-3,-2));
-        assertEquals(stack.size(),1);
+        assertEquals(new Complex(-3,-2), stack.getFirst());
+        assertEquals(1, stack.size());
 
     }
     
     /**
-     * @brief Method to test the inverted sign method fail calling the NoSuchElementException
+     * Method to test the inverted sign method fail calling the NoSuchElementException
      */
     @Test(expected = NoSuchElementException.class)
     public void testInvertedSignExc(){

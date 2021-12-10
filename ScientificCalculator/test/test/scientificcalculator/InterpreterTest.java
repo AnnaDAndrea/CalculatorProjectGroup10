@@ -10,10 +10,11 @@ import scientificcalculator.Interpreter;
 import exception.InterpreterException;
 import scientificcalculator.UserDefinedOperation;
 import exception.ZeroDivisionException;
+import org.apache.commons.math3.exception.NullArgumentException;
 
 /**
  * @author Group 10
- * @brief This is a tester class to test the behavior of the class Interpreter.
+ * This is a tester class to test the behavior of the class Interpreter.
  * It tests if the interpreter works correctly
  */
 public class InterpreterTest {
@@ -26,7 +27,7 @@ public class InterpreterTest {
     }
 
     /**
-     * @biref setUp method is used to create a fixture
+     *setUp method is used to create a fixture
      */
     @Before
     public void setUp() {
@@ -37,7 +38,7 @@ public class InterpreterTest {
     }
 
     /**
-     * @brief testParseInsertion method verifies that a complex number inserted
+     * testParseInsertion method verifies that a complex number inserted
      * in the text field is inserted onto the stack
      * @throws InterpreterException
      * @throws ZeroDivisionException
@@ -46,6 +47,23 @@ public class InterpreterTest {
     public void testParseInsertion() throws InterpreterException, ZeroDivisionException {
 
         
+        interpreter.parse("01");
+        assertEquals(stack.getFirst(), new Complex(1, 0));
+        
+        interpreter.parse("-01");
+        assertEquals(stack.getFirst(), new Complex(-1, 0));
+        
+        interpreter.parse("-0j");
+        assertEquals(stack.getFirst(), new Complex(0.0, -0.0));
+        
+        interpreter.parse("-03j");
+        assertEquals(stack.getFirst(), new Complex(0.0, -3.0));
+        
+        interpreter.parse("+0j");
+        assertEquals(stack.getFirst(), new Complex(0.0, 0.0));
+        
+        interpreter.parse("03j");
+        assertEquals(stack.getFirst(), new Complex(0.0, 3.0));
         
         interpreter.parse("1+5j");
         assertEquals(stack.getFirst(), new Complex(1, 5));
@@ -83,39 +101,78 @@ public class InterpreterTest {
         
         interpreter.parse("1-0.00001j");
         assertEquals(stack.getFirst(),new Complex(1,-0.00001));
-
-		
+        
 	interpreter.parse("-9999999-9999999j");
         assertEquals(stack.getFirst(),new Complex(-9999999,-9999999));
 
 	interpreter.parse("1234567-1234567j");
         assertEquals(stack.getFirst(),new Complex(1234567,-1234567));
         
-       // interpreter.parse("+j"); BUG TO FIX
-        //interpreter.parse("-j"); BUG TO FIX
-        //interpreter.parse("j");  BUG TO FIX
-        //interpreter.parse("1+j"); BUG TO FIX
-        //interpreter.parse("1-j"); BUG TO FIX
+        interpreter.parse("j");
+        assertEquals(stack.getFirst(),new Complex(0,1));
         
+        interpreter.parse("1+j");
+        assertEquals(stack.getFirst(),new Complex(1,1));
         
+        interpreter.parse("1-j");
+        assertEquals(stack.getFirst(),new Complex(1,-1));
+          
+    }
+    /**
+     * The following testParseOnlyJ methods verify that "+j" and "-j" are recognized as variables
+     * and not as imaginary part
+     * @throws InterpreterException
+     * @throws ZeroDivisionException 
+     */
+    @Test(expected = NullArgumentException.class)
+    public void testParseOnlyJ() throws InterpreterException, ZeroDivisionException{
+        interpreter.parse("+j");
         
+    }
+    
+    @Test(expected = NullArgumentException.class)
+    public void testParseOnlyJ1() throws InterpreterException, ZeroDivisionException{
+        interpreter.parse("-j");
         
     }
 
     /**
-     * @brief testParseInsertion1 method checks that if there is a wrong operand (jb is invalid, bj is valid)
+     * testParseSaveAndRestore method verifies that the interpreter calls correctly
+     * save and restore methods 
+     * @throws InterpreterException
+     * @throws ZeroDivisionException 
+     */
+    @Test
+    public void testParseSaveAndRestore() throws InterpreterException, ZeroDivisionException{
+        interpreter.parse("1+1j 2+2j 3+3j");
+        interpreter.parse(">a >b >c");
+        interpreter.parse("save");
+        
+        interpreter.parse("4+4j 5+5j 6+6j");
+        interpreter.parse("+a +b +c");
+        interpreter.parse("restore");
+        
+        interpreter.parse("<a <b <c");
+        assertEquals(stack.removeLast(), new Complex(3, 3));
+        assertEquals(stack.removeLast(), new Complex(2, 2));
+        assertEquals(stack.removeLast(), new Complex(1, 1));
+    }
+    
+    
+    /**
+     * testParseInsertion1 method checks that if there is a wrong operand (jb is invalid, bj is valid)
      * or wrong operation then InterpterExcpetion is thrown
      * @throws InterpreterException
      * @throws ZeroDivisionException
      */
     @Test(expected = InterpreterException.class)
     public void testParseInsertion1() throws InterpreterException, ZeroDivisionException {
-
+        
         interpreter.parse("j1");
     }
 
     /**
-     * @brief the following methods verify that the interpreter recognizes and
+     * the following methods verify that the interpreter recognizes and
      * separates the input to calculate the specified operation
      *
      * @throws InterpreterException
@@ -190,7 +247,7 @@ public class InterpreterTest {
     }
 
     /**
-     * @brief testParseSequentiallyOperations method verifies that the
+     * testParseSequentiallyOperations method verifies that the
      * interpreter recognizes and separates the input to calculate the
      * operations sequentially
      * @throws InterpreterException
@@ -203,7 +260,7 @@ public class InterpreterTest {
     }
 
     /**
-     * @brief testParseAssignToVar method verifies that the interptreter
+     * testParseAssignToVar method verifies that the interptreter
      * recognizes that it has to call assignToVar method of the class Variables
      * To test this operation the content of the variable is pushed onto the
      * stack
@@ -222,7 +279,7 @@ public class InterpreterTest {
     }
 
     /**
-     * @brief testParseAssignToVar1 method verifies that an InterpreterException
+     * testParseAssignToVar1 method verifies that an InterpreterException
      * is thrown if there is a wrong insertion of the operation by keyboard
      * @throws InterpreterException
      * @throws ZeroDivisionException
@@ -239,7 +296,7 @@ public class InterpreterTest {
     }
 
     /**
-     * @brief testParseSumToVar method verifies that if there is "+var"
+     * testParseSumToVar method verifies that if there is "+var"
      * operation in the text field, then the interpter calls sumToVar method of
      * the class Variable
      * @throws InterpreterException
@@ -257,7 +314,7 @@ public class InterpreterTest {
     }
     
     /**
-     * @brief the following two methods verify that with a wrong insertion an InterpreterException is thrown
+     * the following two methods verify that with a wrong insertion an InterpreterException is thrown
      * @throws InterpreterException
      * @throws ZeroDivisionException 
      */
@@ -272,7 +329,7 @@ public class InterpreterTest {
     }
 
     /**
-     * @brief testParseSubctractionToVar method verifies that if there is "-var"
+     * testParseSubctractionToVar method verifies that if there is "-var"
      * operation in the text field, then the interpter calls subctractionToVar
      * method of the class Variable
      * @throws InterpreterException
@@ -289,7 +346,7 @@ public class InterpreterTest {
 
     }
     /**
-     * @brief the following two methods verify that with a wrong insertion an InterpreterException is thrown
+     * the following two methods verify that with a wrong insertion an InterpreterException is thrown
      * @throws InterpreterException
      * @throws ZeroDivisionException 
      */
@@ -350,7 +407,7 @@ public class InterpreterTest {
     }
 
     /**
-     * @brief testCheckBaseOp method verifies that all the basic operations are allowed 
+     * testCheckBaseOp method verifies that all the basic operations are allowed 
      * and check if the wrong basic operations aren't allowed
      */
     @Test
@@ -366,11 +423,11 @@ public class InterpreterTest {
         assertEquals(interpreter.check("-2j"), true);
         assertEquals(interpreter.check("+2"), true);
         assertEquals(interpreter.check("-2.1"), true);
-        //assertEquals(interpreter.check("2+j"), true); BUG
-        //assertEquals(interpreter.check("2-j"), true); BUG
-        //assertEquals(interpreter.check("+j"), true); BUG
-        //assertEquals(interpreter.check("-j"), true); BUG
-        //assertEquals(interpreter.check("j"), true); BUG
+        assertEquals(interpreter.check("2+j"), true); 
+        assertEquals(interpreter.check("2-j"), true);
+        assertEquals(interpreter.check("+j"), true); 
+        assertEquals(interpreter.check("-j"), true); 
+        assertEquals(interpreter.check("j"), true); 
         assertEquals(interpreter.check("2.2-1j"), true);
         assertEquals(interpreter.check("2.2+2.1j"), true);
         assertEquals(interpreter.check("+"), true);
@@ -397,7 +454,7 @@ public class InterpreterTest {
     }
 
     /**
-     * @brief testCheckVar method verifies that all the variables operations are allowed 
+     * testCheckVar method verifies that all the variables operations are allowed 
      * and check if the wrong variables operations aren't allowed
      */
     @Test
@@ -416,7 +473,7 @@ public class InterpreterTest {
     }
 
     /**
-     * @brief testCheckUserOp method verifies that all the UserDefined operations are allowed 
+     * testCheckUserOp method verifies that all the UserDefined operations are allowed 
      * and check if the wrong UserDefined operations aren't allowed
      */
     @Test
@@ -434,7 +491,7 @@ public class InterpreterTest {
     }
 
     /**
-     * @brief testCheckSequence method verifies that correct sequence of operations are allowed 
+     * testCheckSequence method verifies that correct sequence of operations are allowed 
      * and check if the wrong sequence of operations aren't allowed
      */
     @Test
@@ -465,11 +522,11 @@ public class InterpreterTest {
         assertEquals(interpreter.check("+0.1 <a / * +- sqrt"), true);
         assertEquals(interpreter.check("-0.1 <a / * +- sqrt"), true);
         
-        //assertEquals(interpreter.check("j <a / * +- sqrt"), true); BUG   
-        //assertEquals(interpreter.check("+j <a / * +- sqrt"), true); BUG  
-        //assertEquals(interpreter.check("-j <a / * +- sqrt"), true); BUG
-        //assertEquals(interpreter.check("2-j <a / * +- sqrt"), true); BUG  
-        //assertEquals(interpreter.check("2+j <a / * +- sqrt"), true); BUG  
+        assertEquals(interpreter.check("j <a / * +- sqrt"), true);   
+        assertEquals(interpreter.check("+j <a / * +- sqrt"), true); 
+        assertEquals(interpreter.check("-j <a / * +- sqrt"), true); 
+        assertEquals(interpreter.check("2-j <a / * +- sqrt"), true);  
+        assertEquals(interpreter.check("2+j <a / * +- sqrt"), true);  
     }
 
 }

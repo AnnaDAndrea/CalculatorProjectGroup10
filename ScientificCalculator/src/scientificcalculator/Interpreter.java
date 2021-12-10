@@ -125,6 +125,12 @@ public class Interpreter {
                 variablesStack.sumToVar(op.charAt(1));
             else if(op.length()==2 && op.charAt(0)=='-')
                 variablesStack.subtractToVar(op.charAt(1));
+            else if(op.equals("save")){
+                variablesStack.saveVar();
+            }
+            else if(op.equals("restore")){
+                variablesStack.restoreVar();
+            }
             else {  
                 String userDef= userOperations.getSequence(op);
                 if(userDef == null)

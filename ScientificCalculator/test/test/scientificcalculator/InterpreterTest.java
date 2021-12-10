@@ -45,6 +45,8 @@ public class InterpreterTest {
     @Test
     public void testParseInsertion() throws InterpreterException, ZeroDivisionException {
 
+        
+        
         interpreter.parse("1+5j");
         assertEquals(stack.getFirst(), new Complex(1, 5));
 

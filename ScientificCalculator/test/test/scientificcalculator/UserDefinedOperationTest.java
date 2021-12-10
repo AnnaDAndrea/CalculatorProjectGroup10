@@ -7,6 +7,8 @@ package test.scientificcalculator;
 
 import exception.KeyAlreadyExistException;
 import exception.LoopException;
+import java.io.File;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Set;
 import org.junit.After;
@@ -18,7 +20,7 @@ import static org.junit.Assert.*;
 import scientificcalculator.UserDefinedOperation;
 
 /**
- *@brief UserDefinedOperationTest class is used to test UserDefinedOperation class
+ * UserDefinedOperationTest class is used to test UserDefinedOperation class
  * @author Group 10
  */
 public class UserDefinedOperationTest 
@@ -35,7 +37,7 @@ public class UserDefinedOperationTest
     }
 
     /**
-     * @brief testNewOperation method tests that the insertion of an operation with a key already existing throws a KeyAlreadyExistException
+     * testNewOperation method tests that the insertion of an operation with a key already existing throws a KeyAlreadyExistException
      */
     @Test(expected = KeyAlreadyExistException.class)
     public void testNewOperation() {
@@ -44,7 +46,7 @@ public class UserDefinedOperationTest
     }
     
     /**
-     * @brief testNewOperation1 method tests the insertion of a new operation
+     * testNewOperation1 method tests the insertion of a new operation
      */
     @Test
     public void testNewOperation1() {
@@ -56,7 +58,7 @@ public class UserDefinedOperationTest
     }
     
     /**
-     * @brief testDelete method tests the deletion of an operation
+     * testDelete method tests the deletion of an operation
      */
     @Test
     public void testDelete(){
@@ -72,7 +74,7 @@ public class UserDefinedOperationTest
     
     
     /**
-     * @brief testSearchDependencies method verifies that all dependencies of a UserDefined Operation are found 
+     *testSearchDependencies method verifies that all dependencies of a UserDefined Operation are found 
      */
     @Test
     public void testSearchDependencies(){
@@ -125,7 +127,7 @@ public class UserDefinedOperationTest
     
     
     /**
-     * @brief testDeleteAllDependencies method verifies that a user defined operation and all its dependences are removed
+     * testDeleteAllDependencies method verifies that a user defined operation and all its dependences are removed
      */
     @Test
     public void testDeleteAllDependencies(){
@@ -241,5 +243,108 @@ public class UserDefinedOperationTest
         userDefinedOperation.editSequence("op1", "1 2 op4");
   
     }
+    /**
+     * testSaveAndReload method verifies the correct operation of saving and loading a file,
+     * the user defined operations are saved in a file and then reloaded
+     * @throws IOException
+     * @throws ClassNotFoundException 
+     */
+    @Test
+    public void testSaveAndReload() throws IOException, ClassNotFoundException{
+        userDefinedOperation.newOperation("op1","1 2 swap"); 
+        userDefinedOperation.newOperation("op2","1 1+2j over");
+        
+        File f=new File("test.bin");
+        f.delete();
+        assertFalse(f.isFile());
+        
+        userDefinedOperation.save("test.bin");
+        
+        assertTrue(f.isFile());
+        
+        userDefinedOperation.delete("op1");
+        userDefinedOperation.delete("op2");
+        
+        userDefinedOperation.reload("test.bin");
+        
+       assertEquals("1 2 swap", userDefinedOperation.getSequence("op1"));
+       assertEquals("1 1+2j over", userDefinedOperation.getSequence("op2"));
+
+    }
+    
+    /**
+     * testSaveAndReload1 method verifies the save operation when there aren't user defined operations
+     * and then the save operation using the same file previoulsy used
+     * @throws IOException
+     * @throws ClassNotFoundException 
+     */
+    @Test
+    public void testSaveAndReload1() throws IOException, ClassNotFoundException{
+        
+        File f=new File("test1.bin");
+        f.delete();
+        assertFalse(f.isFile());
+        
+        File f2=new File("test2.bin");
+        f2.delete();
+        assertFalse(f2.isFile());
+        
+        userDefinedOperation.save("test1.bin");
+        
+        assertTrue(f.isFile());
+        
+        userDefinedOperation.newOperation("op1","1 2 swap"); 
+        userDefinedOperation.newOperation("op2","1 1+2j over");
+        userDefinedOperation.newOperation("op3","1+3j >x");
+        
+        userDefinedOperation.save("test2.bin");
+        assertTrue(f2.isFile());
+        
+        
+        userDefinedOperation.reload("test1.bin");
+        
+        assertNull(userDefinedOperation.getSequence("op1"));
+        assertNull(userDefinedOperation.getSequence("op2"));
+        assertNull(userDefinedOperation.getSequence("op3"));
+        
+        userDefinedOperation.reload("test2.bin");
+        
+        assertEquals("1 2 swap",userDefinedOperation.getSequence("op1"));
+        assertEquals("1 1+2j over",userDefinedOperation.getSequence("op2"));
+        assertEquals("1+3j >x",userDefinedOperation.getSequence("op3"));
+        
+        userDefinedOperation.delete("op1");
+        userDefinedOperation.delete("op2");
+        userDefinedOperation.delete("op3");
+        
+        userDefinedOperation.newOperation("op4","1 1 1 1"); 
+        userDefinedOperation.newOperation("op5","2j 2j *");
+        userDefinedOperation.newOperation("op6","-4j 4j /");
+        
+        userDefinedOperation.save("test2.bin");
+        userDefinedOperation.reload("test2.bin");
+        
+        
+        assertNull(userDefinedOperation.getSequence("op1"));
+        assertNull(userDefinedOperation.getSequence("op2"));
+        assertNull(userDefinedOperation.getSequence("op3"));
+        
+        assertEquals("1 1 1 1",userDefinedOperation.getSequence("op4"));
+        assertEquals("2j 2j *",userDefinedOperation.getSequence("op5"));
+        assertEquals("-4j 4j /",userDefinedOperation.getSequence("op6"));
+
+    }
+    
+    /**
+     * testReloadFail method verifies that the opening of a file.bin that doesn't exists an IOExcpetion is thrown
+     * @throws IOException
+     * @throws ClassNotFoundException 
+     */
+    @Test(expected = IOException.class)
+    public void testReloadFail() throws IOException, ClassNotFoundException{
+        userDefinedOperation.reload("userDefTest.bin");
+    }
+    
+    
   
 }

@@ -143,22 +143,40 @@
                                                 <ComboBox fx:id="variablesList" prefWidth="150.0" style="-fx-font: &quot;15px Arial Bold&quot;;" />
                                              </children>
                                           </HBox>
-                                          <Button mnemonicParsing="false" onAction="#sumToVarAction" prefWidth="88.0" text="+var">
+                                          <HBox alignment="CENTER" layoutX="22.0" layoutY="184.0" prefHeight="54.0" prefWidth="116.0" spacing="5.0">
+                                             <children>
+                                                <Button mnemonicParsing="false" onAction="#sumToVarAction" prefWidth="88.0" text="+var">
+                                                   <font>
+                                                      <Font name="Arial Bold" size="15.0" />
+                                                   </font>
+                                                </Button>
+                                                <Button mnemonicParsing="false" onAction="#subtractToVarAction" prefWidth="88.0" text="-var">
+                                                   <font>
+                                                      <Font name="Arial Bold" size="15.0" />
+                                                   </font>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" layoutX="22.0" layoutY="174.0" prefHeight="54.0" prefWidth="116.0" spacing="5.0">
+                                             <children>
+                                                <Button mnemonicParsing="false" onAction="#assignVarAction" prefWidth="88.0" text="&lt;var">
+                                                   <font>
+                                                      <Font name="Arial Bold" size="15.0" />
+                                                   </font>
+                                                </Button>
+                                                <Button mnemonicParsing="false" onAction="#copyVarAction" prefWidth="88.0" text="&gt;var">
+                                                   <font>
+                                                      <Font name="Arial Bold" size="15.0" />
+                                                   </font>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                          <Button mnemonicParsing="false" onAction="#saveVarAction" prefWidth="88.0" text="save">
                                              <font>
                                                 <Font name="Arial Bold" size="15.0" />
                                              </font>
                                           </Button>
-                                          <Button mnemonicParsing="false" onAction="#subtractToVarAction" prefWidth="88.0" text="-var">
-                                             <font>
-                                                <Font name="Arial Bold" size="15.0" />
-                                             </font>
-                                          </Button>
-                                          <Button mnemonicParsing="false" onAction="#assignVarAction" prefWidth="88.0" text="&lt;var">
-                                             <font>
-                                                <Font name="Arial Bold" size="15.0" />
-                                             </font>
-                                          </Button>
-                                          <Button mnemonicParsing="false" onAction="#copyVarAction" prefWidth="88.0" text="&gt;var">
+                                          <Button layoutX="36.0" layoutY="187.0" mnemonicParsing="false" onAction="#restoreVarAction" prefWidth="88.0" text="restore">
                                              <font>
                                                 <Font name="Arial Bold" size="15.0" />
                                              </font>

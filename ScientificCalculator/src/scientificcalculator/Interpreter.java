@@ -45,6 +45,10 @@ public class Interpreter {
     private boolean isImaginary(String s){
         return s.matches("^(?=[j.\\d+-])([+-]?(?:(?:\\d+(?:\\.\\d*)?|\\.\\d+))?[j])?$");
     }
+    
+    public boolean isOnlyJPart(String s){
+        return s.matches("^(?=[j.\\d+-])([+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?![j.\\d]))([+-]?[j])$");
+    }
     /**
      * @brief parse method is used to separate the string input in tokens that are complex numbers(operators) or operators
      * This method calls each method of the class ComplexNumOperation to calculate basic operations,each method of the class StackManipulation,each method of the class Variables
@@ -62,6 +66,15 @@ public class Interpreter {
                 c= new Complex(0,1);
                 baseOp.insertion(c);
             } 
+            else if(isOnlyJPart(op)){
+                if(op.charAt(0)=='+')
+                    op = op.substring(1);
+                
+                op = op.replace("j", "1j");
+                c = cf.parse(op);
+                
+                baseOp.insertion(c);
+            }
             else if(isComplex(op)){
                 if(op.charAt(0)=='+')
                     c = cf.parse(op.substring(1));
@@ -70,7 +83,7 @@ public class Interpreter {
                 
                 baseOp.insertion(c);
             }
-            else if(isImaginary(op)){
+            else if(isImaginary(op) && !op.equals("+j") && !op.equals("-j")){
              
                 if(op.charAt(0)=='-')
                     c = cf.parse("0"+op);
@@ -136,9 +149,13 @@ public class Interpreter {
         while(ops.hasMoreTokens() && flag==true){
             String op = ops.nextToken();
             flag1 = true;
-            if(isComplex(op))
+            if(op.equals("j"))
+            {} 
+            else if(isOnlyJPart(op))
             {}
-            else if(isImaginary(op))
+            else if(isComplex(op))
+            {}
+            else if(isImaginary(op) && !op.equals("+j") && !op.equals("-j"))
             {}
             else if(op.equals("+"))
             {}

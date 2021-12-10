@@ -547,33 +547,50 @@ public class VariablesTest {
 
         // Saving a copy of the set of the variables values
         stack.addFirst(new Complex(1));
+        stack.addFirst(new Complex(1));
         varStack.assignToVar('a');
+        varStack.assignToVar('z');
         varStack.saveVar();
         
         // Working on the copy of the set of the variables values
         stack.addFirst(new Complex(2));
+        stack.addFirst(new Complex(2));
         varStack.sumToVar('a');
+        varStack.sumToVar('z');
         varStack.copyFromVar('a');
+        assertEquals(new Complex(3), stack.peekFirst());
+        varStack.copyFromVar('z');
         assertEquals(new Complex(3), stack.peekFirst());
         
         // Restoring the previous set of the variables values & checking of the restore
         varStack.restoreVar();
         varStack.copyFromVar('a');
         assertEquals(new Complex(1), stack.peekFirst());
+        varStack.copyFromVar('z');
+        assertEquals(new Complex(1), stack.peekFirst());
         
         /* Adding another save & restore for a final check */
         stack.addFirst(new Complex(3));
+        stack.addFirst(new Complex(3));
         varStack.assignToVar('a');
+        varStack.assignToVar('z');
         varStack.saveVar();
         
         stack.addFirst(new Complex(2));
+        stack.addFirst(new Complex(2));
         varStack.sumToVar('a');
+        varStack.sumToVar('z');
         varStack.copyFromVar('a');
+        assertEquals(new Complex(5), stack.peekFirst());
+        varStack.copyFromVar('z');
         assertEquals(new Complex(5), stack.peekFirst());
         
         varStack.restoreVar();
         varStack.copyFromVar('a');
         assertEquals(new Complex(3), stack.peekFirst());
+        varStack.copyFromVar('z');
+        assertEquals(new Complex(3), stack.peekFirst());
+        
         
     }
     
@@ -620,6 +637,15 @@ public class VariablesTest {
         for(int i = 0; i < 26; i++)
             assertEquals(new Complex(i), stack.removeFirst()); 
         
+    }
+    
+    /**
+     * Method to test the saveVar and restoreVar methods with null variables
+     */
+    @Test
+    public void varSaveRestoreTest3(){
+        varStack.saveVar();
+        varStack.restoreVar();      
     }
         
     /**

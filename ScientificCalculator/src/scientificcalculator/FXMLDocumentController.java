@@ -599,7 +599,7 @@ public class FXMLDocumentController implements Initializable {
 
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Bin Files", "*.bin"));
 
-        fileChooser.setTitle("Save your User-defined Operations in .bin file");
+        fileChooser.setTitle("Save your User-defined Operations in a .bin file");
 
         File f = fileChooser.showSaveDialog(stackView.getScene().getWindow());
         if (f == null) {

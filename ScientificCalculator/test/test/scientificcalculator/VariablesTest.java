@@ -647,30 +647,7 @@ public class VariablesTest {
         varStack.saveVar();
         varStack.restoreVar();      
     }
-        
-    /**
-     * Method to test the saveVar method with empty variables
-     */
-    @Test
-    public void saveVarTest(){
-        
-        for(int i = 0; i < 26; i++)
-            stack.addFirst(new Complex(i));
-        
-        varStack.saveVar();
-        
-        for(char c = 'a'; c <= 'z'; c++)
-            varStack.assignToVar(c);
-        
-        assertEquals(0, stack.size());
-        
-        for(char c = 'a'; c <= 'z'; c++)
-            varStack.copyFromVar(c);
-        
-        for(int i = 0; i < 26; i++)
-            assertEquals(new Complex(i), stack.removeFirst()); 
-    }
-    
+          
     /**
      * Method to test the restoreVar method fail trying a restoring attempt and 
      * the stack pointer is equal to 0 (so there aren't previous set of variables values to restore)

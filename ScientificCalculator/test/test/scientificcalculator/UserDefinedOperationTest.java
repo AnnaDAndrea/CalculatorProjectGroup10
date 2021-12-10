@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 import scientificcalculator.UserDefinedOperation;
 
 /**
- * UserDefinedOperationTest class is used to test UserDefinedOperation class
+ * UserDefinedOperationTest class is used to test the UserDefinedOperation class
  *
  * @author Group 10
  */
@@ -28,8 +28,8 @@ public class UserDefinedOperationTest {
     }
 
     /**
-     * testNewOperation method tests that the insertion of an operation with a
-     * key already existing throws a KeyAlreadyExistException
+     * The testNewOperation method tests that the insertion of an operation with an
+     * already existing key throws a KeyAlreadyExistException
      */
     @Test(expected = KeyAlreadyExistException.class)
     public void testNewOperation() {
@@ -38,7 +38,7 @@ public class UserDefinedOperationTest {
     }
 
     /**
-     * testNewOperation1 method tests the insertion of a new operation
+     * The testNewOperation1 method tests the insertion of a new operation
      */
     @Test
     public void testNewOperation1() {
@@ -50,7 +50,7 @@ public class UserDefinedOperationTest {
     }
 
     /**
-     * testDelete method tests the deletion of an operation
+     * The testDelete method tests the deletion of an operation
      */
     @Test
     public void testDelete() {
@@ -64,8 +64,8 @@ public class UserDefinedOperationTest {
     }
 
     /**
-     * testSearchDependencies method verifies that all dependencies of a
-     * UserDefined Operation are found
+     * The testSearchDependencies method verifies that all dependencies of a
+     * User-defined Operation are found
      */
     @Test
     public void testSearchDependencies() {
@@ -105,7 +105,7 @@ public class UserDefinedOperationTest {
     }
 
     /**
-     * testDeleteAllDependencies method verifies that a user defined operation
+     * The testDeleteAllDependencies method verifies that a User-defined Operation
      * and all its dependences are removed
      */
     @Test
@@ -158,7 +158,7 @@ public class UserDefinedOperationTest {
     }
 
     /**
-     * testEditSequence1 method verifies the correct work of the editSequence
+     * The testEditSequence1 method verifies the correct work of the editSequence
      * method
      */
     @Test
@@ -185,7 +185,7 @@ public class UserDefinedOperationTest {
     }
 
     /**
-     * testEditSequence2 method verifies that the editSequence throw
+     * The testEditSequence2 method verifies that the editSequence throws the 
      * LoopException correctly
      */
     @Test(expected = LoopException.class)
@@ -198,8 +198,8 @@ public class UserDefinedOperationTest {
     }
 
     /**
-     * testEditSequence3 method verifies that the editSequence throw
-     * LoopException correctly
+     * The testEditSequence3 method verifies that the editSequence throws
+     * the LoopException correctly
      */
     @Test(expected = LoopException.class)
     public void testEditSequence3() {
@@ -213,8 +213,8 @@ public class UserDefinedOperationTest {
     }
 
     /**
-     * testEditSequence4 method verifies that the editSequence throw
-     * LoopException correctly
+     * The testEditSequence4 method verifies that the editSequence throws
+     * the LoopException correctly
      */
     @Test(expected = LoopException.class)
     public void testEditSequence4() {
@@ -236,9 +236,9 @@ public class UserDefinedOperationTest {
     }
 
     /**
-     * testSaveAndReload method verifies the correct operation of saving and
-     * loading a file, the user defined operations are saved in a file and then
-     * reloaded
+     * The testSaveAndReload method verifies the correct operation of saving and
+     * loading a file. The User-defined Operations are saved in a file and then
+     * they are reloaded
      *
      * @throws IOException
      * @throws ClassNotFoundException
@@ -267,9 +267,9 @@ public class UserDefinedOperationTest {
     }
 
     /**
-     * testSaveAndReload1 method verifies the save operation when there aren't
-     * user defined operations and then the save operation using the same file
-     * previoulsy used
+     * The testSaveAndReload1 method verifies the save operation when there aren't
+     * User-defined Operations and the save operation using the same file
+     * previously used
      *
      * @throws IOException
      * @throws ClassNotFoundException
@@ -330,8 +330,8 @@ public class UserDefinedOperationTest {
     }
 
     /**
-     * testReloadFail method verifies that the opening of a file.bin that
-     * doesn't exists an IOExcpetion is thrown
+     * The testReloadFail method verifies that the opening of a file.bin that
+     * doesn't exist throwns an IOException 
      *
      * @throws IOException
      * @throws ClassNotFoundException

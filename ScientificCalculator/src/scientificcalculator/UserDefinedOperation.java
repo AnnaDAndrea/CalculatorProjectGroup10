@@ -16,11 +16,11 @@ import java.util.Set;
 import java.util.StringTokenizer;
 
 /**
- * this class implements the logic needed to maintain a data structure that
- * stores user-defined operations and methods to manage them
+ * This class implements the logic needed to maintain a data structure that
+ * stores the user-defined operations and the methods to manage them
  *
  * The Map data structure is a key-value map, where the key is the name of the
- * user-defined and the value is the sequence representing the operation
+ * user-defined operation and the value is the sequence representing the operation
  *
  * @author Group 10
  */
@@ -33,7 +33,7 @@ public class UserDefinedOperation {
     }
 
     /**
-     * getNameOperations method returns a set containing all the keys
+     * The getNameOperations method returns a set containing all the keys
      *
      * @return Set<String>
      */
@@ -42,8 +42,8 @@ public class UserDefinedOperation {
     }
 
     /**
-     * getSequence method returns the value related to the key or null if the
-     * key doesn't exists
+     * The getSequence method returns the value related to the key or null if the
+     * key doesn't exist
      *
      * @param op is key
      * @return String
@@ -53,8 +53,8 @@ public class UserDefinedOperation {
     }
 
     /**
-     * newOperation method adds a new couple key-value and if the key already
-     * exists throws a KeyAlreadyExistException
+     * The newOperation method is used to add a new couple key-value and if the key already
+     * exists it throws a KeyAlreadyExistException
      *
      * @param name
      * @param value
@@ -67,8 +67,8 @@ public class UserDefinedOperation {
     }
 
     /**
-     * delete method remove from the Map the user defined operation with key
-     * "name" and returns the value related to the key
+     * The delete method is used to remove the user-defined operation with key
+     * "name" from the Map and to return the value related to the key
      *
      * @param name
      * @return String
@@ -78,8 +78,8 @@ public class UserDefinedOperation {
     }
 
     /**
-     * searchDependencies method returns a Set<String> containing all the
-     * dependencies of the name user defined operation
+     * The searchDependencies method returns a Set<String> containing all the
+     * dependencies of the name user-defined operation
      *
      * @param name
      * @return Set<String>
@@ -95,9 +95,9 @@ public class UserDefinedOperation {
     }
 
     /**
-     * deleteAllDependencies method removes both the user-defined operation with
-     * key "name" and all its dependencies and returns a String containing the
-     * keys of all the user-defined operation deleted
+     * The deleteAllDependencies method is used to remove both the user-defined
+     * operation with key "name" and all its dependencies and to return a String
+     * containing the keys of all the deleted user-defined operations 
      *
      * @param name
      * @return String
@@ -120,7 +120,7 @@ public class UserDefinedOperation {
 
     /**
      *
-     * save method saves the whole object userOperations in a binary file
+     * The save method is used to save the whole object userOperations in a binary file
      *
      * @param fileName
      */
@@ -133,7 +133,7 @@ public class UserDefinedOperation {
     }
 
     /**
-     * reload method reloads the object userOperations from a binary file
+     * The reload method is used to reload the object userOperations from a binary file
      *
      * @param fileName
      * @throws IOException
@@ -152,7 +152,7 @@ public class UserDefinedOperation {
     }
 
     /**
-     * checkLoop method allows to avoid any loops in user defined operations
+     * The checkLoop method is used to avoid any loops in the user-defined operations
      *
      * @param value
      * @param init
@@ -177,7 +177,7 @@ public class UserDefinedOperation {
     }
 
     /**
-     * editSequence method allows the editing of a user defined operation
+     * The editSequence method is used to edit a user-defined operation
      *
      * @param name
      * @param value

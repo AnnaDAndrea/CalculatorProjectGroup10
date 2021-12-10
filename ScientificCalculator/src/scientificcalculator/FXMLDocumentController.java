@@ -152,8 +152,8 @@ public class FXMLDocumentController implements Initializable {
     }
 
     /**
-     * The following methods are used to write in the text field a complex
-     * number or an operator or the space character
+     * The following methods are used to write a complex number or
+     * an operator or the space character in the text field
      *
      * @param event when one of the associated buttons is pushed
      */
@@ -308,19 +308,19 @@ public class FXMLDocumentController implements Initializable {
     }
 
     /**
-     * newAction method called when the "new" button is pushed. It allows to
-     * create a new User-Defined Operation
+     * The newAction method is called when the "new" button is pushed. 
+     * It allows to create a new User-Defined Operation
      *
-     * @param event is the event when the new button is pushed
+     * @param event is the event when the "new" button is pushed
      */
     @FXML
     private void newAction(ActionEvent event) {
         String input = displayField.getText();
 
         if (input.length() != 0) {
-            TextInputDialog dialog = new TextInputDialog("name of this sequence");
-            dialog.setHeaderText("Name User Operation");
-            dialog.setContentText("Set a name of this sequence:\n" + input);
+            TextInputDialog dialog = new TextInputDialog("sequence name");
+            dialog.setHeaderText("User-defined Operation Name");
+            dialog.setContentText("Set a name for this sequence:\n" + input);
             Optional<String> ret = dialog.showAndWait();
             if (ret.isPresent() && !ret.get().contains(" ") && !ret.get().isEmpty() && !parser.check(ret.get()) && parser.check(input)) {
                 userOperations.newOperation(ret.get(), input);
@@ -347,15 +347,14 @@ public class FXMLDocumentController implements Initializable {
             alert.setAlertType(AlertType.WARNING);
             alert.setTitle("Warning");
             alert.setHeaderText("Insert one or more operations");
-            alert.setContentText("You must insert one or more operations.");
+            alert.setContentText("You must insert one or more operations");
             alert.showAndWait();
         }
 
     }
 
     /**
-     * callAction method sends to the text field the content of a user-defined
-     * operation
+     * The callAction method sends the content of a user-defined operation to the text field 
      *
      * @param event
      */
@@ -366,15 +365,15 @@ public class FXMLDocumentController implements Initializable {
         } else {
             alert.setAlertType(AlertType.WARNING);
             alert.setTitle("Warning");
-            alert.setHeaderText("Select User Defined Operation");
-            alert.setContentText("You must select one user defined operation");
+            alert.setHeaderText("Select a User-defined Operation");
+            alert.setContentText("You must select a User-defined operation");
             alert.showAndWait();
         }
     }
 
     /**
-     * cancAction method is used to delete from text field a character is there
-     * aren't space characters or a sequence until the previous space character
+     * The cancAction method is used to delete one character at a time (using the keyboard)
+     * or an entire string up to the previous space character (using the "canc" button)
      *
      * @param event is the event when the canc button is pushed
      */
@@ -393,10 +392,9 @@ public class FXMLDocumentController implements Initializable {
     }
 
     /**
-     * deleteAction method implements the mechanism of deletion of a
-     * user-defined operation through a choice made by user whether it is a
-     * cascade or no action policy
-     *
+     * The deleteAction method is used to delete a user-defined operation. 
+     * The user chooses whether to apply a cascade or no action policy
+     * 
      * @param event
      */
     @FXML
@@ -448,16 +446,16 @@ public class FXMLDocumentController implements Initializable {
         } else {
             alert.setAlertType(AlertType.WARNING);
             alert.setTitle("Warning");
-            alert.setHeaderText("Select User Defined Operation");
-            alert.setContentText("You must select one user defined operation");
+            alert.setHeaderText("Select a User-defined Operation");
+            alert.setContentText("You must select a User-defined operation");
             alert.showAndWait();
         }
 
     }
 
     /**
-     * editAction method implements the mechanism to edit a sequence of
-     * operations using a dialog, when the button is pushed
+     * The editAction method is used to edit a sequence of operations
+     * using a dialog, when the button is pushed
      *
      * @param event
      */
@@ -466,8 +464,8 @@ public class FXMLDocumentController implements Initializable {
 
         if (userDefList.getValue() != null) {
             TextInputDialog dialog = new TextInputDialog(userOperations.getSequence(userDefList.getValue()));
-            dialog.setHeaderText("Edit User Operation");
-            dialog.setContentText("Set a new sequence of " + userDefList.getValue());
+            dialog.setHeaderText("Edit User-defined Operation");
+            dialog.setContentText("Set a new sequence for " + userDefList.getValue());
             Optional<String> ret = dialog.showAndWait();
 
             if (ret.isPresent() && !ret.get().isEmpty() && parser.check(ret.get())) {
@@ -483,7 +481,7 @@ public class FXMLDocumentController implements Initializable {
                     alert.setAlertType(AlertType.ERROR);
                     alert.setTitle("Error");
                     alert.setHeaderText("Loop found");
-                    alert.setContentText("The sequence of the operation make a loop. Editing Aborted.");
+                    alert.setContentText("The sequence of the operation generates a loop. Editing Aborted.");
                     alert.showAndWait();
                 }
             } else {
@@ -497,16 +495,16 @@ public class FXMLDocumentController implements Initializable {
         } else {
             alert.setAlertType(AlertType.WARNING);
             alert.setTitle("Warning");
-            alert.setHeaderText("Select User Defined Operation");
-            alert.setContentText("You must select one user defined operation");
+            alert.setHeaderText("Select a User-defined Operation");
+            alert.setContentText("You must select a User-defined operation");
             alert.showAndWait();
         }
 
     }
 
     /**
-     * sendAction method uses the interpreter to translate input in complex
-     * numbers and operators and to do any operations This methos also handles
+     * The sendAction method uses the interpreter to translate the input in complex
+     * numbers (operands) and operators and to do any operations. This method also handles
      * exceptions by showing an alert
      *
      * @param event is the event when the send button is clicked
@@ -517,7 +515,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     /**
-     * keyPressedTextField method allows to use enter button on the keyboard
+     * The keyPressedTextField method allows to use the enter button on the keyboard
      *
      * @param event
      */
@@ -530,7 +528,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     /**
-     * showDialogAndCallParse method to execute the sequence of operations
+     * The showDialogAndCallParse method is used to execute the sequence of the operations
      * inserted on the text field. It shows an error dialog according to the
      * exception
      */
@@ -555,26 +553,26 @@ public class FXMLDocumentController implements Initializable {
             } catch (ZeroDivisionException ex) {
                 alert.setAlertType(AlertType.ERROR);
                 alert.setTitle("Error");
-                alert.setHeaderText("Divison with 0");
+                alert.setHeaderText("Division by 0");
                 alert.setContentText("Division Error");
                 alert.showAndWait();
             } catch (VarOutOfRangeException ex) {
                 alert.setAlertType(AlertType.ERROR);
                 alert.setTitle("Error");
-                alert.setHeaderText("Variable Error");
-                alert.setContentText("Variable inserted not exist");
+                alert.setHeaderText("Variable out of range");
+                alert.setContentText("The inserted variable doesn't exist");
                 alert.showAndWait();
             } catch (NullArgumentException ex) {
                 alert.setAlertType(AlertType.ERROR);
                 alert.setTitle("Error");
-                alert.setHeaderText("Variable Error");
-                alert.setContentText("Variable inserted hasn't a value");
+                alert.setHeaderText("Variable Value Error");
+                alert.setContentText("The inserted variable hasn't a value");
                 alert.showAndWait();
             } catch (IllegalStackPointerException ex) {
                 alert.setAlertType(AlertType.ERROR);
                 alert.setTitle("Error");
-                alert.setHeaderText("Restore Error");
-                alert.setContentText("There aren't available variables saves");
+                alert.setHeaderText("Variables Restore Error");
+                alert.setContentText("There aren't available saves of the variables values");
                 alert.showAndWait();
             } finally {
                 stackObs.setAll(stack);
@@ -583,15 +581,15 @@ public class FXMLDocumentController implements Initializable {
             alert.setAlertType(AlertType.WARNING);
             alert.setTitle("Warning");
             alert.setHeaderText("Insert one or more operations");
-            alert.setContentText("You must insert one or more operations.");
+            alert.setContentText("You must insert one or more operations");
             alert.showAndWait();
         }
         displayField.setText("");
     }
 
     /**
-     * saveUserAction method saves in a binary file chosen by user the user
-     * defined operations
+     * The saveUserAction method is used to save the user-defined operations 
+     * in a binary file chosen by the user 
      *
      * @param event
      */
@@ -601,7 +599,7 @@ public class FXMLDocumentController implements Initializable {
 
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Bin Files", "*.bin"));
 
-        fileChooser.setTitle("Save you User Defined Operations as bin file");
+        fileChooser.setTitle("Save your User-defined Operations in .bin file");
 
         File f = fileChooser.showSaveDialog(stackView.getScene().getWindow());
         if (f == null) {
@@ -613,30 +611,30 @@ public class FXMLDocumentController implements Initializable {
 
             alert.setAlertType(AlertType.INFORMATION);
             alert.setTitle("Information");
-            alert.setHeaderText("User Defined Operations saved");
-            alert.setContentText("successful saving procedure");
+            alert.setHeaderText("User-defined Operations saved");
+            alert.setContentText("Successful saving procedure");
             alert.showAndWait();
 
         } catch (IOException ex) {
             alert.setAlertType(AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Save Error");
-            alert.setContentText("unsuccessful saving procedure");
+            alert.setContentText("Unsuccessful saving procedure");
             alert.showAndWait();
         }
 
     }
 
     /**
-     * reloadUserAction method reloads from a binary file the user defined
-     * operations previoulsy saved
+     * The reloadUserAction method is used to reload the user-defined operations
+     * previously saved from a binary file
      *
      * @param event
      */
     @FXML
     private void reloadUserAction(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Reload your User Defined Operations from a bin file");
+        fileChooser.setTitle("Reload your User-defined Operations from a .bin file");
         File f = fileChooser.showOpenDialog(stackView.getScene().getWindow());
 
         if (f == null) {
@@ -648,8 +646,8 @@ public class FXMLDocumentController implements Initializable {
 
             alert.setAlertType(AlertType.INFORMATION);
             alert.setTitle("Information");
-            alert.setHeaderText("User Defined Operations reloaded");
-            alert.setContentText("successful reload procedure");
+            alert.setHeaderText("User-defined Operations reloaded");
+            alert.setContentText("Successful reload procedure");
             alert.showAndWait();
 
             userDefObs.setAll(userOperations.getNameOperations());
@@ -659,7 +657,7 @@ public class FXMLDocumentController implements Initializable {
             alert.setAlertType(AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Reload Error");
-            alert.setContentText("unsuccessful reload procedure");
+            alert.setContentText("Unsuccessful reload procedure");
             alert.showAndWait();
         }
 

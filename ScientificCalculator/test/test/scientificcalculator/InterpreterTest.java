@@ -28,7 +28,7 @@ public class InterpreterTest {
     }
 
     /**
-     * setUp method is used to create a fixture
+     * The setUp method is used to create a fixture
      */
     @Before
     public void setUp() {
@@ -39,9 +39,8 @@ public class InterpreterTest {
     }
 
     /**
-     * testParseInsertion method verifies that a complex number inserted in the
-     * text field is inserted onto the stack It calls InterpreterException It
-     * calls ZeroDivisionException
+     * The testParseInsertion method verifies if a complex number inserted in the
+     * text field is inserted onto the stack.
      */
     @Test
     public void testParseInsertion() {
@@ -119,8 +118,7 @@ public class InterpreterTest {
 
     /**
      * The following testParseOnlyJ methods verify that "+j" and "-j" are
-     * recognized as variables and not as imaginary part It calls
-     * InterpreterException It calls ZeroDivisionException
+     * recognized as variables and not as imaginary part.
      */
     @Test(expected = NullArgumentException.class)
     public void testParseOnlyJ() {
@@ -135,9 +133,8 @@ public class InterpreterTest {
     }
 
     /**
-     * testParseSaveAndRestore method verifies that the interpreter calls
-     * correctly save and restore methods It calls InterpreterException It calls
-     * ZeroDivisionException
+     * The testParseSaveAndRestore method verifies that the interpreter calls
+     * correctly the save and restore methods. 
      */
     @Test
     public void testParseSaveAndRestore() {
@@ -156,9 +153,8 @@ public class InterpreterTest {
     }
 
     /**
-     * testParseInsertion1 method checks that if there is a wrong operand (jb is
-     * invalid, bj is valid) or wrong operation then InterpterExcpetion is
-     * thrown It calls InterpreterException It calls ZeroDivisionException
+     * The testParseInsertion1 method checks if there is a wrong operand (jb is
+     * invalid, bj is valid) or a wrong operation calling the InterpreterException
      */
     @Test(expected = InterpreterException.class)
     public void testParseInsertion1() {
@@ -167,10 +163,8 @@ public class InterpreterTest {
     }
 
     /**
-     * the following methods verify that the interpreter recognizes and
+     * The following methods verify if the interpreter recognizes and
      * separates the input to calculate the specified operation
-     *
-     * It calls InterpreterException It calls ZeroDivisionException
      */
     @Test
     public void testParseSum() {
@@ -241,9 +235,9 @@ public class InterpreterTest {
     }
 
     /**
-     * testParseSequentiallyOperations method verifies that the interpreter
+     * The testParseSequentiallyOperations method verifies if the interpreter
      * recognizes and separates the input to calculate the operations
-     * sequentially It calls InterpreterException It calls ZeroDivisionException
+     * sequentially
      */
     @Test
     public void testParseSequentiallyOperations() {
@@ -252,10 +246,9 @@ public class InterpreterTest {
     }
 
     /**
-     * testParseAssignToVar method verifies that the interptreter recognizes
-     * that it has to call assignToVar method of the class Variables To test
-     * this operation the content of the variable is pushed onto the stack It
-     * calls InterpreterException It calls ZeroDivisionException
+     * The testParseAssignToVar method verifies if the interpreter recognizes
+     * that it has to call the assignToVar method of the class Variables. To test
+     * this operation, the content of the variable is pushed onto the stack 
      */
     @Test
     public void testParseAssignToVar() {
@@ -269,9 +262,8 @@ public class InterpreterTest {
     }
 
     /**
-     * testParseAssignToVar1 method verifies that an InterpreterException is
-     * thrown if there is a wrong insertion of the operation by keyboard It
-     * calls InterpreterException It calls ZeroDivisionException
+     * The testParseAssignToVar1 method verifies that an InterpreterException is
+     * thrown if there is a wrong insertion of the operation by keyboard 
      */
     @Test(expected = InterpreterException.class)
     public void testParseAssignToVar1() {
@@ -285,9 +277,9 @@ public class InterpreterTest {
     }
 
     /**
-     * testParseSumToVar method verifies that if there is "+var" operation in
-     * the text field, then the interpter calls sumToVar method of the class
-     * Variable It calls InterpreterException It calls ZeroDivisionException
+     * The testParseSumToVar method verifies if there is "+var" operation in
+     * the text field, then the interpter calls the sumToVar method of the class
+     * Variable
      */
     @Test
     public void testParseSumToVar() {
@@ -301,9 +293,8 @@ public class InterpreterTest {
     }
 
     /**
-     * the following two methods verify that with a wrong insertion an
-     * InterpreterException is thrown It calls InterpreterException It calls
-     * ZeroDivisionException
+     * The following two methods verify that with a wrong insertion an
+     * InterpreterException is thrown 
      */
     @Test(expected = InterpreterException.class)
     public void testParseSumToVar1() {
@@ -316,10 +307,9 @@ public class InterpreterTest {
     }
 
     /**
-     * testParseSubctractionToVar method verifies that if there is "-var"
-     * operation in the text field, then the interpter calls subctractionToVar
-     * method of the class Variable It calls InterpreterException It calls
-     * ZeroDivisionException
+     * The testParseSubctractionToVar method verifies if there is "-var"
+     * operation in the text field, then the interpreter calls the subctractionToVar
+     * method of the class Variable 
      */
     @Test
     public void testParseSubctractionToVar() {
@@ -333,9 +323,8 @@ public class InterpreterTest {
     }
 
     /**
-     * the following two methods verify that with a wrong insertion an
-     * InterpreterException is thrown It calls InterpreterException It calls
-     * ZeroDivisionException
+     * The following two methods verify that with a wrong insertion an
+     * InterpreterException is thrown
      */
     @Test(expected = InterpreterException.class)
     public void testParseSubctractionToVar1() {
@@ -350,9 +339,8 @@ public class InterpreterTest {
     }
 
     /**
-     * testParseUserDef method verifies that the interpreter recognizes user
-     * defined operations It calls InterpreterException It calls
-     * ZeroDivisionException
+     * The testParseUserDef method verifies if the interpreter recognizes the user
+     * defined operations 
      */
     @Test
     public void testParseUserDef() {
@@ -385,9 +373,9 @@ public class InterpreterTest {
     }
 
     /**
-     * the following two methods verify that the interpreter doesn't recognize
-     * user defined operations that don't exist It calls InterpreterException It
-     * calls ZeroDivisionException
+     * The following two methods verify that the interpreter doesn't recognize
+     * the user-defined operations that don't exist. 
+     * It calls the InterpreterException 
      */
     @Test(expected = InterpreterException.class)
     public void testParseUserDefExc() {
@@ -401,8 +389,8 @@ public class InterpreterTest {
     }
 
     /**
-     * testCheckBaseOp method verifies that all the basic operations are allowed
-     * and check if the wrong basic operations aren't allowed
+     * The testCheckBaseOp method verifies that all the basic operations are allowed
+     * and it checks if the wrong basic operations aren't allowed
      */
     @Test
     public void testCheckBaseOp() {
@@ -449,8 +437,8 @@ public class InterpreterTest {
     }
 
     /**
-     * testCheckVar method verifies that all the variables operations are
-     * allowed and check if the wrong variables operations aren't allowed
+     * The testCheckVar method verifies that all the variables operations are
+     * allowed and it checks if the wrong variables operations aren't allowed
      */
     @Test
     public void testCheckVar() {
@@ -468,8 +456,8 @@ public class InterpreterTest {
     }
 
     /**
-     * testCheckUserOp method verifies that all the UserDefined operations are
-     * allowed and check if the wrong UserDefined operations aren't allowed
+     * The testCheckUserOp method verifies that all the User-defined operations are
+     * allowed and it checks if the wrong User-defined operations aren't allowed
      */
     @Test
     public void testCheckUserOp() {
@@ -485,8 +473,8 @@ public class InterpreterTest {
     }
 
     /**
-     * testCheckSequence method verifies that correct sequence of operations are
-     * allowed and check if the wrong sequence of operations aren't allowed
+     * The testCheckSequence method verifies that correct sequence of operations are
+     * allowed and it checks if the wrong sequence of operations aren't allowed
      */
     @Test
     public void testCheckSequence() {

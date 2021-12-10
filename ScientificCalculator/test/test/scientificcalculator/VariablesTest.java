@@ -138,7 +138,8 @@ public class VariablesTest {
     /**
      * Method to test the assignToVar method fail trying to assign a value to a
      * non existent variable (', that is part of the special characters that are
-     * limit cases). It calls the VarOutOfRangeException
+     * limit cases). 
+     * It calls the VarOutOfRangeException
      */
     @Test(expected = VarOutOfRangeException.class)
     public void assignToVarTestFail2() {
@@ -150,7 +151,8 @@ public class VariablesTest {
     /**
      * Method to test the assignToVar method fail trying to assign a value to a
      * non existent variable ({, that is part of the special characters that are
-     * limit cases). It calls the VarOutOfRangeException
+     * limit cases). 
+     * It calls the VarOutOfRangeException
      */
     @Test(expected = VarOutOfRangeException.class)
     public void assignToVarTestFail3() {
@@ -162,7 +164,8 @@ public class VariablesTest {
     /**
      * Method to test the assignToVar method fail trying to assign a value to a
      * non existent variable (A, that is part of the uppercase characters that
-     * are limit cases). It calls the VarOutOfRangeException
+     * are limit cases). 
+     * It calls the VarOutOfRangeException
      */
     @Test(expected = VarOutOfRangeException.class)
     public void assignToVarTestFail4() {
@@ -174,7 +177,8 @@ public class VariablesTest {
     /**
      * Method to test the assignToVar method fail trying to assign a value to a
      * non existent variable (à, that is part of the accented characters that
-     * are limit cases). It calls the VarOutOfRangeException
+     * are limit cases). 
+     * It calls the VarOutOfRangeException
      */
     @Test(expected = VarOutOfRangeException.class)
     public void assignToVarTestFail5() {
@@ -186,7 +190,8 @@ public class VariablesTest {
     /**
      * Method to test the assignToVar method fail trying to assign a value to a
      * non existent variable (1, that is part of the numbers that are limit
-     * cases). It calls the VarOutOfRangeException
+     * cases). 
+     * It calls the VarOutOfRangeException
      */
     @Test(expected = VarOutOfRangeException.class)
     public void assignToVarTestFail6() {
@@ -240,7 +245,8 @@ public class VariablesTest {
     /**
      * Method to test the copyFromVar method fail trying to copy a value from a
      * non existent variable (', that is part of the special characters that are
-     * limit cases). It calls the VarOutOfRangeException
+     * limit cases). 
+     * It calls the VarOutOfRangeException
      */
     @Test(expected = VarOutOfRangeException.class)
     public void copyFromVarTestFail2() {
@@ -250,7 +256,8 @@ public class VariablesTest {
     /**
      * Method to test the copyFromVar method fail trying to copy a value from a
      * non existent variable ({, that is part of the special characters that are
-     * limit cases). It calls the VarOutOfRangeException
+     * limit cases). 
+     * It calls the VarOutOfRangeException
      */
     @Test(expected = VarOutOfRangeException.class)
     public void copyFromVarTestFail3() {
@@ -260,7 +267,8 @@ public class VariablesTest {
     /**
      * Method to test the copyFromVar method fail trying to copy a value from a
      * non existent variable (A, that is part of the uppercase characters that
-     * are limit cases). It calls the VarOutOfRangeException
+     * are limit cases). 
+     * It calls the VarOutOfRangeException
      */
     @Test(expected = VarOutOfRangeException.class)
     public void copyFromVarTestFail4() {
@@ -270,7 +278,8 @@ public class VariablesTest {
     /**
      * Method to test the copyFromVar method fail trying to copy a value from a
      * non existent variable (à, that is part of the accented characters that
-     * are limit cases). It calls the VarOutOfRangeException
+     * are limit cases). 
+     * It calls the VarOutOfRangeException
      */
     @Test(expected = VarOutOfRangeException.class)
     public void copyFromVarTestFail5() {
@@ -280,7 +289,8 @@ public class VariablesTest {
     /**
      * Method to test the copyFromVar method fail trying to copy a value from a
      * non existent variable (1, that is part of the numbers that are limit
-     * cases). It calls the VarOutOfRangeException
+     * cases). 
+     * It calls the VarOutOfRangeException
      */
     @Test(expected = VarOutOfRangeException.class)
     public void copyFromVarTestFail6() {
@@ -375,7 +385,8 @@ public class VariablesTest {
     /**
      * Method to test the sumToVar method fail trying to sum a value in a non
      * existent variable (', that is part of the special characters that are
-     * limit cases). It calls the VarOutOfRangeException
+     * limit cases). 
+     * It calls the VarOutOfRangeException
      */
     @Test(expected = VarOutOfRangeException.class)
     public void sumToVarTestFail3() {
@@ -383,9 +394,10 @@ public class VariablesTest {
     }
 
     /**
-     * Method to test the copyFromVar method fail trying to trying to sum a
+     * Method to test the sumToVar method fail trying to trying to sum a
      * value in a non existent variable ({, that is part of the special
-     * characters that are limit cases). It calls the VarOutOfRangeException
+     * characters that are limit cases). 
+     * It calls the VarOutOfRangeException
      */
     @Test(expected = VarOutOfRangeException.class)
     public void sumToVarTestFail4() {
@@ -393,9 +405,10 @@ public class VariablesTest {
     }
 
     /**
-     * Method to test the copyFromVar method fail trying to sum a value in a non
+     * Method to test the sumToVar method fail trying to sum a value in a non
      * existent variable (A, that is part of the uppercase characters that are
-     * limit cases). It calls the VarOutOfRangeException
+     * limit cases). 
+     * It calls the VarOutOfRangeException
      */
     @Test(expected = VarOutOfRangeException.class)
     public void sumToVarTestFail5() {
@@ -403,9 +416,10 @@ public class VariablesTest {
     }
 
     /**
-     * Method to test the copyFromVar method fail trying to sum a value in a non
+     * Method to test the sumToVar method fail trying to sum a value in a non
      * existent variable (à, that is part of the accented characters that are
-     * limit cases). It calls the VarOutOfRangeException
+     * limit cases). 
+     * It calls the VarOutOfRangeException
      */
     @Test(expected = VarOutOfRangeException.class)
     public void sumToVarTestFail6() {
@@ -413,7 +427,7 @@ public class VariablesTest {
     }
 
     /**
-     * Method to test the copyFromVar method fail trying to sum a value in a non
+     * Method to test the sumToVar method fail trying to sum a value in a non
      * existent variable (1, that is part of the numbers that are limit cases).
      * It calls the VarOutOfRangeException
      */
@@ -511,7 +525,8 @@ public class VariablesTest {
     /**
      * Method to test the subtractToVar method fail trying to subtract a value
      * in a non existent variable (', that is part of the special characters
-     * that are limit cases). It calls the VarOutOfRangeException
+     * that are limit cases). 
+     * It calls the VarOutOfRangeException
      */
     @Test(expected = VarOutOfRangeException.class)
     public void subtractToVarTestFail3() {
@@ -521,7 +536,8 @@ public class VariablesTest {
     /**
      * Method to test the subtractToVar method fail trying to trying to subtract
      * a value in a non existent variable ({, that is part of the special
-     * characters that are limit cases). It calls the VarOutOfRangeException
+     * characters that are limit cases). 
+     * It calls the VarOutOfRangeException
      */
     @Test(expected = VarOutOfRangeException.class)
     public void subtractToVarTestFail4() {
@@ -531,7 +547,8 @@ public class VariablesTest {
     /**
      * Method to test the subtractToVar method fail trying to subtract a value
      * in a non existent variable (A, that is part of the uppercase characters
-     * that are limit cases). It calls the VarOutOfRangeException
+     * that are limit cases). 
+     * It calls the VarOutOfRangeException
      */
     @Test(expected = VarOutOfRangeException.class)
     public void subtractToVarTestFail5() {
@@ -541,7 +558,8 @@ public class VariablesTest {
     /**
      * Method to test the subtractToVar method fail trying to subtract a value
      * in a non existent variable (à, that is part of the accented characters
-     * that are limit cases). It calls the VarOutOfRangeException
+     * that are limit cases). 
+     * It calls the VarOutOfRangeException
      */
     @Test(expected = VarOutOfRangeException.class)
     public void subtractToVarTestFail6() {
@@ -551,7 +569,8 @@ public class VariablesTest {
     /**
      * Method to test the subtractToVar method fail trying to subtract a value
      * in a non existent variable (1, that is part of the numbers that are limit
-     * cases). It calls the VarOutOfRangeException
+     * cases). 
+     * It calls the VarOutOfRangeException
      */
     @Test(expected = VarOutOfRangeException.class)
     public void subtractToVarTestFail7() {
@@ -678,7 +697,8 @@ public class VariablesTest {
     /**
      * Method to test the restoreVar method fail trying a restoring attempt and
      * the stack pointer is equal to 0 (so there aren't previous set of
-     * variables values to restore) It calls the IllegalStackPointerException
+     * variables values to restore).
+     * It calls the IllegalStackPointerException
      */
     @Test(expected = IllegalStackPointerException.class)
     public void restoreVarTestFail() {
@@ -688,8 +708,8 @@ public class VariablesTest {
     /**
      * Method to test the restoreVar method fail trying more restoring attempt
      * than saving attempts and the stack pointer is equal to 0 (so there aren't
-     * enough sets of variables values to restore) It calls the
-     * IllegalStackPointerException
+     * enough sets of variables values to restore).
+     * It calls the IllegalStackPointerException
      */
     @Test(expected = IllegalStackPointerException.class)
     public void restoreVarTestFail2() {

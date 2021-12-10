@@ -36,10 +36,9 @@ public class Variables {
     }
 
     /**
-     * Method to convert the characters associated at the variables [a, b, ...,
-     * z] in the numbers associated at the positions [0, 1, ..., 26]. It calls
-     * the VarOutOfRangeException if the variable is not contained in [a, b,
-     * ..., z]
+     * Method to convert the characters associated at the variables [a, b, ..., z]
+     * in the numbers associated at the positions [0, 1, ..., 25]. 
+     * It calls the VarOutOfRangeException if the variable is not contained in [a, b, ..., z]
      *
      * @param var variable [a, b, ..., z]
      * @return the position of the variable as a number
@@ -52,10 +51,9 @@ public class Variables {
     }
 
     /**
-     * Method to pull a complex number from the stack and assign it to a
-     * variable. It calls the VarOutOfRangeException if the variable is not
-     * contained in [a, b, ..., z] It calls the NoSuchElementException if the
-     * stack is empty
+     * Method to pull a complex number from the stack and assign it to a variable.
+     * It calls the VarOutOfRangeException if the variable is not contained in [a, b, ..., z]
+     * It calls the NoSuchElementException if the stack is empty
      *
      * @param var indicates the variable that will contain the assigned complex
      * number
@@ -67,9 +65,9 @@ public class Variables {
     }
 
     /**
-     * Method to copy the value of a variable and push it onto the stack. It
-     * calls the VarOutOfRangeException if the variable is not contained in [a,
-     * b, ..., z] It calls the NullArgumentException if the variable is empty
+     * Method to copy the value of a variable and push it onto the stack. 
+     * It calls the VarOutOfRangeException if the variable is not contained in [a, b, ..., z] 
+     * It calls the NullArgumentException if the variable is empty
      *
      * @param var indicates the variable that will contain the value to copy
      * onto the stack
@@ -85,10 +83,10 @@ public class Variables {
 
     /**
      * Method to pull a complex number from the stack and sum it to the variable
-     * value and save the result into the variable itself. It calls the
-     * VarOutOfRangeException if the variable is not contained in [a, b, ..., z]
-     * It calls the NoSuchElementException if the stack is empty It calls the
-     * NullArgumentException if the variable is empty
+     * value and save the result into the variable itself. 
+     * It calls the VarOutOfRangeException if the variable is not contained in [a, b, ..., z]
+     * It calls the NoSuchElementException if the stack is empty
+     * It calls the NullArgumentException if the variable is empty
      *
      * @param var indicates the variable that will contain the value of the sum
      */
@@ -106,10 +104,10 @@ public class Variables {
 
     /**
      * Method to pull a complex number from the stack and subtract it to the
-     * variable value and save the result into the variable itself. It calls the
-     * VarOutOfRangeException if the variable is not contained in [a, b, ..., z]
-     * It calls the NoSuchElementException if the stack is empty It calls the
-     * NullArgumentException if the variable is empty
+     * variable value and save the result into the variable itself. 
+     * It calls the VarOutOfRangeException if the variable is not contained in [a, b, ..., z]
+     * It calls the NoSuchElementException if the stack is empty
+     * It calls the NullArgumentException if the variable is empty
      *
      * @param var indicates the variable that will contain the value of the
      * subtraction
@@ -147,9 +145,9 @@ public class Variables {
 
     /**
      * Method to restore for all the variables the last values that were saved
-     * on the “variable stack” (removing them from that stack). It calls the
-     * IllegalStackPointerException if there is a restoring attempt and the
-     * stack pointer is equal to 0 (so there aren't previous set of variables
+     * on the “variable stack” (removing them from that stack).
+     * It calls the IllegalStackPointerException if there is a restoring attempt 
+     * and the stack pointer is equal to 0 (so there aren't previous sets of variables
      * values to restore)
      */
     public void restoreVar() {

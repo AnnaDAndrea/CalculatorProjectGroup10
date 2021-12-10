@@ -32,7 +32,7 @@ public class Interpreter {
     }
 
     /**
-     * isComplex method returns true if the string is a complex operand
+     * The isComplex method returns true if the string is a complex operand
      *
      * @param s is the input text
      * @return boolean
@@ -42,7 +42,7 @@ public class Interpreter {
     }
 
     /**
-     * isImaginary method returns true if the string is a pure complex number
+     * The isImaginary method returns true if the string is a pure complex number
      *
      * @param s
      * @return boolean
@@ -52,7 +52,7 @@ public class Interpreter {
     }
 
     /**
-     * isOnlyJPart method returns trues if the string is a complex number like
+     * The isOnlyJPart method returns true if the string is a complex number like
      * "realPart+j","realPart-j","+j","-j"
      *
      * @param s
@@ -63,14 +63,14 @@ public class Interpreter {
     }
 
     /**
-     * parse method is used to separate the string input in tokens that are
-     * complex numbers(operators) or operators This method calls each method of
-     * the class ComplexNumOperation to calculate basic operations,each method
-     * of the class StackManipulation,each method of the class Variables
+     * The parse method is used to separate the input string in tokens that are
+     * complex numbers or operators. This method calls each method of
+     * the class ComplexNumOperation to calculate basic operations, each method
+     * of the class StackManipulation, each method of the class Variables.
+     * It calls the InterpreterException if there are wrong operators or wrong operands 
+     * It calls the ZeroDivisionException if there is a division by 0
      *
-     * @param s is the content of the text field(display) It calls
-     * InterpreterException if there are either wrong operators or wrong
-     * operands It calls ZeroDivisionException
+     * @param s is the content of the text field (display)
      */
     public void parse(String s) {
         StringTokenizer ops = new StringTokenizer(s, " ");
@@ -157,8 +157,8 @@ public class Interpreter {
     }
 
     /**
-     * check method returns true if a sequence is allowed,correct and all the
-     * containing operations exist
+     * The check method returns true if a sequence is allowed and correct and if 
+     * all the contained operations exist
      *
      * @param s is a sequence to be checked
      * @return boolean

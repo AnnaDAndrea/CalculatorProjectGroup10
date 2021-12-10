@@ -154,6 +154,12 @@ public class UserDefinedOperation {
         userOperations = userDef;
     }
     
+    
+    /**
+     * checkLoop method allows to avoid any loops in user defined operations
+     * @param value
+     * @param init 
+     */
     private void checkLoop(String value, String init){
         StringTokenizer ops = new StringTokenizer(value, " ");
         
@@ -175,6 +181,12 @@ public class UserDefinedOperation {
         
     }
     
+    
+    /**
+     * editSequence method allows the editing of a user defined operation
+     * @param name
+     * @param value 
+     */
     public void editSequence(String name, String value){
             checkLoop(value, name);
             userOperations.replace(name, value);

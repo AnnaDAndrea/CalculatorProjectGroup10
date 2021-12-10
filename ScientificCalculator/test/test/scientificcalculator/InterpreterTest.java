@@ -48,74 +48,74 @@ public class InterpreterTest {
 
         
         interpreter.parse("01");
-        assertEquals(stack.getFirst(), new Complex(1, 0));
+        assertEquals(new Complex(1, 0),stack.getFirst());
         
         interpreter.parse("-01");
-        assertEquals(stack.getFirst(), new Complex(-1, 0));
+        assertEquals(new Complex(-1, 0),stack.getFirst());
         
         interpreter.parse("-0j");
-        assertEquals(stack.getFirst(), new Complex(0.0, -0.0));
+        assertEquals(new Complex(0.0, -0.0),stack.getFirst());
         
         interpreter.parse("-03j");
-        assertEquals(stack.getFirst(), new Complex(0.0, -3.0));
+        assertEquals(new Complex(0.0, -3.0),stack.getFirst());
         
         interpreter.parse("+0j");
-        assertEquals(stack.getFirst(), new Complex(0.0, 0.0));
+        assertEquals(new Complex(0.0, 0.0),stack.getFirst());
         
         interpreter.parse("03j");
-        assertEquals(stack.getFirst(), new Complex(0.0, 3.0));
+        assertEquals(new Complex(0.0, 3.0),stack.getFirst());
         
         interpreter.parse("1+5j");
-        assertEquals(stack.getFirst(), new Complex(1, 5));
+        assertEquals( new Complex(1, 5),stack.getFirst());
 
         interpreter.parse("42");
-        assertEquals(stack.getFirst(), new Complex(42, 0));
+        assertEquals(new Complex(42, 0),stack.getFirst());
 
         interpreter.parse("42j");
-        assertEquals(stack.getFirst(), new Complex(0, 42));
+        assertEquals(new Complex(0, 42),stack.getFirst());
 
         interpreter.parse("-4-2j");
-        assertEquals(stack.getFirst(),new Complex(-4,-2));
+        assertEquals(new Complex(-4,-2),stack.getFirst());
         
         interpreter.parse("0");
-        assertEquals(stack.getFirst(),new Complex(0,0));
+        assertEquals(new Complex(0,0),stack.getFirst());
 
         interpreter.parse("+0");
-        assertEquals(stack.getFirst(),new Complex(0,0));
+        assertEquals(new Complex(0,0),stack.getFirst());
 
 	interpreter.parse("-0");
-        assertEquals(stack.getFirst(),new Complex(-0.0,0.0));
+        assertEquals(new Complex(-0.0,0.0),stack.getFirst());
 
 	interpreter.parse("0j");
-	assertEquals(stack.getFirst(),new Complex(0,0));
+	assertEquals(new Complex(0,0),stack.getFirst());
 
 	interpreter.parse(".2+2j");
-        assertEquals(stack.getFirst(),new Complex(0.2,2));
+        assertEquals(new Complex(0.2,2),stack.getFirst());
 
 	interpreter.parse("9+.2j");
-        assertEquals(stack.getFirst(),new Complex(9,0.2));
+        assertEquals(new Complex(9,0.2),stack.getFirst());
 
 	
 	interpreter.parse("0.0001+3j");
-        assertEquals(stack.getFirst(),new Complex(0.0001,3));
+        assertEquals(new Complex(0.0001,3),stack.getFirst());
         
         interpreter.parse("1-0.00001j");
-        assertEquals(stack.getFirst(),new Complex(1,-0.00001));
+        assertEquals(new Complex(1,-0.00001),stack.getFirst());
         
 	interpreter.parse("-9999999-9999999j");
-        assertEquals(stack.getFirst(),new Complex(-9999999,-9999999));
+        assertEquals(new Complex(-9999999,-9999999),stack.getFirst());
 
 	interpreter.parse("1234567-1234567j");
-        assertEquals(stack.getFirst(),new Complex(1234567,-1234567));
+        assertEquals(new Complex(1234567,-1234567),stack.getFirst());
         
         interpreter.parse("j");
-        assertEquals(stack.getFirst(),new Complex(0,1));
+        assertEquals(new Complex(0,1),stack.getFirst());
         
         interpreter.parse("1+j");
-        assertEquals(stack.getFirst(),new Complex(1,1));
+        assertEquals(new Complex(1,1),stack.getFirst());
         
         interpreter.parse("1-j");
-        assertEquals(stack.getFirst(),new Complex(1,-1));
+        assertEquals(new Complex(1,-1),stack.getFirst());
           
     }
     /**
@@ -153,9 +153,9 @@ public class InterpreterTest {
         interpreter.parse("restore");
         
         interpreter.parse("<a <b <c");
-        assertEquals(stack.removeLast(), new Complex(3, 3));
-        assertEquals(stack.removeLast(), new Complex(2, 2));
-        assertEquals(stack.removeLast(), new Complex(1, 1));
+        assertEquals(new Complex(3, 3),stack.removeLast());
+        assertEquals(new Complex(2, 2),stack.removeLast());
+        assertEquals(new Complex(1, 1),stack.removeLast());
     }
     
     
@@ -181,69 +181,69 @@ public class InterpreterTest {
     @Test
     public void testParseSum() throws InterpreterException, ZeroDivisionException {
         interpreter.parse("1+1j 2+2j +");
-        assertEquals(stack.getFirst(), new Complex(3, 3));
+        assertEquals(new Complex(3, 3),stack.getFirst());
 
     }
 
     @Test
     public void testParseProduct() throws InterpreterException, ZeroDivisionException {
         interpreter.parse("1+1j 2+2j *");
-        assertEquals(stack.getFirst(), new Complex(0, 4));
+        assertEquals(new Complex(0, 4),stack.getFirst());
 
     }
 
     @Test
     public void testParseDivision() throws InterpreterException, ZeroDivisionException {
         interpreter.parse("1+1j 2+2j /");
-        assertEquals(stack.getFirst(), new Complex(0.5, 0));
+        assertEquals(new Complex(0.5, 0),stack.getFirst());
     }
 
     @Test
     public void testParseSubctration() throws InterpreterException, ZeroDivisionException {
         interpreter.parse("1+1j 2+2j -");
-        assertEquals(stack.getFirst(), new Complex(-1, -1));
+        assertEquals(new Complex(-1, -1),stack.getFirst());
     }
 
     @Test
     public void testParseSquareRoot() throws InterpreterException, ZeroDivisionException {
         interpreter.parse("-4 sqrt");
-        assertEquals(stack.getFirst(), new Complex(0, 2));
+        assertEquals(new Complex(0, 2),stack.getFirst());
     }
 
     @Test
     public void testParseInvertSign() throws InterpreterException, ZeroDivisionException {
         interpreter.parse("1+1j +-");
-        assertEquals(stack.getFirst(), new Complex(-1, -1));
+        assertEquals(new Complex(-1, -1),stack.getFirst());
     }
 
     @Test
     public void testParseClear() throws InterpreterException, ZeroDivisionException {
         interpreter.parse("1+1j clear");
-        assertEquals(stack.size(), 0);
+        assertEquals(0,stack.size());
     }
 
     @Test
     public void testParseDup() throws InterpreterException, ZeroDivisionException {
         interpreter.parse("1+1j 2+2j dup");
-        assertEquals(stack.getFirst(), new Complex(2, 2));
+        assertEquals(new Complex(2, 2),stack.getFirst());
     }
 
     @Test
     public void testParseDrop() throws InterpreterException, ZeroDivisionException {
         interpreter.parse("1+1j 2+2j drop");
-        assertEquals(stack.getFirst(), new Complex(1, 1));
+        assertEquals(new Complex(1, 1),stack.getFirst());
     }
 
     @Test
     public void testParseOver() throws InterpreterException, ZeroDivisionException {
         interpreter.parse("1+1j 2+2j over");
-        assertEquals(stack.getFirst(), new Complex(1, 1));
+        assertEquals(new Complex(1, 1),stack.getFirst());
     }
 
     @Test
     public void testParseSwap() throws InterpreterException, ZeroDivisionException {
         interpreter.parse("1+1j 2+2j swap");
-        assertEquals(stack.getFirst(), new Complex(1, 1));
+        assertEquals(new Complex(1, 1),stack.getFirst());
     }
 
     /**
@@ -256,7 +256,7 @@ public class InterpreterTest {
     @Test
     public void testParseSequentiallyOperations() throws InterpreterException, ZeroDivisionException {
         interpreter.parse("5 9 - sqrt");
-        assertEquals(stack.getFirst(), new Complex(0, 2));
+        assertEquals( new Complex(0, 2),stack.getFirst());
     }
 
     /**
@@ -274,7 +274,7 @@ public class InterpreterTest {
 
         interpreter.parse("<x");
 
-        assertEquals(stack.getFirst(), new Complex(10, 5));
+        assertEquals(new Complex(10, 5),stack.getFirst());
 
     }
 
@@ -309,7 +309,7 @@ public class InterpreterTest {
         interpreter.parse("+x");
         interpreter.parse("<x");
 
-        assertEquals(stack.getFirst(), new Complex(3, 3));
+        assertEquals(new Complex(3, 3),stack.getFirst());
 
     }
     
@@ -342,7 +342,7 @@ public class InterpreterTest {
         interpreter.parse("-x");
         interpreter.parse("<x");
 
-        assertEquals(stack.getFirst(), new Complex(-1, -1));
+        assertEquals(new Complex(-1, -1),stack.getFirst());
 
     }
     /**
@@ -375,7 +375,7 @@ public class InterpreterTest {
         interpreter.parse("tripleSum");
         
         assertEquals(stack.size(), 1);
-        assertEquals(stack.removeFirst(), new Complex(17));
+        assertEquals(new Complex(17),stack.removeFirst());
         
         //empty stack
         
@@ -384,7 +384,7 @@ public class InterpreterTest {
         interpreter.parse("- tripleSum +-");
         
         assertEquals(stack.size(), 1);
-        assertEquals(stack.removeFirst(), new Complex(-10, -0.0)); 
+        assertEquals(new Complex(-10, -0.0),stack.removeFirst()); 
         
         //empty stack
         
@@ -394,7 +394,7 @@ public class InterpreterTest {
         interpreter.parse("quadSum +-");
         
         assertEquals(stack.size(), 1);
-        assertEquals(stack.removeFirst(), new Complex(-24,-0.0)); 
+        assertEquals(new Complex(-24,-0.0),stack.removeFirst()); 
         
         //empty stack
 
@@ -423,43 +423,44 @@ public class InterpreterTest {
     @Test
     public void testCheckBaseOp() {
 
-        assertEquals(interpreter.check("0"), true);
-        assertEquals(interpreter.check("0j"), true);
-        assertEquals(interpreter.check(".2"), true);
-        assertEquals(interpreter.check(".2j"), true);
-        assertEquals(interpreter.check("2"), true);
-        assertEquals(interpreter.check("2j"), true);
-        assertEquals(interpreter.check("+2j"), true);
-        assertEquals(interpreter.check("-2j"), true);
-        assertEquals(interpreter.check("+2"), true);
-        assertEquals(interpreter.check("-2.1"), true);
-        assertEquals(interpreter.check("2+j"), true); 
-        assertEquals(interpreter.check("2-j"), true);
-        assertEquals(interpreter.check("+j"), true); 
-        assertEquals(interpreter.check("-j"), true); 
-        assertEquals(interpreter.check("j"), true); 
-        assertEquals(interpreter.check("2.2-1j"), true);
-        assertEquals(interpreter.check("2.2+2.1j"), true);
-        assertEquals(interpreter.check("+"), true);
-        assertEquals(interpreter.check("-"), true);
-        assertEquals(interpreter.check("/"), true);
-        assertEquals(interpreter.check("*"), true);
-        assertEquals(interpreter.check("+-"), true);
-        assertEquals(interpreter.check("sqrt"), true);
-        assertEquals(interpreter.check("clear"), true);
-        assertEquals(interpreter.check("dup"), true);
-        assertEquals(interpreter.check("drop"), true);
-        assertEquals(interpreter.check("over"), true);
-        assertEquals(interpreter.check("swap"), true);
-        assertEquals(interpreter.check("/s"), false);
-        assertEquals(interpreter.check("*s"), false);
-        assertEquals(interpreter.check("+-d"), false);
-        assertEquals(interpreter.check("sqrtc"), false);
-        assertEquals(interpreter.check("clears"), false);
-        assertEquals(interpreter.check("sdup"), false);
-        assertEquals(interpreter.check("dropd"), false);
-        assertEquals(interpreter.check("overd"), false);
-        assertEquals(interpreter.check("swapd"), false);
+        assertEquals(true,interpreter.check("0"));
+        assertEquals(true,interpreter.check("0j"));
+        assertEquals(true,interpreter.check(".2"));
+        assertEquals(true,interpreter.check(".2j"));
+        assertEquals(true,interpreter.check("2"));
+        assertEquals(true,interpreter.check("2j"));
+        assertEquals(true,interpreter.check("+2j"));
+        assertEquals(true,interpreter.check("-2j"));
+        assertEquals(true,interpreter.check("+2"));
+        assertEquals(true,interpreter.check("-2.1"));
+        assertEquals(true,interpreter.check("2+j")); 
+        assertEquals(true,interpreter.check("2-j"));
+        assertEquals(true,interpreter.check("+j")); 
+        assertEquals(true,interpreter.check("-j")); 
+        assertEquals(true,interpreter.check("j")); 
+        assertEquals(true,interpreter.check("2.2-1j"));
+        assertEquals(true,interpreter.check("2.2+2.1j"));
+        assertEquals(true,interpreter.check("+"));
+        assertEquals(true,interpreter.check("-"));
+        assertEquals(true,interpreter.check("/"));
+        assertEquals(true,interpreter.check("*"));
+        assertEquals(true,interpreter.check("+-"));
+        assertEquals(true,interpreter.check("sqrt"));
+        assertEquals(true,interpreter.check("clear"));
+        assertEquals(true,interpreter.check("dup"));
+        assertEquals(true,interpreter.check("drop"));
+        assertEquals(true,interpreter.check("over"));
+        assertEquals(true,interpreter.check("swap"));
+        
+        assertEquals(false,interpreter.check("/s"));
+        assertEquals(false,interpreter.check("*s"));
+        assertEquals(false,interpreter.check("+-d"));
+        assertEquals(false,interpreter.check("sqrtc"));
+        assertEquals(false,interpreter.check("clears"));
+        assertEquals(false,interpreter.check("sdup"));
+        assertEquals(false,interpreter.check("dropd"));
+        assertEquals(false,interpreter.check("overd"));
+        assertEquals(false,interpreter.check("swapd"));
 
     }
 
@@ -469,16 +470,16 @@ public class InterpreterTest {
      */
     @Test
     public void testCheckVar() {
-        assertEquals(interpreter.check(">"), false);
-        assertEquals(interpreter.check(">a"), true);
-        assertEquals(interpreter.check(">ab"), false);
-        assertEquals(interpreter.check("<"), false);
-        assertEquals(interpreter.check("<a"), true);
-        assertEquals(interpreter.check("<ab"), false);
-        assertEquals(interpreter.check("+a"), true);
-        assertEquals(interpreter.check("+ab"), false);
-        assertEquals(interpreter.check("-a"), true);
-        assertEquals(interpreter.check("-ab"), false);
+        assertEquals(false,interpreter.check(">"));
+        assertEquals(true,interpreter.check(">a"));
+        assertEquals(false,interpreter.check(">ab"));
+        assertEquals(false,interpreter.check("<"));
+        assertEquals(true,interpreter.check("<a"));
+        assertEquals(false,interpreter.check("<ab"));
+        assertEquals(true,interpreter.check("+a"));
+        assertEquals(false,interpreter.check("+ab"));
+        assertEquals(true,interpreter.check("-a"));
+        assertEquals(false,interpreter.check("-ab"));
 
     }
 
@@ -488,14 +489,14 @@ public class InterpreterTest {
      */
     @Test
     public void testCheckUserOp() {
-        assertEquals(interpreter.check("op1"), false);
-        assertEquals(interpreter.check("op2"), false);
+        assertEquals(false,interpreter.check("op1"));
+        assertEquals(false,interpreter.check("op2"));
         userOperations.newOperation("op1", "+ - /");
-        assertEquals(interpreter.check("op1"), true);
-        assertEquals(interpreter.check("op2"), false);
+        assertEquals(true,interpreter.check("op1"));
+        assertEquals(false,interpreter.check("op2"));
         userOperations.newOperation("op2", "+ + /");
-        assertEquals(interpreter.check("op1"), true);
-        assertEquals(interpreter.check("op2"), true);
+        assertEquals(true,interpreter.check("op1"));
+        assertEquals(true,interpreter.check("op2"));
         
         
     }
@@ -506,37 +507,37 @@ public class InterpreterTest {
      */
     @Test
     public void testCheckSequence() {
-        assertEquals(interpreter.check(" "), false);
-        assertEquals(interpreter.check("     "), false);
-        assertEquals(interpreter.check("+ -"), true);
-        assertEquals(interpreter.check("+ - / * +- sqrt"), true);
-        assertEquals(interpreter.check("+ - / * +- sqrt   "), true);
-        assertEquals(interpreter.check("   + - / * +- sqrt"), true);
-        assertEquals(interpreter.check("+  - / * +-  sqrt"), true);
-        assertEquals(interpreter.check("+ - / * +- sqrt <a"), true);
-        assertEquals(interpreter.check("+ >a / * +- sqrt"), true);
-        assertEquals(interpreter.check("+ > a / * +- sqrt"), false);
-        assertEquals(interpreter.check("+ <a / * +- sqrt"), true);
-        assertEquals(interpreter.check("+ < a / * +- sqrt"), false);
+        assertEquals(false,interpreter.check(" "));
+        assertEquals(false,interpreter.check("     "));
+        assertEquals(true,interpreter.check("+ -"));
+        assertEquals(true,interpreter.check("+ - / * +- sqrt"));
+        assertEquals(true,interpreter.check("+ - / * +- sqrt   "));
+        assertEquals(true,interpreter.check("   + - / * +- sqrt"));
+        assertEquals(true,interpreter.check("+  - / * +-  sqrt"));
+        assertEquals(true,interpreter.check("+ - / * +- sqrt <a"));
+        assertEquals(true,interpreter.check("+ >a / * +- sqrt"));
+        assertEquals(false,interpreter.check("+ > a / * +- sqrt"));
+        assertEquals(true,interpreter.check("+ <a / * +- sqrt"));
+        assertEquals(false,interpreter.check("+ < a / * +- sqrt"));
         userOperations.newOperation("op1", "+ - /");
-        assertEquals(interpreter.check("+c <a op1"), true);
-        assertEquals(interpreter.check("+c <a op3"), false);
-        assertEquals(interpreter.check("+c op1 op3"), false);
-        assertEquals(interpreter.check("2+5j <a / * +- sqrt"), true);
-        assertEquals(interpreter.check("2+.1j <a / * +- sqrt"), true);
-        assertEquals(interpreter.check("2+0.1j <a / * +- sqrt"), true);
-        assertEquals(interpreter.check("0+0.1j <a / * +- sqrt"), true);
-        assertEquals(interpreter.check("0j <a / * +- sqrt"), true);
-        assertEquals(interpreter.check("0 <a / * +- sqrt"), true);
-        assertEquals(interpreter.check("+0.1-5j <a / * +- sqrt"), true);
-        assertEquals(interpreter.check("+0.1 <a / * +- sqrt"), true);
-        assertEquals(interpreter.check("-0.1 <a / * +- sqrt"), true);
+        assertEquals(true,interpreter.check("+c <a op1"));
+        assertEquals(false,interpreter.check("+c <a op3"));
+        assertEquals(false,interpreter.check("+c op1 op3"));
+        assertEquals(true,interpreter.check("2+5j <a / * +- sqrt"));
+        assertEquals(true,interpreter.check("2+.1j <a / * +- sqrt"));
+        assertEquals(true,interpreter.check("2+0.1j <a / * +- sqrt"));
+        assertEquals(true,interpreter.check("0+0.1j <a / * +- sqrt"));
+        assertEquals(true,interpreter.check("0j <a / * +- sqrt"));
+        assertEquals(true,interpreter.check("0 <a / * +- sqrt"));
+        assertEquals(true,interpreter.check("+0.1-5j <a / * +- sqrt"));
+        assertEquals(true,interpreter.check("+0.1 <a / * +- sqrt"));
+        assertEquals(true,interpreter.check("-0.1 <a / * +- sqrt"));
         
-        assertEquals(interpreter.check("j <a / * +- sqrt"), true);   
-        assertEquals(interpreter.check("+j <a / * +- sqrt"), true); 
-        assertEquals(interpreter.check("-j <a / * +- sqrt"), true); 
-        assertEquals(interpreter.check("2-j <a / * +- sqrt"), true);  
-        assertEquals(interpreter.check("2+j <a / * +- sqrt"), true);  
+        assertEquals(true,interpreter.check("j <a / * +- sqrt"));   
+        assertEquals(true,interpreter.check("+j <a / * +- sqrt")); 
+        assertEquals(true,interpreter.check("-j <a / * +- sqrt")); 
+        assertEquals(true,interpreter.check("2-j <a / * +- sqrt"));  
+        assertEquals(true,interpreter.check("2+j <a / * +- sqrt"));  
     }
 
 }

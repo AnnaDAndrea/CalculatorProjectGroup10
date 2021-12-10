@@ -1,5 +1,6 @@
 package test.scientificcalculator;
 
+import exception.IllegalStackPointerException;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
@@ -14,12 +15,12 @@ import scientificcalculator.Variables;
 /**
  *
  * @author Group 10
- * @brief This is the Class used to test the Variables methods
+ * This is the Class used to test the Variables methods
  */
 public class VariablesTest {
     
     /**
-     * @brief Definition of a fixture composed of the stack and of an instance of Variables
+     * Definition of a fixture composed of the stack and of an instance of Variables
      */
     private Deque<Complex> stack;
     private Variables varStack;
@@ -28,7 +29,7 @@ public class VariablesTest {
     }
      
     /**
-     * @brief Method to initialize the fixture 
+     * Method to initialize the fixture 
      */
     @Before
     public void setUp() {
@@ -37,7 +38,7 @@ public class VariablesTest {
     }
         
     /**
-     * @brief Method to test the assignToVar method
+     * Method to test the assignToVar method
      */
     @Test
     public void assignToVarTest(){  
@@ -58,7 +59,7 @@ public class VariablesTest {
     }
     
     /**
-     * @brief Method to test the assignToVar method with more Complex numbers using 2 variables
+     * Method to test the assignToVar method with more Complex numbers using 2 variables
      */
     @Test
     public void assignToVarTest2(){  
@@ -89,7 +90,7 @@ public class VariablesTest {
     }
     
     /**
-     * @brief Method to test the assignToVar method using all the availables variables
+     * Method to test the assignToVar method using all the available variables
      */
     @Test
     public void assignToVarTest3(){  
@@ -119,7 +120,7 @@ public class VariablesTest {
     }
     
     /**
-     * @brief Method to test the assignToVar method fail calling the NoSuchElementException (empty stack)
+     * Method to test the assignToVar method fail calling the NoSuchElementException (empty stack)
      */
     @Test(expected = NoSuchElementException.class)
     public void assignToVarTestFail(){       
@@ -127,8 +128,8 @@ public class VariablesTest {
     }
     
     /**
-     * @brief Method to test the assignToVar method fail trying to assign a value 
-     * to a non existent variable (', that is part of the special characters that are limit cases).
+     * Method to test the assignToVar method fail trying to assign a value to a
+     * non existent variable (', that is part of the special characters that are limit cases).
      * It calls the VarOutOfRangeException 
      */
     @Test(expected = VarOutOfRangeException.class)
@@ -139,8 +140,8 @@ public class VariablesTest {
     }
     
     /**
-     * @brief Method to test the assignToVar method fail trying to assign a value 
-     * to a non existent variable ({, that is part of the special characters that are limit cases).
+     * Method to test the assignToVar method fail trying to assign a value to a 
+     * non existent variable ({, that is part of the special characters that are limit cases).
      * It calls the VarOutOfRangeException 
      */
     @Test(expected = VarOutOfRangeException.class)
@@ -151,8 +152,8 @@ public class VariablesTest {
     }
     
     /**
-     * @brief Method to test the assignToVar method fail trying to assign a value 
-     * to a non existent variable (A, that is part of the uppercase characters that are limit cases).
+     * Method to test the assignToVar method fail trying to assign a value to a 
+     * non existent variable (A, that is part of the uppercase characters that are limit cases).
      * It calls the VarOutOfRangeException 
      */
     @Test(expected = VarOutOfRangeException.class)
@@ -163,8 +164,8 @@ public class VariablesTest {
     }
     
     /**
-     * @brief Method to test the assignToVar method fail trying to assign a value 
-     * to a non existent variable (à, that is part of the accented characters that are limit cases).
+     * Method to test the assignToVar method fail trying to assign a value to a
+     * non existent variable (à, that is part of the accented characters that are limit cases).
      * It calls the VarOutOfRangeException 
      */
     @Test(expected = VarOutOfRangeException.class)
@@ -175,8 +176,8 @@ public class VariablesTest {
     }
     
     /**
-     * @brief Method to test the assignToVar method fail trying to assign a value 
-     * to a non existent variable (1, that is part of the numbers that are limit cases).
+     * Method to test the assignToVar method fail trying to assign a value to a 
+     * non existent variable (1, that is part of the numbers that are limit cases).
      * It calls the VarOutOfRangeException 
      */
     @Test(expected = VarOutOfRangeException.class)
@@ -187,7 +188,7 @@ public class VariablesTest {
     }
     
     /**
-     * @brief Method to test the copyFromVar method
+     * Method to test the copyFromVar method
      */
     @Test
     public void copyFromVarTest(){
@@ -220,7 +221,7 @@ public class VariablesTest {
     }
     
     /**
-     * @brief Method to test the copyFromVar method fail calling the NullArgumentException (empty variable)
+     * Method to test the copyFromVar method fail calling the NullArgumentException (empty variable)
      */
     @Test(expected = NullArgumentException.class)
     public void copyFromVarTestFail(){  
@@ -228,8 +229,8 @@ public class VariablesTest {
     }
     
     /**
-     * @brief Method to test the copyFromVar method fail trying to copy a value 
-     * from a non existent variable (', that is part of the special characters that are limit cases).
+     * Method to test the copyFromVar method fail trying to copy a value from a 
+     * non existent variable (', that is part of the special characters that are limit cases).
      * It calls the VarOutOfRangeException 
      */
     @Test(expected = VarOutOfRangeException.class)
@@ -238,8 +239,8 @@ public class VariablesTest {
     }
     
     /**
-     * @brief Method to test the copyFromVar method fail trying to copy a value 
-     * from a non existent variable ({, that is part of the special characters that are limit cases).
+     * Method to test the copyFromVar method fail trying to copy a value from a 
+     * non existent variable ({, that is part of the special characters that are limit cases).
      * It calls the VarOutOfRangeException 
      */
     @Test(expected = VarOutOfRangeException.class)
@@ -248,8 +249,8 @@ public class VariablesTest {
     }
     
     /**
-     * @brief Method to test the copyFromVar method fail trying to copy a value 
-     * from a non existent variable (A, that is part of the uppercase characters that are limit cases).
+     * Method to test the copyFromVar method fail trying to copy a value from a 
+     * non existent variable (A, that is part of the uppercase characters that are limit cases).
      * It calls the VarOutOfRangeException 
      */
     @Test(expected = VarOutOfRangeException.class)
@@ -258,8 +259,8 @@ public class VariablesTest {
     }
     
     /**
-     * @brief Method to test the copyFromVar method fail trying to copy a value 
-     * from a non existent variable (à, that is part of the accented characters that are limit cases).
+     * Method to test the copyFromVar method fail trying to copy a value from a 
+     * non existent variable (à, that is part of the accented characters that are limit cases).
      * It calls the VarOutOfRangeException 
      */
     @Test(expected = VarOutOfRangeException.class)
@@ -268,8 +269,8 @@ public class VariablesTest {
     }
     
     /**
-     * @brief Method to test the copyFromVar method fail trying to copy a value 
-     * from a non existent variable (1, that is part of the numbers that are limit cases).
+     * Method to test the copyFromVar method fail trying to copy a value from a 
+     * non existent variable (1, that is part of the numbers that are limit cases).
      * It calls the VarOutOfRangeException 
      */
     @Test(expected = VarOutOfRangeException.class)
@@ -279,7 +280,7 @@ public class VariablesTest {
     
     
     /**
-     * @brief Method to test the sumToVar method
+     * Method to test the sumToVar method
      */
     @Test
     public void sumToVarTest(){
@@ -304,13 +305,13 @@ public class VariablesTest {
     }
     
     /**
-     * @brief Method to test the sumToVar method using all the availables variables
+     * Method to test the sumToVar method using all the available variables
      */
     @Test
     public void sumToVarTest2(){  
         for(int i = 0; i < 26; i++)
             stack.addFirst(new Complex(i));
-        
+
         for(int i = 0; i < 26; i++)
             stack.addFirst(new Complex(i)); 
         
@@ -335,7 +336,7 @@ public class VariablesTest {
     }
     
     /**
-     * @brief Method to test the sumToVar method fail calling the NoSuchElementException (empty stack)
+     * Method to test the sumToVar method fail calling the NoSuchElementException (empty stack)
      */
     @Test(expected = NoSuchElementException.class)
     public void sumToVarTestFail(){  
@@ -347,7 +348,7 @@ public class VariablesTest {
     }
     
     /**
-     * @brief Method to test the sumToVar method fail calling the NullArgumentException (empty variable)
+     * Method to test the sumToVar method fail calling the NullArgumentException (empty variable)
      */
     @Test(expected = NullArgumentException.class)
     public void sumToVarTestFail2(){  
@@ -358,8 +359,8 @@ public class VariablesTest {
     
     
     /**
-     * @brief Method to test the sumToVar method fail trying to sum a value 
-     * in a non existent variable (', that is part of the special characters that are limit cases).
+     * Method to test the sumToVar method fail trying to sum a value in a 
+     * non existent variable (', that is part of the special characters that are limit cases).
      * It calls the VarOutOfRangeException 
      */
     @Test(expected = VarOutOfRangeException.class)
@@ -369,8 +370,8 @@ public class VariablesTest {
     
     
     /**
-     * @brief Method to test the copyFromVar method fail trying to trying to sum a value 
-     * in a non existent variable ({, that is part of the special characters that are limit cases).
+     * Method to test the copyFromVar method fail trying to trying to sum a value in a 
+     * non existent variable ({, that is part of the special characters that are limit cases).
      * It calls the VarOutOfRangeException 
      */
     @Test(expected = VarOutOfRangeException.class)
@@ -379,8 +380,8 @@ public class VariablesTest {
     }
     
     /**
-     * @brief Method to test the copyFromVar method fail trying to sum a value 
-     * in a non existent variable (A, that is part of the uppercase characters that are limit cases).
+     * Method to test the copyFromVar method fail trying to sum a value in a 
+     * non existent variable (A, that is part of the uppercase characters that are limit cases).
      * It calls the VarOutOfRangeException 
      */
     @Test(expected = VarOutOfRangeException.class)
@@ -389,8 +390,8 @@ public class VariablesTest {
     }
     
     /**
-     * @brief Method to test the copyFromVar method fail trying to sum a value 
-     * in a non existent variable (à, that is part of the accented characters that are limit cases).
+     * Method to test the copyFromVar method fail trying to sum a value in a 
+     * non existent variable (à, that is part of the accented characters that are limit cases).
      * It calls the VarOutOfRangeException 
      */
     @Test(expected = VarOutOfRangeException.class)
@@ -399,8 +400,8 @@ public class VariablesTest {
     }
     
     /**
-     * @brief Method to test the copyFromVar method fail trying to sum a value 
-     * in a non existent variable (1, that is part of the numbers that are limit cases).
+     * Method to test the copyFromVar method fail trying to sum a value in a 
+     * non existent variable (1, that is part of the numbers that are limit cases).
      * It calls the VarOutOfRangeException 
      */
     @Test(expected = VarOutOfRangeException.class)
@@ -409,7 +410,7 @@ public class VariablesTest {
     }
 
     /**
-     * @brief Method to test the subtractToVar method
+     * Method to test the subtractToVar method
      */
     @Test
     public void subtractToVarTest(){
@@ -434,7 +435,7 @@ public class VariablesTest {
     }
     
     /**
-     * @brief Method to test the subtractToVar method using all the availables variables
+     * Method to test the subtractToVar method using all the availables variables
      */
     @Test
     public void subtractToVarTest2(){  
@@ -466,7 +467,7 @@ public class VariablesTest {
     
     
     /**
-     * @brief Method to test the subtractToVar method fail calling the NoSuchElementException (empty stack)
+     * Method to test the subtractToVar method fail calling the NoSuchElementException (empty stack)
      */
     @Test(expected = NoSuchElementException.class)
     public void subtractToVarTestFail(){  
@@ -479,7 +480,7 @@ public class VariablesTest {
     
     
     /**
-     * @brief Method to test the subtractToVar method fail calling the NullArgumentException (empty variable)
+     * Method to test the subtractToVar method fail calling the NullArgumentException (empty variable)
      */
     @Test(expected = NullArgumentException.class)
     public void subtractToVarTestFail2(){  
@@ -489,8 +490,8 @@ public class VariablesTest {
     }
     
     /**
-     * @brief Method to test the subtractToVar method fail trying to subtract a value 
-     * in a non existent variable (', that is part of the special characters that are limit cases).
+     * Method to test the subtractToVar method fail trying to subtract a value in a 
+     * non existent variable (', that is part of the special characters that are limit cases).
      * It calls the VarOutOfRangeException 
      */
     @Test(expected = VarOutOfRangeException.class)
@@ -499,8 +500,8 @@ public class VariablesTest {
     }
     
     /**
-     * @brief Method to test the subtractToVar method fail trying to trying to subtract a value 
-     * in a non existent variable ({, that is part of the special characters that are limit cases).
+     * Method to test the subtractToVar method fail trying to trying to subtract a value in a 
+     * non existent variable ({, that is part of the special characters that are limit cases).
      * It calls the VarOutOfRangeException 
      */
     @Test(expected = VarOutOfRangeException.class)
@@ -509,8 +510,8 @@ public class VariablesTest {
     }
     
     /**
-     * @brief Method to test the subtractToVar method fail trying to subtract a value 
-     * in a non existent variable (A, that is part of the uppercase characters that are limit cases).
+     * Method to test the subtractToVar method fail trying to subtract a value in a 
+     * non existent variable (A, that is part of the uppercase characters that are limit cases).
      * It calls the VarOutOfRangeException 
      */
     @Test(expected = VarOutOfRangeException.class)
@@ -519,8 +520,8 @@ public class VariablesTest {
     }
     
     /**
-     * @brief Method to test the subtractToVar method fail trying to subtract a value 
-     * in a non existent variable (à, that is part of the accented characters that are limit cases).
+     * Method to test the subtractToVar method fail trying to subtract a value in a 
+     * non existent variable (à, that is part of the accented characters that are limit cases).
      * It calls the VarOutOfRangeException 
      */
     @Test(expected = VarOutOfRangeException.class)
@@ -529,8 +530,8 @@ public class VariablesTest {
     }
     
     /**
-     * @brief Method to test the subtractToVar method fail trying to subtract a value 
-     * in a non existent variable (1, that is part of the numbers that are limit cases).
+     * Method to test the subtractToVar method fail trying to subtract a value in a 
+     * non existent variable (1, that is part of the numbers that are limit cases).
      * It calls the VarOutOfRangeException 
      */
     @Test(expected = VarOutOfRangeException.class)
@@ -538,4 +539,131 @@ public class VariablesTest {
         varStack.subtractToVar('1');
     }
     
+    /**
+     * Method to test the saveVar and restoreVar methods
+     */
+    @Test
+    public void varSaveRestoreTest(){
+
+        // Saving a copy of the set of the variables values
+        stack.addFirst(new Complex(1));
+        varStack.assignToVar('a');
+        varStack.saveVar();
+        
+        // Working on the copy of the set of the variables values
+        stack.addFirst(new Complex(2));
+        varStack.sumToVar('a');
+        varStack.copyFromVar('a');
+        assertEquals(new Complex(3), stack.peekFirst());
+        
+        // Restoring the previous set of the variables values & checking of the restore
+        varStack.restoreVar();
+        varStack.copyFromVar('a');
+        assertEquals(new Complex(1), stack.peekFirst());
+        
+        /* Adding another save & restore for a final check */
+        stack.addFirst(new Complex(3));
+        varStack.assignToVar('a');
+        varStack.saveVar();
+        
+        stack.addFirst(new Complex(2));
+        varStack.sumToVar('a');
+        varStack.copyFromVar('a');
+        assertEquals(new Complex(5), stack.peekFirst());
+        
+        varStack.restoreVar();
+        varStack.copyFromVar('a');
+        assertEquals(new Complex(3), stack.peekFirst());
+        
+    }
+    
+    /**
+     * Method to test the saveVar and restoreVar methods using all the available variables
+     */
+    @Test
+    public void varSaveRestoreTest2(){
+
+        // Saving a copy of the set of the variables values
+        for(int i = 0; i < 26; i++)
+            stack.addFirst(new Complex(i));
+
+        for(int i = 0; i < 26; i++)
+            stack.addFirst(new Complex(i)); 
+        
+        for(char c = 'a'; c <= 'z'; c++)
+            varStack.assignToVar(c);
+        
+        assertEquals(26, stack.size());
+        
+        varStack.saveVar();
+        
+        // Working on the copy of the set of the variables values
+        for(char c = 'a'; c <= 'z'; c++)
+            varStack.sumToVar(c);
+        
+        assertEquals(0, stack.size());
+        
+        for(char c = 'a'; c <= 'z'; c++)
+            varStack.copyFromVar(c);
+        
+        assertEquals(26, stack.size());
+        
+        for(int i = 0; i < 26; i++)
+            assertEquals(new Complex(i*2), stack.removeFirst());
+        
+        // Restoring the previous set of the variables values & checking of the restore
+        varStack.restoreVar();
+        
+        for(char c = 'a'; c <= 'z'; c++)
+            varStack.copyFromVar(c);
+        
+        for(int i = 0; i < 26; i++)
+            assertEquals(new Complex(i), stack.removeFirst()); 
+        
+    }
+        
+    /**
+     * Method to test the saveVar method with empty variables
+     */
+    @Test
+    public void saveVarTest(){
+        
+        for(int i = 0; i < 26; i++)
+            stack.addFirst(new Complex(i));
+        
+        varStack.saveVar();
+        
+        for(char c = 'a'; c <= 'z'; c++)
+            varStack.assignToVar(c);
+        
+        assertEquals(0, stack.size());
+        
+        for(char c = 'a'; c <= 'z'; c++)
+            varStack.copyFromVar(c);
+        
+        for(int i = 0; i < 26; i++)
+            assertEquals(new Complex(i), stack.removeFirst()); 
+    }
+    
+    /**
+     * Method to test the restoreVar method fail trying a restoring attempt and 
+     * the stack pointer is equal to 0 (so there aren't previous set of variables values to restore)
+     * It calls the IllegalStackPointerException
+     */
+    @Test(expected = IllegalStackPointerException.class)
+    public void restoreVarTestFail(){    
+        varStack.restoreVar();
+    }
+    
+    /**
+     * Method to test the restoreVar method fail trying more restoring attempt than saving attempts and 
+     * the stack pointer is equal to 0 (so there aren't enough sets of variables values to restore)
+     * It calls the IllegalStackPointerException
+     */
+    @Test(expected = IllegalStackPointerException.class)
+    public void restoreVarTestFail2(){    
+        varStack.saveVar();
+        varStack.restoreVar();
+        varStack.restoreVar();
+    }
 }

@@ -1,11 +1,11 @@
 package exception;
 
 /**
- *
+ * This is the RuntimeException called when an operand is divided by 0
  * @author Group 10
- * @brief This is the Exception called when an operand is divided by 0
+ * 
  */
-public class ZeroDivisionException extends Exception {
+public class ZeroDivisionException extends RuntimeException {
 
     /**
      * Creates a new instance of <code>ZeroDivisionException</code> without

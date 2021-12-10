@@ -44,10 +44,11 @@ import org.apache.commons.math3.exception.NullArgumentException;
 import org.apache.commons.math3.util.Precision;
 
 /**
+ * This is the Controller, so the Class that acts as an intermediary between the
+ * View and the Model
  *
  * @author Group 10
- * This is the Controller, so the Class that acts as an intermediary
- * between the View and the Model
+ *
  */
 public class FXMLDocumentController implements Initializable {
 
@@ -72,6 +73,7 @@ public class FXMLDocumentController implements Initializable {
 
     /**
      * Method to initialize Model and GUI
+     *
      * @param url
      * @param rb
      */
@@ -140,7 +142,7 @@ public class FXMLDocumentController implements Initializable {
 
         userDefObs = FXCollections.observableArrayList(userOperations.getNameOperations());
         userDefList.setItems(userDefObs);
-        
+
         displayField.textProperty().addListener(new InvalidationListener() {
             @Override
             public void invalidated(Observable observable) {
@@ -150,8 +152,9 @@ public class FXMLDocumentController implements Initializable {
     }
 
     /**
-     * The following methods are used to write in the text field a
-     * complex number or an operator or the space character
+     * The following methods are used to write in the text field a complex
+     * number or an operator or the space character
+     *
      * @param event when one of the associated buttons is pushed
      */
     @FXML
@@ -293,7 +296,7 @@ public class FXMLDocumentController implements Initializable {
     private void subtractToVarAction(ActionEvent event) {
         displayField.setText(displayField.getText() + "-" + variablesList.getValue());
     }
-    
+
     @FXML
     private void saveVarAction(ActionEvent event) {
         displayField.setText(displayField.getText() + "save");
@@ -305,8 +308,9 @@ public class FXMLDocumentController implements Initializable {
     }
 
     /**
-     * newAction method called when the "new" button is pushed. It allows to create
-     * a new User-Defined Operation
+     * newAction method called when the "new" button is pushed. It allows to
+     * create a new User-Defined Operation
+     *
      * @param event is the event when the new button is pushed
      */
     @FXML
@@ -348,10 +352,12 @@ public class FXMLDocumentController implements Initializable {
         }
 
     }
-    
+
     /**
-     * callAction method sends to the text field the content of a user-defined operation
-     * @param event 
+     * callAction method sends to the text field the content of a user-defined
+     * operation
+     *
+     * @param event
      */
     @FXML
     private void callAction(ActionEvent event) {
@@ -367,9 +373,9 @@ public class FXMLDocumentController implements Initializable {
     }
 
     /**
-     * cancAction method is used to delete from text field a character is
-     * there aren't space characters or a sequence until the previous space
-     * character
+     * cancAction method is used to delete from text field a character is there
+     * aren't space characters or a sequence until the previous space character
+     *
      * @param event is the event when the canc button is pushed
      */
     @FXML
@@ -385,9 +391,13 @@ public class FXMLDocumentController implements Initializable {
         }
 
     }
+
     /**
-     * deleteAction method implements the mechanism of deletion of a user-defined operation through a choice made by user whether it is a cascade or no action policy
-     * @param event 
+     * deleteAction method implements the mechanism of deletion of a
+     * user-defined operation through a choice made by user whether it is a
+     * cascade or no action policy
+     *
+     * @param event
      */
     @FXML
     private void deleteAction(ActionEvent event) {
@@ -445,6 +455,12 @@ public class FXMLDocumentController implements Initializable {
 
     }
 
+    /**
+     * editAction method implements the mechanism to edit a sequence of
+     * operations using a dialog, when the button is pushed
+     *
+     * @param event
+     */
     @FXML
     private void editAction(ActionEvent event) {
 
@@ -453,18 +469,17 @@ public class FXMLDocumentController implements Initializable {
             dialog.setHeaderText("Edit User Operation");
             dialog.setContentText("Set a new sequence of " + userDefList.getValue());
             Optional<String> ret = dialog.showAndWait();
-            
+
             if (ret.isPresent() && !ret.get().isEmpty() && parser.check(ret.get())) {
-                try{
+                try {
                     userOperations.editSequence(userDefList.getValue(), ret.get());
-                    
+
                     alert.setAlertType(AlertType.INFORMATION);
                     alert.setTitle("Information");
                     alert.setHeaderText("Edited");
-                    alert.setContentText(userDefList.getValue()  +" has been edited");
+                    alert.setContentText(userDefList.getValue() + " has been edited");
                     alert.showAndWait();
-                }
-                catch(LoopException ex){
+                } catch (LoopException ex) {
                     alert.setAlertType(AlertType.ERROR);
                     alert.setTitle("Error");
                     alert.setHeaderText("Loop found");
@@ -478,7 +493,7 @@ public class FXMLDocumentController implements Initializable {
                 alert.setContentText("The sequence of the operation is invalid. Editing Aborted.");
                 alert.showAndWait();
             }
-            
+
         } else {
             alert.setAlertType(AlertType.WARNING);
             alert.setTitle("Warning");
@@ -486,13 +501,14 @@ public class FXMLDocumentController implements Initializable {
             alert.setContentText("You must select one user defined operation");
             alert.showAndWait();
         }
-        
+
     }
 
     /**
-     * sendAction method uses the interpreter to translate input in
-     * complex numbers and operators and to do any operations This methos also
-     * handles exceptions by showing an alert
+     * sendAction method uses the interpreter to translate input in complex
+     * numbers and operators and to do any operations This methos also handles
+     * exceptions by showing an alert
+     *
      * @param event is the event when the send button is clicked
      */
     @FXML
@@ -501,8 +517,9 @@ public class FXMLDocumentController implements Initializable {
     }
 
     /**
-     * keyPressedTextField method allows to use enter button on the keyboard 
-     * @param event 
+     * keyPressedTextField method allows to use enter button on the keyboard
+     *
+     * @param event
      */
     @FXML
     private void keyPressedTextField(KeyEvent event) {
@@ -513,8 +530,9 @@ public class FXMLDocumentController implements Initializable {
     }
 
     /**
-     * showDialogAndCallParse method to execute the sequence of operations inserted on the text
-     * field. It shows an error dialog according to the exception
+     * showDialogAndCallParse method to execute the sequence of operations
+     * inserted on the text field. It shows an error dialog according to the
+     * exception
      */
     private void showDialogAndCallParse() {
         String input = displayField.getText();
@@ -614,11 +632,9 @@ public class FXMLDocumentController implements Initializable {
      * operations previoulsy saved
      *
      * @param event
-     * @throws IOException
-     * @throws ClassNotFoundException
      */
     @FXML
-    private void reloadUserAction(ActionEvent event) throws IOException, ClassNotFoundException {
+    private void reloadUserAction(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Reload your User Defined Operations from a bin file");
         File f = fileChooser.showOpenDialog(stackView.getScene().getWindow());
@@ -648,7 +664,5 @@ public class FXMLDocumentController implements Initializable {
         }
 
     }
-
-
 
 }

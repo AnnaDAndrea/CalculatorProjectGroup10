@@ -1,10 +1,13 @@
 package exception;
 
 /**
+ * This is the RuntimeException called when there is a syntax error into the
+ * string read by Interpreter
+ *
  * @author Group 10
- * @brief This is the Exception called when there is a syntax error into the string read by Interpreter
+ *
  */
-public class InterpreterException extends Exception {
+public class InterpreterException extends RuntimeException {
 
     /**
      * Creates a new instance of <code>InterpreterException</code> without

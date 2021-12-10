@@ -5,7 +5,6 @@ import exception.LoopException;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -15,8 +14,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * this class implements the logic needed to maintain a data structure that
@@ -153,44 +150,42 @@ public class UserDefinedOperation {
         }
         userOperations = userDef;
     }
-    
-    
+
     /**
      * checkLoop method allows to avoid any loops in user defined operations
+     *
      * @param value
-     * @param init 
+     * @param init
      */
-    private void checkLoop(String value, String init){
+    private void checkLoop(String value, String init) {
         StringTokenizer ops = new StringTokenizer(value, " ");
-        
-        while(ops.hasMoreTokens()){
+
+        while (ops.hasMoreTokens()) {
             String op = ops.nextToken();
-            
-            if(op.equals(init))
+
+            if (op.equals(init)) {
                 throw new LoopException();
-            else{
+            } else {
                 String newValue = getSequence(op);
-                if(newValue != null)
-                {
+                if (newValue != null) {
                     checkLoop(newValue, init);
                 }
             }
-            
-            
+
         }
-        
+
     }
-    
-    
+
     /**
      * editSequence method allows the editing of a user defined operation
+     *
      * @param name
-     * @param value 
+     * @param value
      */
-    public void editSequence(String name, String value){
-            checkLoop(value, name);
-            userOperations.replace(name, value);
-        
+    public void editSequence(String name, String value) {
+        checkLoop(value, name);
+        userOperations.replace(name, value);
+
     }
 
 }

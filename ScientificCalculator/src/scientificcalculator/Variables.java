@@ -8,9 +8,11 @@ import org.apache.commons.math3.complex.Complex;
 import org.apache.commons.math3.exception.NullArgumentException;
 
 /**
+ * This is the Class used to manage the 26 variables and its associated
+ * operations
  *
  * @author Group 10
- * This is the Class used to manage the 26 variables and its associated operations
+ *
  */
 public class Variables {
 
@@ -20,6 +22,7 @@ public class Variables {
 
     /**
      * Constructor, stack pointer (sp) starting from 0 (so starting from 'a')
+     *
      * @param stack stack containing the complex numbers
      */
     public Variables(Deque<Complex> stack) {
@@ -33,9 +36,11 @@ public class Variables {
     }
 
     /**
-     * Method to convert the characters associated at the variables [a, b, ..., z] 
-     * in the numbers associated at the positions [0, 1, ..., 26].
-     * It calls the VarOutOfRangeException if the variable is not contained in [a, b, ..., z]
+     * Method to convert the characters associated at the variables [a, b, ...,
+     * z] in the numbers associated at the positions [0, 1, ..., 26]. It calls
+     * the VarOutOfRangeException if the variable is not contained in [a, b,
+     * ..., z]
+     *
      * @param var variable [a, b, ..., z]
      * @return the position of the variable as a number
      */
@@ -47,10 +52,13 @@ public class Variables {
     }
 
     /**
-     * Method to pull a complex number from the stack and assign it to a variable.
-     * It calls the VarOutOfRangeException if the variable is not contained in [a, b, ..., z] 
-     * It calls the NoSuchElementException if the stack is empty
-     * @param var indicates the variable that will contain the assigned complex number
+     * Method to pull a complex number from the stack and assign it to a
+     * variable. It calls the VarOutOfRangeException if the variable is not
+     * contained in [a, b, ..., z] It calls the NoSuchElementException if the
+     * stack is empty
+     *
+     * @param var indicates the variable that will contain the assigned complex
+     * number
      */
     public void assignToVar(char var) {
         int pos = charToCode(var);
@@ -59,10 +67,12 @@ public class Variables {
     }
 
     /**
-     * Method to copy the value of a variable and push it onto the stack.
-     * It calls the VarOutOfRangeException if the variable is not contained in [a, b, ..., z] 
-     * It calls the NullArgumentException if the variable is empty
-     * @param var indicates the variable that will contain the value to copy onto the stack
+     * Method to copy the value of a variable and push it onto the stack. It
+     * calls the VarOutOfRangeException if the variable is not contained in [a,
+     * b, ..., z] It calls the NullArgumentException if the variable is empty
+     *
+     * @param var indicates the variable that will contain the value to copy
+     * onto the stack
      */
     public void copyFromVar(char var) {
         int pos = charToCode(var);
@@ -74,11 +84,12 @@ public class Variables {
     }
 
     /**
-     * Method to pull a complex number from the stack and sum it to the
-     * variable value and save the result into the variable itself. 
-     * It calls the VarOutOfRangeException if the variable is not contained in [a, b, ..., z]
-     * It calls the NoSuchElementException if the stack is empty
-     * It calls the NullArgumentException if the variable is empty
+     * Method to pull a complex number from the stack and sum it to the variable
+     * value and save the result into the variable itself. It calls the
+     * VarOutOfRangeException if the variable is not contained in [a, b, ..., z]
+     * It calls the NoSuchElementException if the stack is empty It calls the
+     * NullArgumentException if the variable is empty
+     *
      * @param var indicates the variable that will contain the value of the sum
      */
     public void sumToVar(char var) {
@@ -94,12 +105,14 @@ public class Variables {
     }
 
     /**
-     * Method to pull a complex number from the stack and subtract it to
-     * the variable value and save the result into the variable itself.
-     * It calls the VarOutOfRangeException if the variable is not contained in [a, b, ..., z]
-     * It calls the NoSuchElementException if the stack is empty
-     * It calls the NullArgumentException if the variable is empty
-     * @param var indicates the variable that will contain the value of the subtraction
+     * Method to pull a complex number from the stack and subtract it to the
+     * variable value and save the result into the variable itself. It calls the
+     * VarOutOfRangeException if the variable is not contained in [a, b, ..., z]
+     * It calls the NoSuchElementException if the stack is empty It calls the
+     * NullArgumentException if the variable is empty
+     *
+     * @param var indicates the variable that will contain the value of the
+     * subtraction
      */
     public void subtractToVar(char var) {
         int pos = charToCode(var);
@@ -114,37 +127,41 @@ public class Variables {
     }
 
     /**
-     * Method to save a copy of all the 26 variables on a “variable stack” 
-     * (distinct from the stack used for the operands by the operations). 
-     * Applying “saveVar” several times it is possible to preserve several sets of variable values
+     * Method to save a copy of all the 26 variables on a “variable stack”
+     * (distinct from the stack used for the operands by the operations).
+     * Applying “saveVar” several times it is possible to preserve several sets
+     * of variable values
      */
     public void saveVar() {
-        
-        for(int i = 0; i < 26; i++){
+
+        for (int i = 0; i < 26; i++) {
             Complex c = stackVar.get(sp + i);
-            if(c != null)
+            if (c != null) {
                 stackVar.addLast(new Complex(c.getReal(), c.getImaginary()));
-            else
+            } else {
                 stackVar.addLast(null);
-        } 
-        sp = sp + 26;    
+            }
+        }
+        sp = sp + 26;
     }
 
-    
     /**
-     * Method to restore for all the variables the last values that were saved 
-     * on the “variable stack” (removing them from that stack).
-     * It calls the IllegalStackPointerException if there is a restoring attempt and the stack pointer
-     * is equal to 0 (so there aren't previous set of variables values to restore)
+     * Method to restore for all the variables the last values that were saved
+     * on the “variable stack” (removing them from that stack). It calls the
+     * IllegalStackPointerException if there is a restoring attempt and the
+     * stack pointer is equal to 0 (so there aren't previous set of variables
+     * values to restore)
      */
     public void restoreVar() {
 
-        if(sp == 0)
-           throw new IllegalStackPointerException();
+        if (sp == 0) {
+            throw new IllegalStackPointerException();
+        }
 
-        for (int i = 0; i < 26; i++) 
+        for (int i = 0; i < 26; i++) {
             stackVar.removeLast();
-        
+        }
+
         sp = sp - 26;
     }
 

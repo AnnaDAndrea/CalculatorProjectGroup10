@@ -1,5 +1,6 @@
 package scientificcalculator;
 
+import exception.IllegalStackPointerException;
 import exception.InterpreterException;
 import exception.LoopException;
 import exception.ZeroDivisionException;
@@ -13,6 +14,8 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Set;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -137,6 +140,13 @@ public class FXMLDocumentController implements Initializable {
 
         userDefObs = FXCollections.observableArrayList(userOperations.getNameOperations());
         userDefList.setItems(userDefObs);
+        
+        displayField.textProperty().addListener(new InvalidationListener() {
+            @Override
+            public void invalidated(Observable observable) {
+                displayField.end();
+            }
+        });
     }
 
     /**
@@ -541,6 +551,12 @@ public class FXMLDocumentController implements Initializable {
                 alert.setTitle("Error");
                 alert.setHeaderText("Variable Error");
                 alert.setContentText("Variable inserted hasn't a value");
+                alert.showAndWait();
+            } catch (IllegalStackPointerException ex) {
+                alert.setAlertType(AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Restore Error");
+                alert.setContentText("There aren't available variables saves");
                 alert.showAndWait();
             } finally {
                 stackObs.setAll(stack);

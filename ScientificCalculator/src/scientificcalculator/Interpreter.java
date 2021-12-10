@@ -185,6 +185,10 @@ public class Interpreter {
             {}
             else if(op.equals("swap"))
             {}
+            else if(op.equals("save"))
+            {}
+            else if(op.equals("restore"))
+            {}
             else if(op.length()==2 && op.charAt(0)=='>')
             {}
             else if(op.length()==2 && op.charAt(0)=='<')

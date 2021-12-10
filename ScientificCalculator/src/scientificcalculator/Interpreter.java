@@ -11,7 +11,7 @@ import org.apache.commons.math3.complex.ComplexFormat;
 
 /**
  * @author Group 10
- * @brief Interpreter class implements a translation mechanism
+ * Interpreter class implements a translation mechanism
  */
 public class Interpreter {
     
@@ -30,7 +30,7 @@ public class Interpreter {
         
     }
     /**
-     * @brief isComplex method returns true if the string is a complex operand
+     * isComplex method returns true if the string is a complex operand
      * @param s is the input text
      * @return boolean
      */   
@@ -38,19 +38,24 @@ public class Interpreter {
         return s.matches("^(?=[j.\\d+-])([+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?![j.\\d]))([+-]?(?:(?:\\d+(?:\\.\\d*)?|\\.\\d+))?[j])?$");
     }
     /**
-     * @brief isImaginary method returns true if the string is a pure complex number
+     * isImaginary method returns true if the string is a pure complex number
      * @param s
-     * @return 
+     * @return boolean
      */
     private boolean isImaginary(String s){
         return s.matches("^(?=[j.\\d+-])([+-]?(?:(?:\\d+(?:\\.\\d*)?|\\.\\d+))?[j])?$");
     }
     
+    /**
+     * isOnlyJPart method returns trues if the string is a complex number like "realPart+j","realPart-j","+j","-j"
+     * @param s
+     * @return boolean
+     */
     public boolean isOnlyJPart(String s){
         return s.matches("^(?=[j.\\d+-])([+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?![j.\\d]))([+-]?[j])$");
     }
     /**
-     * @brief parse method is used to separate the string input in tokens that are complex numbers(operators) or operators
+     * parse method is used to separate the string input in tokens that are complex numbers(operators) or operators
      * This method calls each method of the class ComplexNumOperation to calculate basic operations,each method of the class StackManipulation,each method of the class Variables
      * @param s is the content of the text field(display)
      * @throws InterpreterException if there are either wrong operators or wrong operands
@@ -144,7 +149,7 @@ public class Interpreter {
     
     }
  /**
-  * @brief check method returns true if a sequence is allowed,correct and all the containing operations exist
+  * check method returns true if a sequence is allowed,correct and all the containing operations exist
   * @param s is a sequence to be checked
   * @return boolean
   */

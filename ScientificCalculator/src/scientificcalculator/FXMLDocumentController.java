@@ -13,8 +13,6 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -45,7 +43,7 @@ import org.apache.commons.math3.util.Precision;
 /**
  *
  * @author Group 10
- * @brief This is the Controller, so the Class that acts as an intermediary
+ * This is the Controller, so the Class that acts as an intermediary
  * between the View and the Model
  */
 public class FXMLDocumentController implements Initializable {
@@ -70,7 +68,7 @@ public class FXMLDocumentController implements Initializable {
     private ComboBox<String> userDefList;
 
     /**
-     * @brief method to initialize Model and GUI
+     * Method to initialize Model and GUI
      * @param url
      * @param rb
      */
@@ -142,7 +140,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     /**
-     * @brief the following methods are used to write in the text field a
+     * The following methods are used to write in the text field a
      * complex number or an operator or the space character
      * @param event when one of the associated buttons is pushed
      */
@@ -623,6 +621,14 @@ public class FXMLDocumentController implements Initializable {
             alert.showAndWait();
         }
 
+    }
+
+    @FXML
+    private void saveVarAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void restoreVarAction(ActionEvent event) {
     }
 
 }

@@ -283,6 +283,16 @@ public class FXMLDocumentController implements Initializable {
     private void subtractToVarAction(ActionEvent event) {
         displayField.setText(displayField.getText() + "-" + variablesList.getValue());
     }
+    
+    @FXML
+    private void saveVarAction(ActionEvent event) {
+        displayField.setText(displayField.getText() + "save");
+    }
+
+    @FXML
+    private void restoreVarAction(ActionEvent event) {
+        displayField.setText(displayField.getText() + "restore");
+    }
 
     /**
      * newAction method called when the "new" button is pushed. It allows to create
@@ -623,12 +633,6 @@ public class FXMLDocumentController implements Initializable {
 
     }
 
-    @FXML
-    private void saveVarAction(ActionEvent event) {
-    }
 
-    @FXML
-    private void restoreVarAction(ActionEvent event) {
-    }
 
 }

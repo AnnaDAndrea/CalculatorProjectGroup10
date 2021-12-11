@@ -402,7 +402,7 @@ public class FXMLDocumentController implements Initializable {
      * The deleteAction method is used to delete a user-defined operation. 
      * The user chooses whether to apply a cascade or no action policy
      * 
-     * @param event
+     * @param event is the event when the delete button is pushed
      */
     @FXML
     private void deleteAction(ActionEvent event) {
@@ -441,7 +441,7 @@ public class FXMLDocumentController implements Initializable {
                     alert.setAlertType(AlertType.INFORMATION);
                     alert.setTitle("Information");
                     alert.setHeaderText("Dependencies found");
-                    alert.setContentText(userDefList.getValue() + " has dependencies, so it hasn't been deleted");
+                    alert.setContentText(userDefList.getValue() + " has dependencies,\nso it hasn't been deleted");
                     alert.showAndWait();
                 }
             }
@@ -464,7 +464,7 @@ public class FXMLDocumentController implements Initializable {
      * The editAction method is used to edit a sequence of operations
      * using a dialog, when the button is pushed
      *
-     * @param event
+     * @param event is the event when the edit button is pushed
      */
     @FXML
     private void editAction(ActionEvent event) {

@@ -44,7 +44,7 @@ public class Interpreter {
     /**
      * The isImaginary method returns true if the string is a pure complex number
      *
-     * @param s
+     * @param s is the input text
      * @return boolean
      */
     private boolean isImaginary(String s) {

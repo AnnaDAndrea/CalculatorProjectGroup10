@@ -264,9 +264,24 @@ public class ComplexNumOperationTest {
     @Test
     public void testMod(){
         Complex op1 = new Complex(4,0);
+        Complex op2 = new Complex(-4,0);
+        Complex op3 = new Complex(3,4);
+        Complex op4 = new Complex(-3,-4);
+        
         complexNumOperation.insertion(op1);
         complexNumOperation.mod();
-        assertEquals(new Complex(4,0), stack.getFirst());
+        assertEquals(new Complex(4,0), stack.removeFirst());
+        complexNumOperation.insertion(op2);
+        complexNumOperation.mod();
+        assertEquals(new Complex(4,0), stack.removeFirst());
+        
+        complexNumOperation.insertion(op3);
+        complexNumOperation.mod();
+        assertEquals(new Complex(5,0), stack.removeFirst());
+        
+        complexNumOperation.insertion(op4);
+        complexNumOperation.mod();
+        assertEquals(new Complex(5,0), stack.removeFirst());
     }
 
     /**

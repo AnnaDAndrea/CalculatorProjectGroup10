@@ -103,17 +103,24 @@ public class FXMLDocumentController implements Initializable {
                         double img = Precision.round(c.getImaginary(), 8);
                         double re = Precision.round(c.getReal(), 8);
 
-                        if (img > 0) {
-                            setText(re + "+" + img + "j");
-                        } else if (img == 0 && re == 0) {
+                        if(re == 0 && img == 0)
                             setText("0.0+0.0j");
-                        } else if (img == 0) {
-                            setText(Precision.round(c.getReal(), 8) + "+0.0j");
-                        } else if (re == 0) {
+                        else if(re == 0 && img > 0)
+                            setText("0.0+" + img + "j");
+                        else if(re == 0 && img < 0)
                             setText("0.0" + img + "j");
-                        } else {
+                        else if(re > 0 && img == 0)
+                            setText(re + "+0.0j");
+                        else if(re > 0 && img > 0)
+                            setText(re + "+" + img + "j");
+                        else if(re > 0 && img < 0)
                             setText(re + "" + img + "j");
-                        }
+                        else if(re < 0 && img == 0)
+                            setText(re + "+0.0j");
+                        else if(re < 0 && img > 0)
+                            setText(re + "+" + img + "j");
+                        else
+                            setText(re + "" + img + "j");
                     }
                 }
             };

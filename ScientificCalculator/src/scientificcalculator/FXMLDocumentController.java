@@ -372,8 +372,8 @@ public class FXMLDocumentController implements Initializable {
     }
 
     /**
-     * The cancAction method is used to delete one character at a time (using the keyboard)
-     * or an entire string up to the previous space character (using the "canc" button)
+     * The cancAction method is used to delete 
+     * an entire string up to the previous space character (using the "canc" button)
      *
      * @param event is the event when the canc button is pushed
      */
@@ -517,7 +517,7 @@ public class FXMLDocumentController implements Initializable {
     /**
      * The keyPressedTextField method allows to use the enter button on the keyboard
      *
-     * @param event
+     * @param event is the event when the enter button is clicked
      */
     @FXML
     private void keyPressedTextField(KeyEvent event) {
@@ -591,7 +591,7 @@ public class FXMLDocumentController implements Initializable {
      * The saveUserAction method is used to save the user-defined operations 
      * in a binary file chosen by the user 
      *
-     * @param event
+     * @param event is the event when the save button is clicked
      */
     @FXML
     private void saveUserAction(ActionEvent event) {
@@ -629,7 +629,7 @@ public class FXMLDocumentController implements Initializable {
      * The reloadUserAction method is used to reload the user-defined operations
      * previously saved from a binary file
      *
-     * @param event
+     * @param event is the event when the reload button is clicked
      */
     @FXML
     private void reloadUserAction(ActionEvent event) {

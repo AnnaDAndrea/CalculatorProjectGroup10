@@ -58,7 +58,7 @@ public class Interpreter {
      * @param s
      * @return boolean
      */
-    public boolean isOnlyJPart(String s) {
+    private boolean isOnlyJPart(String s) {
         return s.matches("^(?=[j.\\d+-])([+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?![j.\\d]))([+-]?[j])$");
     }
 

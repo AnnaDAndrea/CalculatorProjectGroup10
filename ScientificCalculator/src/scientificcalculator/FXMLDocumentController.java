@@ -518,33 +518,33 @@ public class FXMLDocumentController implements Initializable {
     /**
      * The warningDialog method is used to show a warning dialog
      */
-    private void warningDialog(String s1, String s2){
+    private void warningDialog(String header, String content){
         alert.setAlertType(AlertType.WARNING);
         alert.setTitle("Warning");
-        alert.setHeaderText(s1);
-        alert.setContentText(s2);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
         alert.showAndWait();
     }
     
     /**
      * The errorDialog method is used to show an error dialog 
      */
-    private void errorDialog(String s1, String s2){
+    private void errorDialog(String header, String content){
         alert.setAlertType(AlertType.ERROR);
         alert.setTitle("Error");
-        alert.setHeaderText(s1);
-        alert.setContentText(s2);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
         alert.showAndWait();
     }
     
     /**
      * The informationDialog method is used to show an information dialog 
      */
-    private void informationDialog(String s1, String s2){
+    private void informationDialog(String header, String content){
         alert.setAlertType(AlertType.INFORMATION);
         alert.setTitle("Information");
-        alert.setHeaderText(s1);
-        alert.setContentText(s2);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
         alert.showAndWait();
     }
 

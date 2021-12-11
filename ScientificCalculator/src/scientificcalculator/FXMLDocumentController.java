@@ -335,27 +335,15 @@ public class FXMLDocumentController implements Initializable {
                 userDefObs.setAll(userOperations.getNameOperations());
                 userDefList.setItems(userDefObs);
 
-                alert.setAlertType(AlertType.INFORMATION);
-                alert.setTitle("Information");
-                alert.setHeaderText("Created");
-                alert.setContentText("New operation created successfully");
-                alert.showAndWait();
+                informationDialog("Created", "New operation created successfully");
 
                 displayField.setText("");
             } else {
-                alert.setAlertType(AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("Operation not allowed");
-                alert.setContentText("The name of the operation or the sequence is\ninvalid");
-                alert.showAndWait();
+                errorDialog("Operation not allowed", "The name of the operation or the sequence is\\ninvalid");
             }
 
         } else {
-            alert.setAlertType(AlertType.WARNING);
-            alert.setTitle("Warning");
-            alert.setHeaderText("Insert one or more operations");
-            alert.setContentText("You must insert one or more operations");
-            alert.showAndWait();
+            warningDialog("Insert one or more operations", "You must insert one or more operations");
         }
 
     }
@@ -369,13 +357,9 @@ public class FXMLDocumentController implements Initializable {
     private void callAction(ActionEvent event) {
         if (userDefList.getValue() != null) {
             displayField.setText(displayField.getText() + userDefList.getValue());
-        } else {
-            alert.setAlertType(AlertType.WARNING);
-            alert.setTitle("Warning");
-            alert.setHeaderText("Select a User-defined Operation");
-            alert.setContentText("You must select a User-defined operation");
-            alert.showAndWait();
-        }
+        } else 
+            warningDialog("Select a User-defined Operation", "You must select a User-defined operation");
+        
     }
 
     /**
@@ -420,29 +404,15 @@ public class FXMLDocumentController implements Initializable {
 
             if (choose.equals("Cascade")) {
                 String ret = userOperations.deleteAllDependencies(userDefList.getValue());
-                alert.setAlertType(AlertType.INFORMATION);
-                alert.setTitle("Information");
-                alert.setHeaderText("Deleted User Defined Operations");
-                alert.setContentText("The deleted user defined operations are:\n" + ret);
-                alert.showAndWait();
-
+                informationDialog("Deleted User Defined Operations", "The deleted user defined operations are:\n" + ret);
             } else if (choose.equals("No action")) {
                 Set<String> depSet = userOperations.searchDependencies(userDefList.getValue());
 
                 if (depSet.isEmpty()) {
                     userOperations.delete(userDefList.getValue());
-
-                    alert.setAlertType(AlertType.INFORMATION);
-                    alert.setTitle("Information");
-                    alert.setHeaderText("Deleted User Defined Operation");
-                    alert.setContentText(userDefList.getValue() + " has been deleted ");
-                    alert.showAndWait();
+                    informationDialog("Deleted User Defined Operation", userDefList.getValue() + " has been deleted");
                 } else {
-                    alert.setAlertType(AlertType.INFORMATION);
-                    alert.setTitle("Information");
-                    alert.setHeaderText("Dependencies found");
-                    alert.setContentText(userDefList.getValue() + " has dependencies,\nso it hasn't been deleted");
-                    alert.showAndWait();
+                    informationDialog("Dependencies found", userDefList.getValue() + " has dependencies,\nso it hasn't been deleted");
                 }
             }
 
@@ -450,13 +420,9 @@ public class FXMLDocumentController implements Initializable {
             userDefList.setItems(userDefObs);
             userDefList.getSelectionModel().select(0);
 
-        } else {
-            alert.setAlertType(AlertType.WARNING);
-            alert.setTitle("Warning");
-            alert.setHeaderText("Select a User-defined Operation");
-            alert.setContentText("You must select a User-defined operation");
-            alert.showAndWait();
-        }
+        } else 
+            warningDialog("Select a User-defined Operation", "You must select a User-defined operation");
+        
 
     }
 
@@ -478,35 +444,18 @@ public class FXMLDocumentController implements Initializable {
             if (ret.isPresent() && !ret.get().isEmpty() && parser.check(ret.get())) {
                 try {
                     userOperations.editSequence(userDefList.getValue(), ret.get());
-
-                    alert.setAlertType(AlertType.INFORMATION);
-                    alert.setTitle("Information");
-                    alert.setHeaderText("Edited");
-                    alert.setContentText(userDefList.getValue() + " has been edited");
-                    alert.showAndWait();
+                    
+                    informationDialog("Edited", userDefList.getValue() + " has been edited");
                 } catch (LoopException ex) {
-                    alert.setAlertType(AlertType.ERROR);
-                    alert.setTitle("Error");
-                    alert.setHeaderText("Loop found");
-                    alert.setContentText("The sequence of the operation generates a loop. Editing Aborted.");
-                    alert.showAndWait();
+                    errorDialog("Loop found", "The sequence of the operation generates a loop. Editing Aborted.");
                 }
             } else {
-                alert.setAlertType(AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("Operation not allowed");
-                alert.setContentText("The sequence of the operation is invalid. Editing Aborted.");
-                alert.showAndWait();
+                errorDialog("Operation not allowed", "The sequence of the operation is invalid. Editing Aborted.");
             }
 
-        } else {
-            alert.setAlertType(AlertType.WARNING);
-            alert.setTitle("Warning");
-            alert.setHeaderText("Select a User-defined Operation");
-            alert.setContentText("You must select a User-defined operation");
-            alert.showAndWait();
-        }
-
+        } else 
+            warningDialog("Select a User-defined Operation", "You must select a User-defined operation");
+        
     }
 
     /**
@@ -546,53 +495,59 @@ public class FXMLDocumentController implements Initializable {
             try {
                 parser.parse(input);
             } catch (InterpreterException ex) {
-                alert.setAlertType(AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("Wrong command/s");
-                alert.setContentText("You inserted wrong command/s.\nEnter the operations to be performed again.");
-                alert.showAndWait();
+                errorDialog("Wrong command/s", "You inserted wrong command/s.\nEnter the operations to be performed again.");
             } catch (NoSuchElementException ex) {
-                alert.setAlertType(AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("Not enough operands");
-                alert.setContentText("There are not enough operands.\nEnter the operations to be performed again");
-                alert.showAndWait();
+                errorDialog("Not enough operands", "There are not enough operands.\nEnter the operations to be performed again.");
             } catch (ZeroDivisionException ex) {
-                alert.setAlertType(AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("Division by 0");
-                alert.setContentText("Division Error");
-                alert.showAndWait();
+                errorDialog("Division by 0", "Division Error");
             } catch (VarOutOfRangeException ex) {
-                alert.setAlertType(AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("Variable out of range");
-                alert.setContentText("The inserted variable doesn't exist");
-                alert.showAndWait();
+                errorDialog("Variable out of range", "The inserted variable doesn't exist");
             } catch (NullArgumentException ex) {
-                alert.setAlertType(AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("Variable Value Error");
-                alert.setContentText("The inserted variable hasn't a value");
-                alert.showAndWait();
+                errorDialog("Variable Value Error", "The inserted variable hasn't a value");
             } catch (IllegalStackPointerException ex) {
-                alert.setAlertType(AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("Variables Restore Error");
-                alert.setContentText("There aren't available saves of the variables values");
-                alert.showAndWait();
+                errorDialog("Variables Restore Error", "There aren't available saves of the variables values");
             } finally {
                 stackObs.setAll(stack);
             }
         } else {
-            alert.setAlertType(AlertType.WARNING);
-            alert.setTitle("Warning");
-            alert.setHeaderText("Insert one or more operations");
-            alert.setContentText("You must insert one or more operations");
-            alert.showAndWait();
+            warningDialog("Insert one or more operations", "You must insert one or more operations");
         }
         displayField.setText("");
     }
+    
+    /**
+     * The warningDialog method is used to show a warning dialog
+     */
+    private void warningDialog(String s1, String s2){
+        alert.setAlertType(AlertType.WARNING);
+        alert.setTitle("Warning");
+        alert.setHeaderText(s1);
+        alert.setContentText(s2);
+        alert.showAndWait();
+    }
+    
+    /**
+     * The errorDialog method is used to show an error dialog 
+     */
+    private void errorDialog(String s1, String s2){
+        alert.setAlertType(AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(s1);
+        alert.setContentText(s2);
+        alert.showAndWait();
+    }
+    
+    /**
+     * The informationDialog method is used to show an information dialog 
+     */
+    private void informationDialog(String s1, String s2){
+        alert.setAlertType(AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText(s1);
+        alert.setContentText(s2);
+        alert.showAndWait();
+    }
+
 
     /**
      * The saveUserAction method is used to save the user-defined operations 
@@ -615,19 +570,9 @@ public class FXMLDocumentController implements Initializable {
 
         try {
             userOperations.save(f.getPath());
-
-            alert.setAlertType(AlertType.INFORMATION);
-            alert.setTitle("Information");
-            alert.setHeaderText("User-defined Operations saved");
-            alert.setContentText("Successful saving procedure");
-            alert.showAndWait();
-
+            informationDialog("User-defined Operations saved", "Successful saving procedure");
         } catch (IOException ex) {
-            alert.setAlertType(AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Save Error");
-            alert.setContentText("Unsuccessful saving procedure");
-            alert.showAndWait();
+            errorDialog("Save Error", "Unsuccessful saving procedure");
         }
 
     }
@@ -650,22 +595,12 @@ public class FXMLDocumentController implements Initializable {
 
         try {
             userOperations.reload(f.getPath());
-
-            alert.setAlertType(AlertType.INFORMATION);
-            alert.setTitle("Information");
-            alert.setHeaderText("User-defined Operations reloaded");
-            alert.setContentText("Successful reload procedure");
-            alert.showAndWait();
-
+            informationDialog("User-defined Operations reloaded", "Successful reload procedure");
             userDefObs.setAll(userOperations.getNameOperations());
             userDefList.setItems(userDefObs);
             userDefList.getSelectionModel().select(0);
         } catch (IOException | ClassNotFoundException ex) {
-            alert.setAlertType(AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Reload Error");
-            alert.setContentText("Unsuccessful reload procedure");
-            alert.showAndWait();
+            errorDialog("Reload Error", "Unsuccessful reload procedure");
         }
 
     }

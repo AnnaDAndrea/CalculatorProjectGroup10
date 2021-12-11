@@ -257,5 +257,26 @@ public class ComplexNumOperationTest {
         complexNumOperation.invertedSign();
 
     }
+    
+    /**
+     * Method to test the mod method
+     */
+    @Test
+    public void testMod(){
+        Complex op1 = new Complex(4,0);
+        complexNumOperation.insertion(op1);
+        complexNumOperation.mod();
+        assertEquals(new Complex(4,0), stack.getFirst());
+    }
 
+    /**
+     * Method to test the mod method fail calling the
+     * NoSuchElementException
+     */
+    @Test(expected = NoSuchElementException.class)
+    public void testModExc() {
+        complexNumOperation.mod();
+
+    }
+    
 }

@@ -131,5 +131,15 @@ public class ComplexNumOperation {
         stack.addFirst(op1.negate());
 
     }
-
+    
+    /**
+     * Method to do the modulus of a complex number pulled from the top of the stack.
+     * It calls the NoSuchElementException if the stack is empty
+     */
+    public void mod(){
+        
+        Complex op1 = stack.removeFirst();
+        
+        stack.addFirst(new Complex(op1.abs()));
+    }
 }

@@ -339,7 +339,7 @@ public class FXMLDocumentController implements Initializable {
 
                 displayField.setText("");
             } else {
-                errorDialog("Operation not allowed", "The name of the operation or the sequence is\\ninvalid");
+                errorDialog("Operation not allowed", "The name of the operation or the sequence is\ninvalid");
             }
 
         } else {
@@ -447,10 +447,10 @@ public class FXMLDocumentController implements Initializable {
                     
                     informationDialog("Edited", userDefList.getValue() + " has been edited");
                 } catch (LoopException ex) {
-                    errorDialog("Loop found", "The sequence of the operation generates a loop. Editing Aborted.");
+                    errorDialog("Loop found", "The sequence of the operation generates a loop.\nEditing Aborted.");
                 }
             } else {
-                errorDialog("Operation not allowed", "The sequence of the operation is invalid. Editing Aborted.");
+                errorDialog("Operation not allowed", "The sequence of the operation is invalid.\nEditing Aborted.");
             }
 
         } else 

@@ -417,6 +417,7 @@ public class InterpreterTest {
         assertEquals(true, interpreter.check("/"));
         assertEquals(true, interpreter.check("*"));
         assertEquals(true, interpreter.check("+-"));
+        assertEquals(true, interpreter.check("mod"));
         assertEquals(true, interpreter.check("sqrt"));
         assertEquals(true, interpreter.check("clear"));
         assertEquals(true, interpreter.check("dup"));
@@ -433,6 +434,9 @@ public class InterpreterTest {
         assertEquals(false, interpreter.check("dropd"));
         assertEquals(false, interpreter.check("overd"));
         assertEquals(false, interpreter.check("swapd"));
+        assertEquals(false, interpreter.check("abs"));
+        assertEquals(false, interpreter.check("mods"));
+        assertEquals(false, interpreter.check("modulus"));
 
     }
 
@@ -509,6 +513,12 @@ public class InterpreterTest {
         assertEquals(true, interpreter.check("-j <a / * +- sqrt"));
         assertEquals(true, interpreter.check("2-j <a / * +- sqrt"));
         assertEquals(true, interpreter.check("2+j <a / * +- sqrt"));
+    }
+    
+    @Test
+    public void testParseMod() {
+        interpreter.parse("4+0j mod");
+        assertEquals(new Complex(4, 0), stack.getFirst());
     }
 
 }

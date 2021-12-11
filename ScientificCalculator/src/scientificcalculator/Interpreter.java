@@ -20,9 +20,9 @@ public class Interpreter {
     private StackManipulation stackManip;
     private ComplexFormat cf;
     private Variables variablesStack;
-    private UserDefinedOperation userOperations;
+    private UserDefinedOperationReadOnly userOperations;
 
-    public Interpreter(Deque<Complex> stack, UserDefinedOperation userOperations) {
+    public Interpreter(Deque<Complex> stack, UserDefinedOperationReadOnly userOperations) {
         baseOp = new ComplexNumOperation(stack);
         stackManip = new StackManipulation(stack);
         cf = new ComplexFormat("j", NumberFormat.getInstance(Locale.US));

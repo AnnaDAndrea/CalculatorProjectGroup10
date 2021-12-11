@@ -88,7 +88,7 @@ public class FXMLDocumentController implements Initializable {
 
         userOperations = new UserDefinedOperation();
 
-        parser = new Interpreter(stack, userOperations);
+        parser = new Interpreter(stack,(UserDefinedOperationReadOnly) userOperations);
 
         stackView.setItems(stackObs);
         stackView.setCellFactory(lv -> {

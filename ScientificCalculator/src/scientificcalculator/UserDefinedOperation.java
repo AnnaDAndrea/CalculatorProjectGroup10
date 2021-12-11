@@ -24,7 +24,7 @@ import java.util.StringTokenizer;
  *
  * @author Group 10
  */
-public class UserDefinedOperation {
+public class UserDefinedOperation implements UserDefinedOperationReadOnly{
 
     private Map<String, String> userOperations;
 
@@ -37,6 +37,7 @@ public class UserDefinedOperation {
      *
      * @return Set<String>
      */
+    @Override
     public Set<String> getNameOperations() {
         return userOperations.keySet();
     }
@@ -48,6 +49,7 @@ public class UserDefinedOperation {
      * @param op is key
      * @return String
      */
+    @Override
     public String getSequence(String op) {
         return userOperations.get(op);
     }

@@ -17,12 +17,26 @@ Develop an application implementing a scientific programmable calculator support
 Link documents: https://drive.google.com/drive/folders/1_HlmY1GuVqAFJDJqG38aNLi3EShv7ySs?usp=sharing
 
 In the "Product Backlog & Details" folder there are:
-- Design of Software Architecture [Weekly Updated]
+- Design of the Software Architecture 
 - Product Backlog [Weekly Updated]
 - BurnDown Chart [Weekly Updated]
 - Definition of Done & Details
+- uml.png 
+- Architecture.png
 
 In the "First Sprint" folder there are:
 - Sprint Backlog 1
 - Review Report 1
 - Retrospective Report 1
+
+In the "Second Sprint" folder there are:
+- Sprint Backlog 2
+- Review Report 2
+- Retrospective Report 2
+
+In the "Third Sprint" folder there are:
+- Sprint Backlog 3
+- Review Report 3
+- Retrospective Report 3
+
+Moreover, there is a presentation about the project: OnlyPresentation.ppsx
